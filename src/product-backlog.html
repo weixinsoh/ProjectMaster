@@ -31,7 +31,34 @@
 
   <div class="tasks">
   </div>
-  
+
+  <div class="panel">
+    <div class="dropdown">
+      <label></label>
+      <i class="fa fa-filter"></i>
+      <select id="filter" name="filter">
+        <option value="all">All</option>
+        <option value="frontend">Front-End</option>
+        <option value="backend">Back-End</option>
+        <option value="api">API</option>
+        <option value="database">Database</option>
+        <option value="framework">Framework</option>
+        <option value="ui">UI</option>
+        <option value="ux">UX</option>
+        <option value="testing">Testing</option>
+      </select>
+    </div>
+    <div class="dropdown">
+      <i class="fa fa-sort"></i>
+      <select id="sort" name="sort">
+        <option value="">Select Sort Order</option>
+        <option value="urgency-asc">Least Urgent to Most Urgent</option>
+        <option value="urgency-desc">Most Urgent to Least Urgent</option>
+        <option value="recency-asc">Oldest to Most Recent</option>
+        <option value="recency-desc">Most Recent to Oldest</option>
+      </select>
+    </div>
+  </div> 
 
   <button class="btn btn-primary fab"><i class="fa-solid fa-plus fa-2x" style="color: #ffffff;"></i></button>
 

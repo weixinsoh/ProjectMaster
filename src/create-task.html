@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/create-task-styles.css">
+    <title>create-task</title>
+</head>
+
+<body>
+    <form>
+        <!-- Task Name -->
+        <label>Task Name</label><br>
+        <input type="text" id="task-name" placeholder="Enter Task Name Here...">
+        <br><br>
+
+        <!-- Story Point -->
+        <label>Story Point</label><br>
+        <select id="task-story-point">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <br><br>
+
+        <!-- Assignee -->
+        <label>Assignee</label><br>
+        <select id="task-assignee">
+            <option value="Team Member 1">Team Member 1</option>
+            <option value="Team Member 2">Team Member 2</option>
+            <option value="Team Member 3">Team Member 3</option>
+            <option value="Team Member 4">Team Member 4</option>
+        </select>
+        <br><br>
+        
+        <!-- Description -->
+        <label>Description</label><br>
+        <textarea id="task-description" rows="4" cols="40" placeholder="Enter Description Here..."></textarea>
+        <br><br>
+
+        <!-- Type of Task -->
+        <label>Type of Task</label><br>
+        <select id="task-type">
+            <option value="Story">Story</option>
+            <option value="Bug">Bug</option>
+        </select>
+        <br><br>
+
+        <!-- Tags -->
+        <label>Tags</label><br>
+        <select id="task-tag">
+            <option value="frontend">Frontend</option>
+            <option value="backend">Backend</option>
+            <option value="api">API</option>
+            <option value="testing">Testing</option>
+            <option value="framework">Framework</option>
+            <option value="ui">UI</option>
+            <option value="ux">UX</option>
+            <option value="database">Database</option>
+        </select>
+        <br><br>
+
+        <!-- Priority -->
+        <label>Priority</label><br>
+        <select id="task-priority">
+            <option value="urgent">Urgent</option>
+            <option value="important">Important</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select>
+        <br><br>
+
+        <!-- Status -->
+        <label for="status">Status</label><br>
+        <select id="task-status">
+            <option value="not-started">Not Started</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+        </select>
+        <br><br>
+        
+        <!-- Stages -->
+        <label for="stages">Stages</label><br>
+        <select id="task-stages">
+            <option value="planning">Planning</option>
+            <option value="development">Development</option>
+            <option value="testing">Testing</option>
+            <option value="integration">Integration</option>
+        </select>
+        <br><br>
+        
+        <button id="return-product-backlog-btn"><a href="product-backlog.html">Back</a></button>
+        <button id="create-task-btn">Done</button>
+    </form>
+
+    <script type="module" src="scripts/product-backlog-script.js"></script>
+</body>
+</html>

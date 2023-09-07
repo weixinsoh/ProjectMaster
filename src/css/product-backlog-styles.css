@@ -1,3 +1,23 @@
+.panel {
+    margin-top: 20px;
+    margin-left: 5%;
+}
+
+.dropdown {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+select#filter {
+    border-radius: 20px;
+    text-align: center;
+}
+
+select#sort {
+    border-radius: 20px;
+    text-align: center;
+}
+
 .fab {
     width: 80px;
     height: 80px;
@@ -7,3 +27,4 @@
     right: 20px;
     cursor: pointer;
 }
+

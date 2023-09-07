@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link href='./addtask.css' rel='stylesheet'>
+    <title>ProjectMaster</title>
+</head>
+
+<body>
+    <form>
+        <!-- Task Name -->
+        <label for="taskname">Task Name</label><br>
+        <input type="text" id="taskname" name="taskname" placeholder="Enter Task Name Here...">
+        <br><br>
+
+        <!-- Story Point -->
+        <label for="storypoint">Story Point</label><br>
+        <select name="numbers" id="numbers">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <br><br>
+
+        <!-- Assignee -->
+        <label for="assignee">Assignee</label><br>
+        <select name="member" id="member">
+            <option value="Team Member 1">Team Member 1</option>
+            <option value="Team Member 2">Team Member 2</option>
+            <option value="Team Member 3">Team Member 3</option>
+            <option value="Team Member 4">Team Member 4</option>
+        </select>
+        <br><br>
+        
+        <!-- Description -->
+        <label for="description">Description</label><br>
+        <textarea id="description" name="description" rows="4" cols="40" placeholder="Enter Description Here..."></textarea>
+        <br><br>
+
+        <!-- Type of Task -->
+        <label for="task type">Type of Task</label><br>
+        <input type="checkbox" id="story" name="type">
+            <label for="story">Story</label>
+        <input type="checkbox" id="bug" name="type">
+            <label for="bug">Bug</label><br><br>
+
+        <!-- Tags -->
+        <label for="tags">Tags</label><br>
+            <input type="checkbox" id="frontend" name="tag">
+                <label for="frontend">Frontend</label>
+            <input type="checkbox" id="backend" name="tag">
+                <label for="backend">Backend</label>
+            <input type="checkbox" id="api" name="tag">
+                <label for="api">API</label>
+            <input type="checkbox" id="testing" name="tag">
+                <label for="testing">Testing</label>
+            <br>
+            <input type="checkbox" id="framework" name="tag">
+                <label for="framework">Framework</label>
+            <input type="checkbox" id="ui" name="tag">
+                <label for="ui">UI</label>
+            <input type="checkbox" id="ux" name="tag">
+                <label for="ux">UX</label>
+            <input type="checkbox" id="database" name="tag">
+                <label for="database">Database</label>
+            <br><br>
+
+        <!-- Priority -->
+        <label for="prio">Priority</label><br>
+            <input type="checkbox" id="urgent" name="prio">
+                <label for="urgent">Urgent</label>
+            <input type="checkbox" id="important" name="prio">
+                <label for="important">Important</label>
+            <input type="checkbox" id="medium" name="prio">
+                <label for="medium">Medium</label>
+            <input type="checkbox" id="low" name="prio">
+                <label for="low">Low</label>
+            <br><br>
+
+
+        <!-- Status -->
+        <label for="status">Status</label><br>
+            <input type="checkbox" id="not started" name="status">
+                <label for="not started">Not Started</label>
+            <input type="checkbox" id="in progress" name="statys">
+                <label for="in progress">In Progress</label>
+            <input type="checkbox" id="completed" name="status">
+                <label for="completed">Completed</label>
+            <br><br>
+        
+        <!-- Stages -->
+        <label for="stages">Stages</label><br>
+            <input type="checkbox" id="planning" name="stages">
+                <label for="planning">Planning</label>
+            <input type="checkbox" id="development" name="stages">
+                <label for="development">Development</label>
+            <input type="checkbox" id="testing" name="stages">
+                <label for="testing">Testing</label>
+            <input type="checkbox" id="integration" name="stages">
+                <label for="integration">Integration</label>
+            <br><br>
+        <button type="done" value="done">Done</button>
+    </form>
+</body>
+</html>

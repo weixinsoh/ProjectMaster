@@ -26,6 +26,7 @@ onValue(reference, (snapshot) => {
 
 document.getElementById("filter-task").addEventListener('change', displayTask)
 document.getElementById("sort-task").addEventListener('change', displayTask)
+document.getElementById("task-cards").addEventListener("click", deleteTask)
 
 async function filterTask() {
   const filterBy = document.getElementById("filter-task").value;
@@ -36,7 +37,7 @@ async function filterTask() {
     const data = snapshot.val();
 
     for (const key in data) {
-      if (filterBy === "all" || data[key].tag === filterBy) {
+      if (filterBy === "All" || data[key].tag === filterBy) {
         retArr.push(data[key]);
       }
     }
@@ -50,10 +51,10 @@ async function filterTask() {
 
 function sortTask(filtered){
   const sortBy = document.getElementById("sort-task").value
-  const urgent = filtered.filter((obj) => obj.priority == "urgent")
-  const important = filtered.filter((obj) => obj.priority == "important")
-  const medium = filtered.filter((obj) => obj.priority == "medium")
-  const low = filtered.filter((obj) => obj.priority == "low")
+  const urgent = filtered.filter((obj) => obj.priority == "Urgent")
+  const important = filtered.filter((obj) => obj.priority == "Important")
+  const medium = filtered.filter((obj) => obj.priority == "Medium")
+  const low = filtered.filter((obj) => obj.priority == "Low")
   switch(sortBy){
     case "urgency-desc":
       return urgent.concat(important, medium, low)
@@ -67,12 +68,85 @@ function sortTask(filtered){
 }
 
 function displayTask() {
-  document.getElementById("tasks").innerHTML = ""
+  const taskCards = document.getElementById("task-cards")
+  taskCards.innerHTML = ""
   filterTask().then((filtered) => {
     const sorted = sortTask(filtered)
-    console.log(sorted)
-    //display html
-    sorted.forEach((obj) => document.getElementById("tasks").innerHTML += `<div>${obj.name}</div>`)
+    sorted.forEach((task) => {
+      const card = document.createElement("div")
+      card.classList.add("task-card")
+      card.innerHTML = `
+          <div class="task-header">
+            <h2>${task.name}</h2>
+            <span class="story-points">${task.story_point}</span>
+          </div>
+          <p>
+            <span style="
+              background-color: ${getTagColor(task.tag)}; 
+              padding: 1px 3px; 
+              border-radius: 5px">
+              ${task.tag}
+            </span>
+            <br><br>
+          </p>
+          <div class="task-footer">
+            <p>
+              <b>Priority: </b>
+              <span style="
+                background-color: ${getPriorityColor(task.priority)}; 
+                padding: 1px 3px; 
+                border-radius: 5px">
+                ${task.priority}
+              </span>
+            </p>
+            <span class="icon">
+              <a href="edit-task.html"><i class="fas fa-edit edit-icon"></i></a>
+              <i class="fas fa-trash dlt-icon"></i>
+            </span>
+          </div>
+      `
+      taskCards.appendChild(card)
+    })
   })
 }
 
+function deleteTask(event) {
+  const taskCard = event.target.closest(".task-card");
+  if (taskCard) {
+    taskCard.remove();
+  }
+}
+
+function getTagColor(tag) {
+  switch (tag) {
+    case "Frontend":
+      return "mediumpurple"
+    case "Backend":
+      return "pink"
+    case "API":
+      return "lightblue"
+    case "Testing":
+      return "deepskyblue"
+    case "Framework":
+      return "tan"
+    case "UI":
+      return "antiquewhite"
+    case "UX":
+      return "silver"
+    case "Database":
+      return "aquamarine"
+  }
+}
+
+function getPriorityColor(priority) {
+  switch (priority) {
+    case "Urgent":
+      return "orangered"
+    case "Important":
+      return "lightsalmon"
+    case "Medium":
+      return "lemonchiffon"
+    case "Low":
+      return "lightgreen"
+  }
+}

@@ -48,9 +48,9 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Viewing Task Details
 
-1. 
-2. 
-3. 
+1. **Select Task:** Click on the task card, it will linked to a page where it shows all details of task.
+2. **Display Attributes:** Attributes such as task name, story point, assignee, description, type of task, tags, priority, status and stage of the selected task are displayed at once. 
+3. **Done button:** Click on the done button, it will linked back to the product backlog page. 
 
 </details>
 

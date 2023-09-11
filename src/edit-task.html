@@ -1,104 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/edit-task-styles.css">
+    <title>edit-task</title>
 </head>
+
 <body>
-    <form>
-        <!-- Task Name -->
-        <label>Task Name</label><br>
-        <input type="text" id="task-name" placeholder="Enter Task Name Here..." readonly>
-        <br><br>
+    <form class="form">
+        <div class="col-1">
+            <!-- Task Name -->
+            <p><h3>Task Name</h3></p>
+            <p><input type="text" id="task-name" placeholder="Enter Task Name Here..."></p>
+            
+            <!-- Story Point -->
+            <p><h3>Story Point<h3></p>
+            <p><select id="task-story-point">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </p>
+            <!-- Assignee -->
+            <p><h3>Assignee</h3></p>
+            <p></p><select id="task-assignee">
+                    <option value="Team Member 1">Team Member 1</option>
+                    <option value="Team Member 2">Team Member 2</option>
+                    <option value="Team Member 3">Team Member 3</option>
+                    <option value="Team Member 4">Team Member 4</option>
+                </select>
+            </p>
+            
+            <!-- Description -->
+            <p><h3>Description<h3></p>
+            <p><textarea id="task-description" rows="4" cols="40" placeholder="Enter Description Here..."></textarea></p>
+        </div>
+        <!-- <br> -->
+        <div class="col-2">
+            <!-- Type of Task -->
+            <p>
+            <p><h3>Type of Task</h3></p>
+            <p><select id="task-type">
+                    <option value="Story">Story</option>
+                    <option value="Bug">Bug</option>
+                </select>
+            </p>
 
-        <!-- Story Point -->
-        <label>Story Point</label><br>
-        <select id="task-story-point">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
-        <br><br>
+            <!-- Tags -->
+            <p><h3>Tags</h3></p>
+            <p><select id="task-tag">
+                    <option value="Frontend">Frontend</option>
+                    <option value="Backend">Backend</option>
+                    <option value="API">API</option>
+                    <option value="Testing">Testing</option>
+                    <option value="Framework">Framework</option>
+                    <option value="UI">UI</option>
+                    <option value="UX">UX</option>
+                    <option value="Database">Database</option>
+                </select>
+            </p>
 
-        <!-- Assignee -->
-        <label>Assignee</label><br>
-        <select id="task-assignee">
-            <option value="Team Member 1">Team Member 1</option>
-            <option value="Team Member 2">Team Member 2</option>
-            <option value="Team Member 3">Team Member 3</option>
-            <option value="Team Member 4">Team Member 4</option>
-        </select>
-        <br><br>
+            <!-- Priority -->
+            <p><h3>Priority</h3></p>
+            <p><select id="task-priority">
+                    <option value="Urgent">Urgent</option>
+                    <option value="Important">Important</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </p>
+
+            <!-- Status -->
+            <p><h3 for="status">Status</h3></p>
+            <p>
+                <select id="task-status">
+                    <option value="Not-started">Not Started</option>
+                    <option value="In-progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </p>
         
-        <!-- Description -->
-        <label>Description</label><br>
-        <textarea id="task-description" rows="4" cols="40" placeholder="Enter Description Here..."></textarea>
-        <br><br>
-
-        <!-- Type of Task -->
-        <label>Type of Task</label><br>
-        <select id="task-type">
-            <option value="Story">Story</option>
-            <option value="Bug">Bug</option>
-        </select>
-        <br><br>
-
-        <!-- Tags -->
-        <label>Tags</label><br>
-        <select id="task-tag">
-            <option value="Frontend">Frontend</option>
-            <option value="Backend">Backend</option>
-            <option value="API">API</option>
-            <option value="Testing">Testing</option>
-            <option value="Framework">Framework</option>
-            <option value="UI">UI</option>
-            <option value="UX">UX</option>
-            <option value="Database">Database</option>
-        </select>
-        <br><br>
-
-        <!-- Priority -->
-        <label>Priority</label><br>
-        <select id="task-priority">
-            <option value="Urgent">Urgent</option>
-            <option value="Important">Important</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-        </select>
-        <br><br>
-
-        <!-- Status -->
-        <label for="status">Status</label><br>
-        <select id="task-status">
-            <option value="Not-started">Not Started</option>
-            <option value="In-progress">In Progress</option>
-            <option value="Completed">Completed</option>
-        </select>
-        <br><br>
-        
-        <!-- Stages -->
-        <label for="stages">Stages</label><br>
-        <select id="task-stages">
-            <option value="Planning">Planning</option>
-            <option value="Development">Development</option>
-            <option value="Testing">Testing</option>
-            <option value="Integration">Integration</option>
-        </select>
-        <br><br>
+            <!-- Stages -->
+            <p><h3 for="stages">Stages</h3></p>
+            <p><select id="task-stages">
+                    <option value="Planning">Planning</option>
+                    <option value="Development">Development</option>
+                    <option value="Testing">Testing</option>
+                    <option value="Integration">Integration</option>
+                </select>
+            </p>
+        </div>
     </form>
 
-    <button id="return-product-backlog-btn">Back</button>
-    <button id="edit-task-btn">Save</button>
-    
+    <div class="buttons">
+        <button id="return-product-backlog-btn">Back</button>
+        <button id="edit-task-btn">Done</button>
+    </div>
+
     <script type="module" src="scripts/edit-task-script.js"></script>
 </body>
 </html>
+

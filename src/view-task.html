@@ -3,76 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/view-task-styles.css">
     <title>view-task</title>
-    <link rel="stylesheet" href="view-task.css">
 </head>
 <body>
     <div class="container">
-        <div class="left-side">
-            <div class="task-name-container">
-                <p class="task-name">Task Name</p>
-                <p class="task-name-details">Creating and editing product backlog</p>
-            </div>
-            
-            <div class="story-point-container">
-                <p class="story-point">Story Point</p>
-                <p class="story-point-details">5</p>
-            </div>
-    
-            <div class="assignee-container">
-                <p class="assignee">Assignee</p>
-                <p class="assignee-details">Team Member 3</p>
-            </div>
-    
-            <div class="description-container">
-                <p class="description">Description</p>
-                <div class="description-box">
-                    <p class="description-details">Create Task Feature</p>
-                    <p class="description-details">User Stories:</p>
-                </div>
-            </div>
+        <div class="col">
+            <p><h2>Task Name</h2></p>
+            <p id="task-name"></p>
+            <p><h2>Story Point</h2></p>
+            <p id="task-story-point"></p>
+            <p><h2>Assignee</h2></p>
+            <p id="task-assignee"></p>
+            <p><h2>Description</h2></p>
+            <p id="task-description"></p>
         </div>
-        
-        <div class="middle">
-            <div class="type-of-task-container">
-                <p class="type-of-task">Type of task</p>
-                <div class="details-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 30 30" fill="none">
-                        <path d="M15 0C18.1055 0 20.625 2.51867 20.625 5.62308V5.83394C20.625 6.75355 19.8809 7.49744 18.9609 7.49744H11.0391C10.1191 7.49744 9.375 6.75355 9.375 5.83394V5.62308C9.375 2.51867 11.8945 0 15 0ZM2.42578 6.17367C3.1582 5.4415 4.34766 5.4415 5.08008 6.17367L8.83008 9.92239C8.87109 9.96339 8.90625 10.0044 8.94141 10.0454C9.77344 9.61781 10.7227 9.37766 11.7246 9.37766H18.2812C19.2832 9.37766 20.2266 9.61781 21.0645 10.0454C21.0996 10.0044 21.1348 9.96339 21.1758 9.92239L24.9258 6.17367C25.6582 5.4415 26.8477 5.4415 27.5801 6.17367C28.3125 6.90584 28.3125 8.09489 27.5801 8.82706L23.8301 12.5758C23.7891 12.6168 23.748 12.6519 23.707 12.6871C24.0703 13.39 24.2988 14.169 24.3574 15.0007H28.125C29.1621 15.0007 30 15.8383 30 16.8751C30 17.9118 29.1621 18.7495 28.125 18.7495H24.375C24.375 20.1904 24.0527 21.5493 23.4727 22.7676C23.6016 22.8438 23.7188 22.9375 23.8242 23.0488L27.5742 26.7975C28.3066 27.5297 28.3066 28.7187 27.5742 29.4509C26.8418 30.183 25.6523 30.183 24.9199 29.4509L21.2227 25.7549C19.7871 27.0318 17.9531 27.8752 15.9316 28.0744V14.0577C15.9316 13.5422 15.5098 13.1205 14.9941 13.1205C14.4785 13.1205 14.0566 13.5422 14.0566 14.0577V28.0685C12.0352 27.8694 10.2012 27.0259 8.76562 25.749L5.07422 29.4392C4.3418 30.1713 3.15234 30.1713 2.41992 29.4392C1.6875 28.707 1.6875 27.5179 2.41992 26.7858L6.16992 23.037C6.28125 22.9258 6.39844 22.8379 6.52148 22.7559C5.94727 21.5434 5.625 20.1845 5.625 18.7436H1.875C0.837891 18.7436 0 17.906 0 16.8692C0 15.8325 0.837891 14.9949 1.875 14.9949H5.64258C5.70703 14.169 5.93555 13.3841 6.29297 12.6812C6.25195 12.6461 6.21094 12.6109 6.16992 12.5699L2.41992 8.8212C1.6875 8.08903 1.6875 6.89999 2.41992 6.16781L2.42578 6.17367Z" fill="black"/>
-                    </svg>
-                    <p class="type-of-task-details">Bug</p>
-                </div>
-            </div>
 
-            <div class="tags-container">
-                <p class="tags">Tags</p>
-                <p class="tags-details">Frontend</p>
-                    
+        <div>
+            <p><h2>Type of task</h2></p>
+            <p id="task-tag"></p>
+            <p><h2>Priority</h2></p>
+            <p class="priority" id="task-priority"></p>
+            <p><h2>Status</h2></p>
+            <p id="task-status"></p>
+            <p><h2>Stages</h2></p>
+            <p id="task-stages"></p>
             </div>
-    
-            <div class="priority-container">
-                <p class="priority">Priority</p>
-                <p class="priority-details">Urgent</p>
-            </div>
-    
-            <div class="status-container">
-                <p class="status">Status</p>
-                <p class="status-details">In progress</p>
-            </div>
-    
-            <div class="stages-container">
-                <p class="stages">Stages</p>
-                <p class="stages-details">Development</p>
-            </div>
-        </div>
-        
-        <div class="right-side">
-            <div class="done-button">
-                <button>Done</button>
-            </div>
-        </div>
     </div>
-    
+
+    <button class="back" id="return-product-backlog-btn">Back</button>
     <script type="module" src="scripts/view-task-script.js"></script>
 </body>
 </html>

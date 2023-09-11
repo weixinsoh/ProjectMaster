@@ -8,14 +8,18 @@
 </head>
 
 <body>
-    <form>
+    <form class="form">
         <!-- Task Name -->
-        <label>Task Name</label><br>
-        <input type="text" id="task-name" placeholder="Enter Task Name Here...">
+        <div class="task_name">
+        <label>Task Name</label></div><br>
+        <div class="task_name_detail">
+        <input type="text" id="task-name" placeholder="Enter Task Name Here..."></div>
         <br><br>
 
         <!-- Story Point -->
-        <label>Story Point</label><br>
+        <div class="story_point">
+        <label>Story Point</label></div><br>
+        <div class="story_point_detail">
         <select id="task-story-point">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -29,33 +33,43 @@
             <option value="9">9</option>
             <option value="10">10</option>
         </select>
+        </div>
         <br><br>
 
         <!-- Assignee -->
-        <label>Assignee</label><br>
+        <div class="assignee">
+        <label>Assignee</label></div><br>
+        <div class="assignee_detail">
         <select id="task-assignee">
             <option value="Team Member 1">Team Member 1</option>
             <option value="Team Member 2">Team Member 2</option>
             <option value="Team Member 3">Team Member 3</option>
             <option value="Team Member 4">Team Member 4</option>
-        </select>
+        </select></div>
         <br><br>
         
         <!-- Description -->
-        <label>Description</label><br>
+        <div class="description">
+        <label>Description</label></div><br>
+        <div class="description_detail">
         <textarea id="task-description" rows="4" cols="40" placeholder="Enter Description Here..."></textarea>
+        </div>
         <br><br>
 
         <!-- Type of Task -->
-        <label>Type of Task</label><br>
+        <div class="type_of_task">
+        <label>Type of Task</label></div><br>
+        <div class="type_of_task_detail">
         <select id="task-type">
             <option value="Story">Story</option>
             <option value="Bug">Bug</option>
-        </select>
+        </select></div>
         <br><br>
 
         <!-- Tags -->
-        <label>Tags</label><br>
+        <div class="tags">
+        <label>Tags</label></div><br>
+        <div class="tags_detail">
         <select id="task-tag">
             <option value="Frontend">Frontend</option>
             <option value="Backend">Backend</option>
@@ -65,43 +79,51 @@
             <option value="UI">UI</option>
             <option value="UX">UX</option>
             <option value="Database">Database</option>
-        </select>
+        </select></div>
         <br><br>
 
         <!-- Priority -->
-        <label>Priority</label><br>
+        <div class="priority">
+        <label>Priority</label></div><br>
+        <div class="priority_detail">
         <select id="task-priority">
             <option value="Urgent">Urgent</option>
             <option value="Important">Important</option>
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
-        </select>
+        </select></div>
         <br><br>
 
         <!-- Status -->
-        <label for="status">Status</label><br>
+        <div class="status">
+        <label for="status">Status</label></div><br>
+        <div class="status_detail">
         <select id="task-status">
             <option value="Not-started">Not Started</option>
             <option value="In-progress">In Progress</option>
             <option value="Completed">Completed</option>
-        </select>
+        </select></div>
         <br><br>
         
         <!-- Stages -->
-        <label for="stages">Stages</label><br>
+        <div class="stages">
+        <label for="stages">Stages</label></div><br>
+        <div class="stages_detail">
         <select id="task-stages">
             <option value="Planning">Planning</option>
             <option value="Development">Development</option>
             <option value="Testing">Testing</option>
             <option value="Integration">Integration</option>
-        </select>
+        </select></div>
         <br><br>
+        
+        <div class="back">
+        <button id="return-product-backlog-btn"><a href="product-backlog.html">Back</a></button></div>
+        <div class="done">
+        <button id="create-task-btn">Done</button></div>
     </form>
 
-    <button id="return-product-backlog-btn">Back</button>
-    <button id="create-task-btn">Done</button>
-
-    <script type="module" src="scripts/create-task-script.js"></script>
+    <script type="module" src="scripts/product-backlog-script.js"></script>
 </body>
 </html>
 

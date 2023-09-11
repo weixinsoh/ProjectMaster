@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/create-task-styles.css">
-    <title>create-task</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
     <form>
         <!-- Task Name -->
         <label>Task Name</label><br>
-        <input type="text" id="task-name" placeholder="Enter Task Name Here...">
+        <input type="text" id="task-name" placeholder="Enter Task Name Here..." readonly>
         <br><br>
 
         <!-- Story Point -->
@@ -99,9 +97,8 @@
     </form>
 
     <button id="return-product-backlog-btn">Back</button>
-    <button id="create-task-btn">Done</button>
-
-    <script type="module" src="scripts/create-task-script.js"></script>
+    <button id="edit-task-btn">Save</button>
+    
+    <script type="module" src="scripts/edit-task-script.js"></script>
 </body>
 </html>
-

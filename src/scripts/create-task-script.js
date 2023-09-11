@@ -47,3 +47,5 @@ document.getElementById("create-task-btn").addEventListener('click', (e) => {
   )
   .catch((error) => {alert(error)})
 })
+
+document.getElementById("return-product-backlog-btn").addEventListener('click', () => {window.open('product-backlog.html', "_self")})

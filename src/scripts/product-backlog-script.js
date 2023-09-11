@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getDatabase, ref, set, get, child, onValue} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getDatabase, ref, set, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -26,7 +26,6 @@ onValue(reference, (snapshot) => {
 
 document.getElementById("filter-task").addEventListener('change', displayTask)
 document.getElementById("sort-task").addEventListener('change', displayTask)
-document.getElementById("task-cards").addEventListener("click", deleteTask)
 
 async function filterTask() {
   const filterBy = document.getElementById("filter-task").value;
@@ -74,7 +73,32 @@ function displayTask() {
     const sorted = sortTask(filtered)
     sorted.forEach((task) => {
       const card = document.createElement("div")
-      card.classList.add("task-card")
+      card.classList.add("task-card") 
+      card.onclick = viewTask.bind(null, task.name)
+
+      const icon = document.createElement("span")
+      icon.classList.add("icon")
+      const deleteBtn = document.createElement("button")
+      const editBtn = document.createElement("button")
+      deleteBtn.onclick = (e) => {
+        e.stopPropagation()
+        removeTask(task.name)
+      }
+      editBtn.onclick = (e) => {
+        e.stopPropagation()
+        editTask(task.name)
+      }
+      deleteBtn.innerHTML = '<i class="fas fa-trash dlt-icon"></i>'
+      editBtn.innerHTML = '<i class="fas fa-edit edit-icon"></i>'
+      icon.appendChild(editBtn)
+      icon.appendChild(deleteBtn)
+      const footer = document.createElement("div")
+      footer.classList.add("task-footer")
+      const otherInfo = document.createElement("p")
+      otherInfo.innerHTML = `<b>Priority: </b><span style="background-color: ${getPriorityColor(task.priority)}; padding: 1px 3px; border-radius: 5px">${task.priority}</span>`
+      footer.appendChild(otherInfo)
+      footer.appendChild(icon)
+
       card.innerHTML = `
           <div class="task-header">
             <h2>${task.name}</h2>
@@ -89,32 +113,11 @@ function displayTask() {
             </span>
             <br><br>
           </p>
-          <div class="task-footer">
-            <p>
-              <b>Priority: </b>
-              <span style="
-                background-color: ${getPriorityColor(task.priority)}; 
-                padding: 1px 3px; 
-                border-radius: 5px">
-                ${task.priority}
-              </span>
-            </p>
-            <span class="icon">
-              <a href="edit-task.html"><i class="fas fa-edit edit-icon"></i></a>
-              <i class="fas fa-trash dlt-icon"></i>
-            </span>
-          </div>
       `
+      card.appendChild(footer)
       taskCards.appendChild(card)
     })
   })
-}
-
-function deleteTask(event) {
-  const taskCard = event.target.closest(".task-card");
-  if (taskCard) {
-    taskCard.remove();
-  }
 }
 
 function getTagColor(tag) {
@@ -149,4 +152,16 @@ function getPriorityColor(priority) {
     case "Low":
       return "lightgreen"
   }
+}
+
+function viewTask(value) {
+  window.open('view-task.html?id=' + value, '_self')
+}
+
+function removeTask(value){
+  remove(ref(db, "task/" + value)).then(alert("Task Deleted!"))
+}
+
+function editTask(value) { 
+  window.open('edit-task.html?id=' + value, '_self')
 }

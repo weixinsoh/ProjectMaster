@@ -25,10 +25,44 @@ get(child(reference, `/${receivedID}`)).then((snapshot) =>{
   document.getElementById("task-story-point").innerHTML = data.story_point
   document.getElementById("task-assignee").innerHTML = data.assignee
   document.getElementById("task-description").innerHTML = data.description
-  document.getElementById("task-tag").innerHTML = data.tag
-  document.getElementById("task-priority").innerHTML = data.priority
+  document.getElementById("task-tag").innerHTML = `<span style="background-color: ${getTagColor(data.tag)}; padding: 1px 3px; border-radius: 5px">${data.tag}</span>`
+  document.getElementById("task-priority").innerHTML = `<span style="background-color: ${getPriorityColor(data.priority)}; padding: 1px 3px; border-radius: 5px">${data.priority}</span>`
   document.getElementById("task-status").innerHTML = data.status
   document.getElementById("task-stages").innerHTML = data.stages
 })
 
 document.getElementById("return-product-backlog-btn").addEventListener('click', () => {window.open('product-backlog.html', "_self")})
+
+function getTagColor(tag) {
+  switch (tag) {
+    case "Frontend":
+      return "mediumpurple"
+    case "Backend":
+      return "pink"
+    case "API":
+      return "lightblue"
+    case "Testing":
+      return "deepskyblue"
+    case "Framework":
+      return "tan"
+    case "UI":
+      return "antiquewhite"
+    case "UX":
+      return "silver"
+    case "Database":
+      return "aquamarine"
+  }
+}
+
+function getPriorityColor(priority) {
+  switch (priority) {
+    case "Urgent":
+      return "orangered"
+    case "Important":
+      return "lightsalmon"
+    case "Medium":
+      return "lemonchiffon"
+    case "Low":
+      return "lightgreen"
+  }
+}

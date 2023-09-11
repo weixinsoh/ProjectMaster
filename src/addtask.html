@@ -5,17 +5,319 @@
     <meta charset="utf-8">
     <link href='./addtask.css' rel='stylesheet'>
     <title>ProjectMaster</title>
+    <style>
+
+        /* Set a rounded square border around the entire website */
+        body {
+            margin: 1; /* Remove default margin to ensure full coverage */
+            padding: 0; /* Remove default padding to ensure full coverage */
+            border: 5px solid #000; /* Adjust border width and color as needed */
+            border-radius: 30px; /* Adjust border-radius for rounded corners */
+            background-color: rgb(255, 255, 255); /* Background color inside the border */
+        }
+
+        .task_name {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 30px; /* Adjust the top spacing as needed */
+            left: 100px; /* Adjust the right spacing as needed */
+        }
+
+        .task_name_detail {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 50px; /* Adjust the top spacing as needed */
+            left: 100px; /* Adjust the right spacing as needed */
+        }
+
+        .story_point {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top:85px; /* Adjust the top spacing as needed */
+            left: 100px; /* Adjust the right spacing as needed */
+        }
+
+        .story_point_detail {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 105px; /* Adjust the top spacing as needed */
+            left: 100px; /* Adjust the right spacing as needed */
+        }
+
+        .assignee {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 135px; /* Adjust the top spacing as needed */
+            left: 100px; /* Adjust the right spacing as needed */
+        }
+
+        .assignee_detail {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 155px; /* Adjust the top spacing as needed */
+            left: 100px; /* Adjust the right spacing as needed */
+        }
+
+        .description {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 190px; /* Adjust the top spacing as needed */
+            left: 100px; /* Adjust the right spacing as needed */
+        }
+
+        .description_detail {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 210px; /* Adjust the top spacing as needed */
+            left: 100px; /* Adjust the right spacing as needed */
+        }
+
+        .type_of_task {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 30px; /* Adjust the top spacing as needed */
+            right: 800px; /* Adjust the right spacing as needed */
+        }
+
+        /* Add CSS styles to move elements to the right side */
+        .type_of_task_detail {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 50px; /* Adjust the top spacing as needed */
+            right: 755px; /* Adjust the right spacing as needed */
+        }
+    
+        /* Add margin to create space between elements */
+        .type_of_task_detail > * {
+            margin-left: 10px;
+        }
+
+        .tags {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 75px; /* Adjust the top spacing as needed */
+            right: 850px; /* Adjust the right spacing as needed */
+        }
+
+        .tags_detail1 {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top:95px; /* Adjust the top spacing as needed */
+            right: 556px; /* Adjust the right spacing as needed */ 
+        }
+
+        /* Add margin to create space between elements */
+        .tags_detail1 > * {
+            margin-left: 10px;
+        }
+
+        .tags_detail2 {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 120px; /* Adjust the top spacing as needed */
+            right: 570px; /* Adjust the right spacing as needed */ 
+        }
+
+        /* Add margin to create space between elements */
+        .tags_detail2 > * {
+            margin-left: 10px;
+        }
+
+        .frontend_label {
+        background-color: rgb(119, 94, 179);
+        }
+
+        .backend_label {
+        background-color: rgb(231, 33, 221);
+        }
+
+        .api_label {
+        background-color: rgb(108, 161, 221);
+        }
+
+        .testing_label {
+        background-color: rgb(36, 65, 192);
+        }
+
+        .framework_label {
+        background-color: rgb(181, 189, 80);
+        }
+
+        .ui_label {
+        background-color: rgb(214, 183, 212);
+        }
+
+        .ux_label {
+        background-color: rgb(164, 171, 172);
+        }
+
+        .database_label {
+        background-color: rgb(5, 243, 171);
+        }
+
+        .priority {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 145px; /* Adjust the top spacing as needed */
+            right: 830px; /* Adjust the right spacing as needed */
+        }
+
+        .priority_detail {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top:165px; /* Adjust the top spacing as needed */
+            right: 551px; /* Adjust the right spacing as needed */ 
+        }
+
+        /* Add margin to create space between elements */
+        .priority_detail > * {
+            margin-left: 10px;
+        }
+
+        /* Add styles for labels with specific classes */
+        .urgent_label {
+        background-color: red;
+        }
+
+        .important_label {
+        background-color: orange;
+        }
+
+        .medium_label {
+        background-color: yellow;
+        }
+
+        .low_label {
+        background-color: rgb(29, 240, 29);
+        }
+
+        .status {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 195px; /* Adjust the top spacing as needed */
+            right: 840px; /* Adjust the right spacing as needed */
+        }
+
+        .status_detail {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top:215px; /* Adjust the top spacing as needed */
+            right: 563px; /* Adjust the right spacing as needed */ 
+        }
+
+        /* Add margin to create space between elements */
+        .status_detail > * {
+            margin-left: 10px;
+        }
+
+        .stages {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 245px; /* Adjust the top spacing as needed */
+            right: 838px; /* Adjust the right spacing as needed */
+        }
+
+        .stages_detail {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top:265px; /* Adjust the top spacing as needed */
+            right: 483px; /* Adjust the right spacing as needed */ 
+        }
+
+        /* Add margin to create space between elements */
+        .stages_detail > * {
+            margin-left: 10px;
+        }
+
+        .done {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            flex-direction: row;
+            position: absolute;
+            top: 400px; /* Adjust the top spacing as needed */
+            right: 100px; /* Adjust the right spacing as needed */
+        }
+
+
+    </style>
 </head>
 
 <body>
     <form>
         <!-- Task Name -->
-        <label for="taskname">Task Name</label><br>
+        <div class="task_name">
+        <label for="taskname">Task Name</label>
+        </div>
+        <br>
+        <div class="task_name_detail">
         <input type="text" id="taskname" name="taskname" placeholder="Enter Task Name Here...">
+        </div>
         <br><br>
 
         <!-- Story Point -->
-        <label for="storypoint">Story Point</label><br>
+        <div class="story_point">
+        <label for="storypoint">Story Point</label>
+        </div>
+        <br>
+        <div class="story_point_detail">
         <select name="numbers" id="numbers">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -29,76 +331,133 @@
             <option value="9">9</option>
             <option value="10">10</option>
         </select>
+        </div>
         <br><br>
 
         <!-- Assignee -->
-        <label for="assignee">Assignee</label><br>
+        <div class="assignee">
+        <label for="assignee">Assignee</label>
+        </div>
+        <br>
+        <div class="assignee_detail">
         <select name="member" id="member">
             <option value="Team Member 1">Team Member 1</option>
             <option value="Team Member 2">Team Member 2</option>
             <option value="Team Member 3">Team Member 3</option>
             <option value="Team Member 4">Team Member 4</option>
         </select>
+        </div>
         <br><br>
         
         <!-- Description -->
-        <label for="description">Description</label><br>
+        <div class="description">
+        <label for="description">Description</label>
+        </div>
+        <br>
+        <div class="description_detail">
         <textarea id="description" name="description" rows="4" cols="40" placeholder="Enter Description Here..."></textarea>
+        </div>
         <br><br>
-
+        
         <!-- Type of Task -->
-        <label for="task type">Type of Task</label><br>
-        <input type="checkbox" id="story" name="type">
-            <label for="story">Story</label>
-        <input type="checkbox" id="bug" name="type">
-            <label for="bug">Bug</label><br><br>
+        <div class="type_of_task">
+        <label for="task type">Type of Task</label>
+        </div>
+        <div class="type_of_task_detail">
+            <input type="checkbox" id="story" name="type">
+                <label for="story">Story</label>
+            <input type="checkbox" id="bug" name="type">
+                <label for="bug">Bug</label>
+        </div>
+            <br><br>
 
         <!-- Tags -->
+        <div class="tags">
         <label for="tags">Tags</label><br>
+        </div>
+        <div class="tags_detail1">
+            <div class="frontend_label">
             <input type="checkbox" id="frontend" name="tag">
                 <label for="frontend">Frontend</label>
+            </div>
+            <div class="backend_label">
             <input type="checkbox" id="backend" name="tag">
                 <label for="backend">Backend</label>
+            </div>
+            <div class="api_label">
             <input type="checkbox" id="api" name="tag">
                 <label for="api">API</label>
+            </div>
+            <div class="testing_label">
             <input type="checkbox" id="testing" name="tag">
                 <label for="testing">Testing</label>
+            </div>
+        </div>
             <br>
+        <div class="tags_detail2">
+            <div class="framework_label">
             <input type="checkbox" id="framework" name="tag">
                 <label for="framework">Framework</label>
+            </div>
+            <div class="ui_label">
             <input type="checkbox" id="ui" name="tag">
                 <label for="ui">UI</label>
+            </div>
+            <div class="ux_label">
             <input type="checkbox" id="ux" name="tag">
                 <label for="ux">UX</label>
+            </div>
+            <div class="database_label">
             <input type="checkbox" id="database" name="tag">
                 <label for="database">Database</label>
+            </div>
+        </div>
             <br><br>
 
         <!-- Priority -->
+        <div class="priority">
         <label for="prio">Priority</label><br>
+        </div>
+        <div class="priority_detail">
+            <div class="urgent_label">
             <input type="checkbox" id="urgent" name="prio">
                 <label for="urgent">Urgent</label>
+            </div>
+            <div class="important_label">
             <input type="checkbox" id="important" name="prio">
                 <label for="important">Important</label>
+            </div>
+            <div class="medium_label">
             <input type="checkbox" id="medium" name="prio">
                 <label for="medium">Medium</label>
+            </div>
+            <div class="low_label">
             <input type="checkbox" id="low" name="prio">
                 <label for="low">Low</label>
+            </div>
+        </div>
             <br><br>
 
 
         <!-- Status -->
+        <div class="status">
         <label for="status">Status</label><br>
+        </div>
+        <div class="status_detail">
             <input type="checkbox" id="not started" name="status">
                 <label for="not started">Not Started</label>
             <input type="checkbox" id="in progress" name="statys">
                 <label for="in progress">In Progress</label>
             <input type="checkbox" id="completed" name="status">
                 <label for="completed">Completed</label>
+            </div>
             <br><br>
         
         <!-- Stages -->
+        <div class="stages">
         <label for="stages">Stages</label><br>
+        </div>
+        <div class="stages_detail">
             <input type="checkbox" id="planning" name="stages">
                 <label for="planning">Planning</label>
             <input type="checkbox" id="development" name="stages">
@@ -107,8 +466,13 @@
                 <label for="testing">Testing</label>
             <input type="checkbox" id="integration" name="stages">
                 <label for="integration">Integration</label>
+            </div>
             <br><br>
+        <div class="done">
         <button type="done" value="done">Done</button>
+        </div>
     </form>
 </body>
 </html>
+
+

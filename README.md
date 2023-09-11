@@ -30,13 +30,13 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Creating a Task
 
-1. 
-2. 
-3. 
+1. **Add Button:** Click on the add button, it will linked to a page where you can fill in the details of task.
+2. **Input Details:** You have to fill in all of the components for rendering task information.The attributes include task name, story point, assignee, description, type of task, tags, priority, status and stages. 
+3. **Done Button:** After filling in all of the details, click on the done button and the task will be added and displayed as a card in the product backlog.
 
 #### Editing a Task
 
-1. 
+1.  
 2. 
 3. 
 

@@ -42,9 +42,9 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Deleting a Task
 
-1. 
-2. 
-3. 
+1. **Using the delete button:** On the product backlog main page, you'll notice a small bin icon in the bottom-right corner of each task. Click on this bin icon to access the delete feature.
+
+2. **Applying the delete feature:** After clicking the bin icon, the task will be promptly removed from the product backlog main page. The task will no longer be available.
 
 #### Viewing Task Details
 

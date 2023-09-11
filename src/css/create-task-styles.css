@@ -16,7 +16,6 @@
 
 .buttons {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 20px;
+    right: 10%;
+    bottom: 10%;
 }

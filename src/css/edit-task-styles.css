@@ -1,0 +1,21 @@
+.form {
+    display: flex;
+    border: 5px solid #000; /* Adjust border width and color as needed */
+    border-radius: 30px; /* Adjust border-radius for rounded corners */
+    background-color: rgb(255, 255, 255); /* Background color inside the border */
+    padding: 3%;
+    position: relative;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.col-1 {
+    margin-right: 20%;
+}
+
+.buttons {
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+}

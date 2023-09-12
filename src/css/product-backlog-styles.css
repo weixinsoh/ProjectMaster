@@ -8,12 +8,12 @@
     margin-right: 20px;
 }
 
-select#filter {
+select#sort {
     border-radius: 20px;
     text-align: center;
 }
 
-select#sort {
+select#filter {
     border-radius: 20px;
     text-align: center;
 }

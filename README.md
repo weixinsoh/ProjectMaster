@@ -38,9 +38,11 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Editing a Task
 
-1. 
-2. 
-3. 
+1. **Edit Button:** Click on the edit button, it will linked to a page where you can edit in the details of the task.
+
+2. **Input Details:** You can change the details that is previously input in the task.
+
+3. **Done button:** Click on the done button, it will save the new detail of the task.
 
 #### Deleting a Task
 

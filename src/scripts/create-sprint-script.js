@@ -20,6 +20,8 @@ document.getElementById("create-sprint-btn").addEventListener('click', (e) => {
   const name = document.getElementById("sprint-name").value
   const description = document.getElementById("sprint-description").value
   const status = document.getElementById("sprint-status").value
+  const start = document.getElementById('start-date').value;
+  const end = document.getElementById('end-date').value;
   const date = new Date().toString()
   
   e.preventDefault();
@@ -29,6 +31,8 @@ document.getElementById("create-sprint-btn").addEventListener('click', (e) => {
     description: description,
     type: type,
     status: status,
+    start: start,
+    end: end,
     date: date
   })
   .then(

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/create-sprint-styles.css">
+    <title>create-sprint</title>
+</head>
+
+<body>
+    <form class="form">
+        <div class="col-1">
+            <!-- Sprint Name -->
+            <p><h3>Sprint Name</h3></p>
+            <p><input type="text" id="sprint-name" placeholder="Enter sprint Name Here..."></p>
+
+            <!-- Date -->
+            <p><h3>Date</h3></p>
+            <label for="start-date">Start:</label>
+            <input type="date" id="start-date" name="start-date" required>
+                
+            <label for="end-date">End:</label>
+            <input type="date" id="end-date" name="end-date" required>
+
+            <!-- Status -->
+            <p><h3 for="status">Status</h3></p>
+            <p>
+                <select id="task-status">
+                    <option value="Not-started">Not Started</option>
+                    <option value="In-progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </p>
+        
+        </div>
+    </form>
+
+    <div class="buttons">
+        <button id="return-sprint-backlog-btn">Back</button>
+        <button id="create-sprint-btn">Done</button>
+    </div>
+
+    <script type="module" src="scripts/create-sprint-script.js"></script>
+</body>
+</html>
+

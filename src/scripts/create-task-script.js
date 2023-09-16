@@ -17,12 +17,20 @@ const db = getDatabase(app);
 
 // Event Listener
 document.getElementById("create-task-btn").addEventListener('click', (e) => {
+
+  let cb = document.querySelectorAll('#task-tag input[type="checkbox"]');
+  let tags = [];
+  cb.forEach((b) => {
+    if (b.checked) tags.push(b.value)
+  })
+  console.log(tags)
+
   const name = document.getElementById("task-name").value
   const story_point = document.getElementById("task-story-point").value
   const assignee = document.getElementById("task-assignee").value
   const description = document.getElementById("task-description").value
   const type = document.getElementById("task-type").value
-  const tag = document.getElementById("task-tag").value
+  const tag = JSON.stringify(tags);
   const priority = document.getElementById("task-priority").value
   const status = document.getElementById("task-status").value
   const stages = document.getElementById("task-stages").value

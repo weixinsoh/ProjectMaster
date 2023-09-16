@@ -36,7 +36,7 @@ async function filterTask() {
     const data = snapshot.val();
 
     for (const key in data) {
-      if (filterBy === "All" || data[key].tag === filterBy) {
+      if (filterBy === "All" || JSON.parse(data[key].tag).includes(filterBy)){
         retArr.push(data[key]);
       }
     }
@@ -99,19 +99,18 @@ function displayTask() {
       footer.appendChild(otherInfo)
       footer.appendChild(icon)
 
+      let tags = ""
+      for (const element of JSON.parse(task.tag)){
+        tags += `<span style="background-color: ${getTagColor(element)}; padding: 1px 3px; border-radius: 5px">${element}</span>&nbsp`
+      }
+
       card.innerHTML = `
           <div class="task-header">
             <h2>${task.name}</h2>
             <span class="story-points">${task.story_point}</span>
           </div>
           <p>
-            <span style="
-              background-color: ${getTagColor(task.tag)}; 
-              padding: 1px 3px; 
-              border-radius: 5px">
-              ${task.tag}
-            </span>
-            <br><br>
+            ${tags}
           </p>
       `
       card.appendChild(footer)

@@ -24,7 +24,7 @@ get(child(reference, `/${receivedID}`)).then((snapshot) =>{
     document.getElementById("task-story-point").value = data.story_point
     document.getElementById("task-assignee").value = data.assignee
     document.getElementById("task-description").value = data.description
-    document.getElementById("task-tag").value = data.tag
+    document.querySelectorAll('#task-tag input[type="checkbox"]').forEach(cb => {JSON.parse(data.tag).includes(cb.value) ? cb.checked = true : cb.checked = false})
     document.getElementById("task-priority").value = data.priority
     document.getElementById("task-status").value = data.status
     document.getElementById("task-stages").value = data.stages
@@ -34,12 +34,19 @@ document.getElementById("edit-task-btn").addEventListener('click', saveChange)
 document.getElementById("return-product-backlog-btn").addEventListener('click', () => {window.open('product-backlog.html', "_self")})
 
 function saveChange(){
+
+  let cb = document.querySelectorAll('#task-tag input[type="checkbox"]');
+  let tags = [];
+  cb.forEach((b) => {
+    if (b.checked) tags.push(b.value)
+  })
+
   update(ref(db, "task/" + receivedID), {
     name: document.getElementById("task-name").value,
     story_point: document.getElementById("task-story-point").value,
     assignee: document.getElementById("task-assignee").value,
     description: document.getElementById("task-description").value,
-    tag: document.getElementById("task-tag").value,
+    tag: JSON.stringify(tags),
     priority: document.getElementById("task-priority").value,
     status: document.getElementById("task-status").value,
     stages: document.getElementById("task-stages").value

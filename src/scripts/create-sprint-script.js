@@ -41,4 +41,4 @@ document.getElementById("create-sprint-btn").addEventListener('click', (e) => {
   .catch((error) => {alert(error)})
 })
 
-document.getElementById("return-scrumboard-btn").addEventListener('click', () => {window.open('scrumboard.html', "_self")})
+document.getElementById("return-scrum-board-btn").addEventListener('click', () => {window.open('scrum-board.html', "_self")})

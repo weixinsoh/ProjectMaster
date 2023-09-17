@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- This is the root element of the HTML document. 
+  The lang attribute is set to "en" to indicate that the document is in English. -->
+<html lang="en">
+
+<head>
+    <!-- Meta Tags: These meta tags provide information about the character encoding and viewport settings for the webpage. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title: Sets the title of the webpage displayed in the browser tab. -->
+    <title>Sprint Backlog</title>
+    <!-- Link Tags: These link tags import external CSS stylesheets to style the webpage. 
+        The first one links to a Bootstrap CSS file, 
+        and the second one links to a custom stylesheet named "product-backlog-styles.css." -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/sprint-backlog-styles.css">
+</head>
+<body>
+<!-- The body section contains the visible content of the webpage. -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Navigation Bar (`<nav>): This is a navigation bar created using Bootstrap classes. 
+        It contains links to different sections of the application, 
+        such as "Product-Backlog," "Scrum-Board," and "Sprint-Backlog." -->
+    <div class="container">
+      <div class="col">
+        <a class="navbar-brand" href="#">Sprint Backlog</a>
+      </div>
+      <div class="col">
+        <ul class="navbar-nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" href="product-backlog">Product-Backlog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="scrum-board.html">Scrum-Board</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sprint-backlog.html">Sprint-Backlog</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="panel">
+    <!-- Panel (`<div class="panel">): This is a container div that holds dropdown menus for sorting and filtering tasks. 
+        It uses Font Awesome icons for sorting and filtering. -->
+    <div class="dropdown">
+      <i class="fa fa-sort"></i>
+      <select id="sort-task" name="sort">
+        <option value="urgency-desc">Most Urgent to Least Urgent</option>
+        <option value="urgency-asc">Least Urgent to Most Urgent</option>
+        <option value="recency-asc">Oldest to Most Recent</option>
+        <option value="recency-desc">Most Recent to Oldest</option>
+      </select>
+    </div>
+    <div class="dropdown">
+      <i class="fa fa-filter"></i>
+      <select id="filter-task" name="filter">
+        <option value="All">All</option>
+        <option value="Frontend">Frontend</option>
+        <option value="Backend">Backend</option>
+        <option value="API">API</option>
+        <option value="Database">Database</option>
+        <option value="Framework">Framework</option>
+        <option value="UI">UI</option>
+        <option value="UX">UX</option>
+        <option value="Testing">Testing</option>
+      </select>
+    </div>
+    <a href="create-task.html" class="add-button">
+        <!-- <a href="create-task.html" class="add-button">: 
+            This is an anchor (<a>) element with an href attribute set to "create-task.html." 
+            It creates a hyperlink that, when clicked, will take the user to the "create-task.html" page. 
+            The class attribute is set to "add-button," which can be used for styling or identifying this link.
+
+        <button class="btn btn-primary fab">: This is a <button> element with two CSS classes: "btn" and "btn-primary." 
+            These classes are typically used in Bootstrap to style buttons. "btn-primary" indicates that it's a primary action button. 
+            The "fab" class might be used for styling as well. -->
+        <button class="btn btn-primary fab">
+          <!-- <i class="fa-solid fa-plus fa-2x" style="color: #ffffff;"></i>: 
+            Inside the button, there's an <i> element with several classes, including "fa-solid" and "fa-plus." 
+                These classes are commonly used with Font Awesome, a popular icon library. 
+                They are used to display an icon (in this case, a plus sign) within the button. 
+                The style attribute sets the color of the icon to white (#ffffff). -->
+          <i class="fa-solid fa-plus fa-sm" style="color: #ffffff;"></i>
+          <!-- You can adjust the size by using different classes like fa-sm (small), fa-lg (large), or fa-2x, fa-3x, etc., for custom sizing.
+            Example: Extra Small (fa-xs), Small (fa-sm), Large (fa-lg), and custom size.
+            By adding fa-2x, the icon will be twice the default size, and with fa-3x, it will be three times the default size. -->
+        </button>
+    </a>
+  </div> 
+
+  <div class="wrapper">
+    <section class="columns">
+        <div class="column">
+            <div class="black-bar"></div> <!-- Add a black bar here -->
+            <h4>Not Started</h4>
+        </div>
+        <div class="column">
+            <div class="black-bar"></div>
+            <h4>In Progress</h4>
+        </div>
+        <div class="column">
+            <div class="black-bar"></div>
+            <h4>Completed</h4>
+        </div>
+        <div class="column">
+            <div class="black-bar"></div>
+            <h4>Overdue</h4>
+        </div>
+    </section>
+  </div>
+
+  <!-- Script Tags (`<script>): These script tags import JavaScript files used for the functionality of the webpage. 
+    The first one is a module script that links to "product-backlog-script.js," 
+    and the others are external JavaScript libraries used for Bootstrap, Popper.js, and Font Awesome. -->
+  <script type="module" src="scripts/sprint-backlog-script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/175c7125e4.js" crossorigin="anonymous"></script>
+</body>

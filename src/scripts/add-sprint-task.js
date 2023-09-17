@@ -1,0 +1,140 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+import { getDatabase, ref, update, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
+    authDomain: "fit2101-team4.firebaseapp.com",
+    databaseURL: "https://fit2101-team4-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "fit2101-team4",
+    storageBucket: "fit2101-team4.appspot.com",
+    messagingSenderId: "413420787548",
+    appId: "1:413420787548:web:be8873c231ec4468845399"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const taskReference = ref(db, 'task/');
+const sprintReference = ref(db, 'sprint/')
+
+onValue(taskReference, (snapshot) => {
+  displayTask()
+});
+
+const urlParams = new URLSearchParams(window.location.search);
+const receivedID = urlParams.get('id')
+console.log(receivedID)
+const currentSprint = get(child(sprintReference, `/${receivedID}`)).then((snapshot) => snapshot.val().name)
+
+function filterAddedTask() {
+    let retArr = [];
+
+    return get(taskReference).then((snapshot) => {
+        const data = snapshot.val();
+
+        for (const key in data) {
+            if (!data[key].sprint){
+                retArr.push(data[key]);
+            }
+        }
+        return retArr; 
+
+  }).catch((error) => {
+    console.error(error);
+    throw error; 
+  })
+}
+
+function displayTask() {
+  const taskCards = document.getElementById("task-cards")
+  taskCards.innerHTML = ""
+  filterAddedTask().then((filtered) => {
+    filtered.forEach((task) => {
+      const card = document.createElement("div")
+      card.classList.add("task-card") 
+      const checkbox = document.createElement("input")
+      checkbox.classList.add("checkbox")
+      checkbox.type = "checkbox"
+      checkbox.value = task.name
+
+      let tags = ""
+      for (const element of JSON.parse(task.tag)){
+        tags += `<span style="background-color: ${getTagColor(element)}; padding: 1px 3px; border-radius: 5px">${element}</span>&nbsp`
+      }
+
+      card.innerHTML = `
+        <div class="task-header">
+            <h2>${task.name}</h2>
+            <h2>${task.story_point}</h2>
+        </div>
+        <p class="task-tags">
+            ${tags}
+        </p>
+        <p>
+            <b>Priority: </b>
+            <span style="background-color: ${getPriorityColor(task.priority)}; padding: 1px 3px; border-radius: 5px">
+                ${task.priority}
+            </span>
+        </p>
+      `
+      card.appendChild(checkbox)
+      taskCards.appendChild(card)
+    })
+  })
+}
+
+function getTagColor(tag) {
+  switch (tag) {
+    case "Frontend":
+      return "mediumpurple"
+    case "Backend":
+      return "pink"
+    case "API":
+      return "lightblue"
+    case "Testing":
+      return "deepskyblue"
+    case "Framework":
+      return "tan"
+    case "UI":
+      return "antiquewhite"
+    case "UX":
+      return "silver"
+    case "Database":
+      return "aquamarine"
+  }
+}
+
+function getPriorityColor(priority) {
+  switch (priority) {
+    case "Urgent":
+      return "orangered"
+    case "Important":
+      return "lightsalmon"
+    case "Medium":
+      return "lemonchiffon"
+    case "Low":
+      return "lightgreen"
+  }
+}
+
+// Event Listener
+document.getElementById("add-sprint-task-btn").addEventListener('click', (e) => {
+
+    let cb = document.querySelectorAll('input[type="checkbox"]');
+    cb.forEach((b) => {
+        if (b.checked) {
+            // console.log(b.value)
+            update(ref(db, "task/" + b.value),{
+                sprint: currentSprint
+            })
+            .then(
+                () => {alert("Tasks Added!")}
+            )
+            .catch((error) => {alert(error)})
+        }
+    })
+})
+
+document.getElementById("return-sprint-backlog-btn")
+    .addEventListener('click', () => {
+        window.open('sprint-backlog.html?id=' + currentSprint, "_self")
+    })

@@ -83,6 +83,21 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 3. **Applying Sort Orders:** Choose one sorting order from the list to visualize your tasks in an organized manner. This makes it easier to focus on urgent tasks or review tasks chronologically.
 
+#### Sorting Tasks
+
+</details>
+
+<details>
+<summary><b>Create and Manage Sprints</b></summary>
+
+#### Creating a Sprint
+
+1. **Add Button:** Click on the add button, it will linked to a page where you can fill in the details of sprint.
+
+2. **Input Details:** You have to fill in all of the components for rendering sprint information.The attributes include sprint name, starting and ending date, and sprint status.  
+
+3. **Done Button:** After filling in all of the details, click on the done button and the sprint will be added and displayed as a card in the scrumboard..
+
 </details>
 
 ## Troubleshooting

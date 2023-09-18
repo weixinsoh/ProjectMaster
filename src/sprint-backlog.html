@@ -54,11 +54,11 @@
         <option value="Testing">Testing</option>
       </select>
     </div>
-    <a href="create-task.html" class="add-button">
-        <button class="btn btn-primary fab">
-          <i class="fa-solid fa-plus fa-sm" style="color: #ffffff;"></i>
-        </button>
-    </a>
+
+    <button class="btn btn-primary fab" id="add-task-btn">
+      <i class="fa-solid fa-plus fa-sm" style="color: #ffffff;"></i>
+    </button>
+
   </div> 
 
   <div class="wrapper">
@@ -66,14 +66,17 @@
         <div class="column">
             <div class="black-bar"></div>
             <h4>Not Started</h4>
+            <div id="not-started"></div>
         </div>
         <div class="column">
             <div class="black-bar"></div>
             <h4>In Progress</h4>
+            <div id="in-progress"></div>
         </div>
         <div class="column">
             <div class="black-bar"></div>
             <h4>Completed</h4>
+            <div id="completed"></div>
         </div>
         <div class="column">
             <div class="black-bar"></div>

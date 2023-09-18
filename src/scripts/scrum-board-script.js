@@ -25,13 +25,14 @@ onValue(reference, (snapshot) => {
 });
 
 function displaySprint() {
-  const taskCards = document.getElementById("sprint-cards")
-  taskCards.innerHTML = ""
-    sorted.forEach((sprint) => {
+  const sprintCards = document.getElementById("sprint-cards")
+  sprintCards.innerHTML = ""
+  getSprint().then((sprints) => {
+    sortSprint(sprints).forEach((sprint) => {
       const card = document.createElement("div")
       card.classList.add("sprint-card") 
       card.onclick = viewSprint.bind(null, sprint.name)
-
+  
       const icon = document.createElement("span")
       icon.classList.add("icon")
       const deleteBtn = document.createElement("button")
@@ -53,7 +54,7 @@ function displaySprint() {
       const otherInfo = document.createElement("p")
       footer.appendChild(otherInfo)
       footer.appendChild(icon)
-
+  
       card.innerHTML = `
           <div class="sprint-header">
             <h2>${sprint.name}</h2>
@@ -64,11 +65,33 @@ function displaySprint() {
       card.appendChild(footer)
       sprintCards.appendChild(card)
     })
-  }
+  })
+}
 
+async function getSprint(){
+  let retArr = [];
+
+  try {
+    const snapshot = await get(reference);
+    const data = snapshot.val();
+
+    for (const key in data) {
+      retArr.push(data[key]);
+    }
+
+    return retArr; 
+  } catch (error) {
+    console.error(error);
+    throw error; 
+  }
+}
+
+function sortSprint(sprints){
+  return sprints.sort((a, b) => new Date(a.date) - new Date(b.date));
+}
 
 function viewSprint(value) {
-  window.open('view-sprint.html?id=' + value, '_self')
+  window.open('sprint-backlog.html?id=' + value, '_self')
 }
 
 function removeSprint(value){

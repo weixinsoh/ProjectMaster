@@ -29,6 +29,7 @@ document.getElementById("create-sprint-btn").addEventListener('click', (e) => {
     status: status,
     start: start,
     end: end,
+    tasks: JSON.stringify([])
   })
   .then(
     () => {alert("Sprint Created!")}

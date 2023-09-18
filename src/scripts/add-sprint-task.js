@@ -16,71 +16,72 @@ const db = getDatabase(app);
 const taskReference = ref(db, 'task/');
 const sprintReference = ref(db, 'sprint/')
 
-onValue(taskReference, (snapshot) => {
+onValue(sprintReference, (snapshot) => {
   displayTask()
 });
 
 const urlParams = new URLSearchParams(window.location.search);
 const receivedID = urlParams.get('id')
-console.log(receivedID)
-const currentSprint = get(child(sprintReference, `/${receivedID}`)).then((snapshot) => snapshot.val().name)
 
-function filterAddedTask() {
-    let retArr = [];
+async function getOccupiedTask(){
+  let retArr = [];
 
-    return get(taskReference).then((snapshot) => {
-        const data = snapshot.val();
+  try {
+      const snapshot = await get(ref(db,'sprint/'));
+      const data = snapshot.val();
 
-        for (const key in data) {
-            if (!data[key].sprint){
-                retArr.push(data[key]);
-            }
-        }
-        return retArr; 
+      for (const key in data) {
+          retArr = retArr.concat(JSON.parse(data[key].tasks));
+      }
 
-  }).catch((error) => {
-    console.error(error);
-    throw error; 
-  })
+      return retArr; 
+  } catch (error) {
+      console.error(error);
+      throw error; 
+  }
 }
 
 function displayTask() {
   const taskCards = document.getElementById("task-cards")
   taskCards.innerHTML = ""
-  filterAddedTask().then((filtered) => {
-    filtered.forEach((task) => {
-      const card = document.createElement("div")
-      card.classList.add("task-card") 
-      const checkbox = document.createElement("input")
-      checkbox.classList.add("checkbox")
-      checkbox.type = "checkbox"
-      checkbox.value = task.name
+  getOccupiedTask().then((occupied) => {
+    get(taskReference).then((snapshot) =>{
+      const tasks = snapshot.val();
+      for(const key in tasks){
+        if (!occupied.includes(tasks[key].name)){
+          const card = document.createElement("div")
+          card.classList.add("task-card") 
+          const checkbox = document.createElement("input")
+          checkbox.classList.add("checkbox")
+          checkbox.type = "checkbox"
+          checkbox.value = tasks[key].name
 
-      let tags = ""
-      for (const element of JSON.parse(task.tag)){
-        tags += `<span style="background-color: ${getTagColor(element)}; padding: 1px 3px; border-radius: 5px">${element}</span>&nbsp`
+          let tags = ""
+          for (const element of JSON.parse(tasks[key].tag)){
+            tags += `<span style="background-color: ${getTagColor(element)}; padding: 1px 3px; border-radius: 5px">${element}</span>&nbsp`
+          }
+
+          card.innerHTML = `
+            <div class="task-header">
+                <h2>${tasks[key].name}</h2>
+                <h2>${tasks[key].story_point}</h2>
+            </div>
+            <p class="task-tags">
+                ${tags}
+            </p>
+            <p>
+                <b>Priority: </b>
+                <span style="background-color: ${getPriorityColor(tasks[key].priority)}; padding: 1px 3px; border-radius: 5px">
+                    ${tasks[key].priority}
+                </span>
+            </p>
+          `
+          card.appendChild(checkbox)
+          taskCards.appendChild(card)
+        } 
       }
-
-      card.innerHTML = `
-        <div class="task-header">
-            <h2>${task.name}</h2>
-            <h2>${task.story_point}</h2>
-        </div>
-        <p class="task-tags">
-            ${tags}
-        </p>
-        <p>
-            <b>Priority: </b>
-            <span style="background-color: ${getPriorityColor(task.priority)}; padding: 1px 3px; border-radius: 5px">
-                ${task.priority}
-            </span>
-        </p>
-      `
-      card.appendChild(checkbox)
-      taskCards.appendChild(card)
-    })
   })
-}
+})}
 
 function getTagColor(tag) {
   switch (tag) {
@@ -117,24 +118,36 @@ function getPriorityColor(priority) {
 }
 
 // Event Listener
-document.getElementById("add-sprint-task-btn").addEventListener('click', (e) => {
-
+document.getElementById("add-sprint-task-btn").addEventListener('click', async (e) => {
+    e.preventDefault()
     let cb = document.querySelectorAll('input[type="checkbox"]');
+    let retArr = []
     cb.forEach((b) => {
-        if (b.checked) {
-            // console.log(b.value)
-            update(ref(db, "task/" + b.value),{
-                sprint: currentSprint
-            })
-            .then(
-                () => {alert("Tasks Added!")}
-            )
-            .catch((error) => {alert(error)})
-        }
+      if(b.checked){
+        retArr.push(b.value)
+      }
     })
+
+    try{
+      const prevTasks = await getPreviousTask();
+      const updatedTasks = await prevTasks.concat(retArr)
+      await update(ref(db, "sprint/" + receivedID), {
+        tasks: JSON.stringify(updatedTasks)
+      });
+      alert("Tasks added!")
+    }
+    catch(e){
+      alert(e.message)
+    }
 })
 
 document.getElementById("return-sprint-backlog-btn")
     .addEventListener('click', () => {
-        window.open('sprint-backlog.html?id=' + currentSprint, "_self")
-    })
+        window.open('sprint-backlog.html?id=' + receivedID, "_self")
+})
+
+async function getPreviousTask() {
+  const snapshot = await get(child(sprintReference, `/${receivedID}`));
+  const data = snapshot.val();
+  return JSON.parse(data.tasks);
+}

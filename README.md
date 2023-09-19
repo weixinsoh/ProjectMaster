@@ -83,12 +83,16 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 3. **Applying Sort Orders:** Choose one sorting order from the list to visualize your tasks in an organized manner. This makes it easier to focus on urgent tasks or review tasks chronologically.
 
-#### Sorting Tasks
-
 </details>
 
 <details>
 <summary><b>Create and Manage Sprints</b></summary>
+
+#### Rules
+
+1. Once sprint is started, tasks cannot be added or edited.
+
+2. Sprint will be automatically ended on the ending date.
 
 #### Creating a Sprint
 

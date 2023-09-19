@@ -22,7 +22,7 @@ select#filter {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    position: fixed;
+    position: flex;
     top: 70px;
     right: 40px;
     cursor: pointer;
@@ -67,28 +67,35 @@ select#filter {
     background-color: black;
 }
 
+.task-cards {
+    display: flex;
+}
+
 .task-card {
     display: inline-block;
-    width: 30%; 
+    width: 100%; 
     border: 2px solid #000000;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+    padding: 10px;
     margin: 15px;
     margin-top: 20px;
-    margin-left: 30px;
+    margin-left: 10px;
+    background-color: white;
 }
 
 .task-header {
     display: flex;
     justify-content: space-between;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
 }
 
 .task-footer {
     display: flex;
     justify-content: space-between;
+    height: 25px;
+    margin-top: 30px;
 }
 
 .dlt-icon {

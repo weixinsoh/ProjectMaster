@@ -130,7 +130,7 @@ function displayCard(status, taskData, sprintStatus) {
 
     // Unable to delete task if the sprint has started
     const deleteBtn = document.createElement("button")
-    if(sprintStatus != "Not-started"){
+    if(sprintStatus === "Not-started"){
         deleteBtn.onclick = (e) => {
             e.stopPropagation()
             removeTask(taskData.name)

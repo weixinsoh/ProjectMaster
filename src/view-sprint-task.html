@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/view-sprint-task-styles.css">
+    <title>view-task</title>
+</head>
+<body>
+    <!-- Task Details -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p><h2>Task Name</h2></p>
+                <p id="task-name"></p>
+                <p><h2>Story Point</h2></p>
+                <p id="task-story-point"></p>
+                <p><h2>Assignee</h2></p>
+                <p id="task-assignee"></p>
+                <p><h2>Description</h2></p>
+                <p id="task-description"></p>
+            </div>
+
+            <div class="col">
+                <p><h2>Type of task</h2></p>
+                <p id="task-tag"></p>
+                <p><h2>Priority</h2></p>
+                <p class="priority" id="task-priority"></p>
+                <p><h2>Status</h2></p>
+                <p id="task-status"></p>
+                <p><h2>Stages</h2></p>
+                <p id="task-stages"></p>
+            </div>
+
+            <div class="col">
+                <p><h2>Log Time</h2></p>
+                <p id="total-time-logged"></p>
+                <p class="insert-log-time" id="insert-log-time">+ insert log time</p>
+            </div>
+        </div>
+
+        <canvas id="acc-of-effort-chart"></canvas>
+
+        <button class="back" id="return-sprint-backlog-btn">Back</button>
+    </div>
+
+    <!-- Popup Window -->
+    <div id="insert-log-time-popup" class="insert-log-time-popup">
+        <div class="popup-content">
+            <form class="form">
+                <div>
+                    <p><h2>Date</h2></p>
+                    <p>
+                        <div class="date">
+                            <label for="start-date">Start:</label>
+                            <input type="date" id="start-date" name="start-date" required>
+                        </div>
+                        
+                        <div class="date">
+                            <label for="end-date">End:</label>
+                            <input type="date" id="end-date" name="end-date" required>
+                        </div>
+                    </p>
+
+                    <p><h2>Time</h2></p>
+                    <p>
+                        <div class="time">
+                            <label for="start-time">Start:</label>
+                            <input type="time" id="start-time" name="start-time" required>
+                        </div>
+                        
+                        <div class="time">
+                            <label for="end-time">End:</label>
+                            <input type="time" id="end-time" name="end-time" required>
+                        </div>
+                    </p>
+                </div>
+            </form>
+    
+            <div class="popup-buttons">
+                <button id="close-popup-btn">Back</button>
+                <button id="log-time-btn">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="scripts/view-sprint-task-script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
+</body>
+</html>

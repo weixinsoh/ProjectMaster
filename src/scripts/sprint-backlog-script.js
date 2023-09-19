@@ -123,6 +123,7 @@ function displayCard(status, taskData, sprintStatus) {
     const card = document.createElement("div")
     card.classList.add("task-card") 
     card.setAttribute("draggable", "true");
+    card.onclick = viewTask.bind(null, taskData.name)
 
     const icon = document.createElement("span")
     icon.classList.add("icon")
@@ -159,11 +160,11 @@ function displayCard(status, taskData, sprintStatus) {
 
     card.innerHTML = `
         <div class="task-header">
-        <h3>${taskData.name}</h3>
-        <span class="story-points">${taskData.story_point}</span>
+          <h3>${taskData.name}</h3>
+          <span class="story-points">${taskData.story_point}</span>
         </div>
-        <p>
-        ${tags}
+        <p class="task-tags">
+          ${tags}
         </p>
     `
     card.appendChild(footer)
@@ -211,5 +212,9 @@ function getTagColor(tag) {
   function removeTask(value){
     taskRef = ref(db, "sprint/" + value)
     remove(taskRef).then(alert("Task Removed!"))
+  }
+
+  function viewTask(value) {
+    window.open('view-sprint-task.html?id=' + value, '_self')
   }
   

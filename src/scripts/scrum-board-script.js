@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getDatabase, ref, set, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getDatabase, ref, set, get, child, onValue, update, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -16,11 +16,6 @@ const db = getDatabase(app);
 const reference = ref(db, 'sprint/');
 
 onValue(reference, (snapshot) => {
-  // document.getElementById("tasks").innerHTML = ""
-  // const data = snapshot.val();
-  // for (const key in data){
-  //   document.getElementById("tasks").innerHTML += `<div>${data[key].name}</div>`
-  // }
   displaySprint()
 });
 
@@ -52,6 +47,7 @@ function displaySprint() {
       const footer = document.createElement("div")
       footer.classList.add("sprint-footer")
       const otherInfo = document.createElement("p")
+      otherInfo.innerHTML = `Status: ${sprint.status}`
       footer.appendChild(otherInfo)
       footer.appendChild(icon)
   
@@ -60,7 +56,9 @@ function displaySprint() {
             <h2>${sprint.name}</h2>
           </div>
           <p>
-            
+          Start: ${sprint.start}<br>
+          End: ${sprint.end}
+          </p>
       `
       card.appendChild(footer)
       sprintCards.appendChild(card)
@@ -101,3 +99,26 @@ function removeSprint(value){
 function editSprint(value) { 
   window.open('edit-sprint.html?id=' + value, '_self')
 }
+
+async function statusUpdate(){
+  try{
+    const sprints = await get(ref(db,"sprint/"))
+    sprints.forEach((s) => {
+      const data = s.val()
+      if (data.status === "Not-started" && new Date() >= new Date(data.start)){
+        update(ref(db, "sprint/" + data.name),{
+          status: "In-progress"
+        })
+      }
+      else if(data.status === "In-progress" && new Date() >= new Date(data.end)){
+        update(ref(db, "sprint/" + data.name),{
+          status: "Completed"
+        })
+      }
+    })
+  } catch (e){
+    console.log(e)
+  }
+}
+
+statusUpdate()

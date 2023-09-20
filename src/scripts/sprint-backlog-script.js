@@ -14,7 +14,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const reference = ref(db, "sprint")
+const reference = ref(db)
 
 const urlParams = new URLSearchParams(window.location.search);
 const receivedID = urlParams.get('id')
@@ -24,7 +24,7 @@ document.getElementById("filter-task").addEventListener('change', displayTask)
 document.getElementById("sort-task").addEventListener('change', displayTask)
 document.getElementById("add-task-btn").addEventListener('click', () => {
     // Unable to add task if the sprint has started
-    get(child(reference, `/${receivedID}`)).then((snapshot) =>{
+    get(child(ref(db, 'sprint/'), `/${receivedID}`)).then((snapshot) =>{
         const data = snapshot.val();
         const sprintStatus = data.status
         if(sprintStatus === "Not-started")
@@ -91,10 +91,10 @@ function isOverdue(dueDate) {
 async function displayTask(){
 
     // Clear existing task lists
-    document.getElementById("not-started").innerHTML = "";
-    document.getElementById("in-progress").innerHTML = "";
-    document.getElementById("completed").innerHTML = "";
-    document.getElementById("overdue").innerHTML = "";
+    document.getElementById("Not-started").innerHTML = "";
+    document.getElementById("In-progress").innerHTML = "";
+    document.getElementById("Completed").innerHTML = "";
+    document.getElementById("Overdue").innerHTML = "";
 
     const snapshot = await get(ref(db, "sprint/" + receivedID))
     const data = snapshot.val()
@@ -108,21 +108,21 @@ async function displayTask(){
         switch(t.status){
           case "Not-started":
             if(isOverdue(sprintDue)) 
-                displayCard("overdue", t, sprintStatus)
+                displayCard("Overdue", t, sprintStatus)
             else
-                displayCard("not-started", t, sprintStatus)
+                displayCard("Not-started", t, sprintStatus)
             break
           case "In-progress":
               if(isOverdue(sprintDue)) 
-                  displayCard("overdue", t, sprintStatus)
+                  displayCard("Overdue", t, sprintStatus)
               else
-                  displayCard("in-progress", t, sprintStatus)
+                  displayCard("In-progress", t, sprintStatus)
               break
           case "Completed":
-              displayCard("completed", t, sprintStatus)
+              displayCard("Completed", t, sprintStatus)
               break
           case "Overdue":
-              displayCard("overdue", t, sprintStatus)
+              displayCard("Overdue", t, sprintStatus)
               break
         }
       })
@@ -176,7 +176,7 @@ function displayCard(status, taskData, sprintStatus) {
 
     card.innerHTML = `
         <div class="task-header">
-          <h3>${taskData.name}</h3>
+          <h3 id="name">${taskData.name}</h3>
           <span class="story-points">${taskData.story_point}</span>
         </div>
         <p class="task-tags">
@@ -241,3 +241,38 @@ function getTagColor(tag) {
   function viewTask(value) {
     window.open('view-sprint-task.html?id=' + value, '_self')
   }
+const triggers = document.querySelectorAll('.droppable');
+const draggables = document.querySelectorAll('.task-card')
+
+triggers.forEach(trigger => {
+  trigger.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    trigger.querySelector('.container').style.border = '2px dashed #ccc';
+  });
+
+  trigger.addEventListener('dragleave', () => {
+    trigger.querySelector('.container').style.border = '1px solid #ccc';
+  });
+
+  trigger.addEventListener('drop', (e) => {
+    e.preventDefault();
+    trigger.querySelector('.container').style.border = '1px solid #ccc';
+
+    if (draggedCard) {
+        update(ref(db, "task/" + draggedCard.querySelector('#name').innerHTML), {
+            status: trigger.querySelector('.container').id
+        })
+    }
+  });
+});
+
+let draggedCard = null;
+
+document.addEventListener('dragstart', (e) => {
+  draggedCard = e.target;
+  e.dataTransfer.setData('text/plain', e.target.innerHTML);
+});
+
+document.addEventListener('dragend', () => {
+  draggedCard = null;
+});

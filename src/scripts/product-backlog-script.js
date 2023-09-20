@@ -40,7 +40,6 @@ async function filterTask() {
         retArr.push(data[key]);
       }
     }
-
     return retArr; 
   } catch (error) {
     console.error(error);

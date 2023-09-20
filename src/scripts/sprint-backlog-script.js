@@ -34,7 +34,32 @@ document.getElementById("add-task-btn").addEventListener('click', () => {
     })
 })
 
-// Copied function, havent use
+async function filterTask() {
+  try {
+    const filterBy = document.getElementById("filter-task").value;
+    const snapshot = await get(child(ref(db, "sprint"), `/${receivedID}`));
+    const data = snapshot.val();
+    const tasks = JSON.parse(data.tasks)
+    let retArr = []
+    for(const name of tasks){
+      const task = await getTask(name)
+      if(filterBy === "All" || JSON.parse(task.tag).includes(filterBy)){
+        retArr.push(task)
+      }
+    }
+    return retArr
+  } catch (error) {
+    console.error(error);
+    throw error; 
+  }
+}
+
+async function getTask(id){
+  const snapshot = await get(ref(db, "task/" + id))
+  const data = snapshot.val()
+  return data
+}
+
 function sortTask(filtered){
   const sortBy = document.getElementById("sort-task").value
   const urgent = filtered.filter((obj) => obj.priority == "Urgent")
@@ -61,9 +86,9 @@ function isOverdue(dueDate) {
     const currentDate = new Date();
     const targetDate = new Date(dueDate)
     return currentDate > targetDate;
-  }
+}
 
-function displayTask(){
+async function displayTask(){
 
     // Clear existing task lists
     document.getElementById("not-started").innerHTML = "";
@@ -71,45 +96,36 @@ function displayTask(){
     document.getElementById("completed").innerHTML = "";
     document.getElementById("overdue").innerHTML = "";
 
-    const filterBy = document.getElementById("filter-task").value;
+    const snapshot = await get(ref(db, "sprint/" + receivedID))
+    const data = snapshot.val()
+    const sprintDue = data.end
+    const sprintStatus = data.status
     
-    get(child(reference, `/${receivedID}`)).then((snapshot) =>{
-        const data = snapshot.val();
-        const sprintDue = data.end
-        const sprintStatus = data.status
-
-        const tasks = JSON.parse(data.tasks)
-        tasks.forEach((task) => {
-            get(child(ref(db,"task"), `/${task}`)).then((snapshot) => {
-                const data = snapshot.val();
-
-                // Filter tasks based on tags
-                if (filterBy === "All" || JSON.parse(data.tag).includes(filterBy)){
-
-                    // Check if the sprint end, put all incompleted task into overdue column
-                    switch(data.status){
-                        case "Not-started":
-                            if(isOverdue(sprintDue)) 
-                                displayCard("overdue", data, sprintStatus)
-                            else
-                                displayCard("not-started", data, sprintStatus)
-                            break
-                        case "In-progress":
-                            if(isOverdue(sprintDue)) 
-                                displayCard("overdue", data, sprintStatus)
-                            else
-                                displayCard("in-progress", data, sprintStatus)
-                            break
-                        case "Completed":
-                            displayCard("completed", data, sprintStatus)
-                            break
-                        case "Overdue":
-                            displayCard("overdue", data, sprintStatus)
-                            break
-                    }
-                }
-            })
-        })
+    filterTask().then((filtered) => {
+      const sorted = sortTask(filtered)
+      console.log(sorted)
+      sorted.forEach((t) => {
+        switch(t.status){
+          case "Not-started":
+            if(isOverdue(sprintDue)) 
+                displayCard("overdue", t, sprintStatus)
+            else
+                displayCard("not-started", t, sprintStatus)
+            break
+          case "In-progress":
+              if(isOverdue(sprintDue)) 
+                  displayCard("overdue", t, sprintStatus)
+              else
+                  displayCard("in-progress", t, sprintStatus)
+              break
+          case "Completed":
+              displayCard("completed", t, sprintStatus)
+              break
+          case "Overdue":
+              displayCard("overdue", t, sprintStatus)
+              break
+        }
+      })
     })
 }
 
@@ -130,17 +146,17 @@ function displayCard(status, taskData, sprintStatus) {
 
     // Unable to delete task if the sprint has started
     const deleteBtn = document.createElement("button")
-    if(sprintStatus === "Not-started"){
+    if(sprintStatus == "Not-started"){
         deleteBtn.onclick = (e) => {
             e.stopPropagation()
             removeTask(taskData.name)
-            taskCard.removeChild(card)
         }
         deleteBtn.innerHTML = '<i class="fas fa-trash dlt-icon"></i>';
     }
     else {
         deleteBtn.innerHTML = '<i class="fas fa-trash dlt-icon" style="color: darkgrey;"></i>';
-        deleteBtn.onclick = () => {
+        deleteBtn.onclick = (e) => {
+            e.stopPropagation()
             alert("Unable to delete task once sprint has started.")
         }
     }
@@ -208,13 +224,20 @@ function getTagColor(tag) {
     }
   }
 
-  // Something wrong here
-  function removeTask(value){
-    taskRef = ref(db, "sprint/" + value)
-    remove(taskRef).then(alert("Task Removed!"))
+  async function removeTask(value){
+    try{
+      const snapshot = await get(child(ref(db,"sprint/"), `/${receivedID}`))
+      const data = snapshot.val();
+      const updatedTask = JSON.parse(data.tasks).filter(t => t !== value)
+      await update(ref(db, "sprint/" + receivedID),{
+        tasks: JSON.stringify(updatedTask)
+      })
+      alert("Removed task from sprint!");
+    } catch (e){
+      console.log(e)
+    }
   }
 
   function viewTask(value) {
     window.open('view-sprint-task.html?id=' + value, '_self')
   }
-  

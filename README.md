@@ -102,6 +102,29 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 3. **Done Button:** After filling in all of the details, click on the done button and the sprint will be added and displayed as a card in the scrumboard..
 
+### Editing a Sprint
+
+1. 
+
+### Deleting a Sprint
+
+1. 
+
+### Viewing Scrum Board
+
+1. 
+
+### Viewing Sprint Backlog
+1. 
+
+### Filtering Sprints 
+
+1. 
+
+### Sorting Sprints 
+
+1. 
+
 </details>
 
 ## Troubleshooting

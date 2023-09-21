@@ -12,9 +12,18 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
         - Editing a Task
         - Deleting a Task
         - Viewing Task Details
-        - Filtering Tasks
     - Create and Manage Product Backlog
+        - Filtering Tasks
         - Sorting Tasks
+    - Create and Manage Scrum Board
+        - Rules
+        - Creating a Sprint
+        - Editing a Sprint
+        - Deleting a Sprint
+        - Sprint Backlog
+        - Assigning Tasks to Sprint
+        - Viewing Sprint Task Details and Accummulation of Effort Chart
+        - Viewing Burndown Chart
 5. [Troubleshooting](#troubleshooting)
    - FAQ
 
@@ -86,7 +95,7 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 </details>
 
 <details>
-<summary><b>Create and Manage Sprints</b></summary>
+<summary><b>Create and Manage Scrum Board</b></summary>
 
 #### Rules
 
@@ -110,18 +119,24 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 1. 
 
-### Viewing Scrum Board
+### Sprint Backlog
+1. 
+
+### Assigning Tasks to Sprint
+
+1. **Add task to sprint:** Locate the "+" button within the Sprint Backlog section and click on it. This action will redirect you to a page where you can assign tasks to the sprint.
+
+2. **Select Task:** On the assignment page, you'll find a list of tasks that haven't been assigned to a specific sprint. Check the checkbox associated with the task card to select the tasks for assignment to the current sprint.
+
+3. **Confirm Assignment:** After selecting the desired tasks, click on the "Done" button. This action will successfully assign the selected tasks to the sprint.
+
+4. **Navigate Back:** You can return to the Sprint Backlog page by clicking on the "Back" button. This button will take you back to the previous page. 
+
+### Viewing Sprint Task Details and Accummulation of Effort Chart 
 
 1. 
 
-### Viewing Sprint Backlog
-1. 
-
-### Filtering Sprints 
-
-1. 
-
-### Sorting Sprints 
+### Viewing Burndown Chart
 
 1. 
 

@@ -100,7 +100,7 @@ async function displayTask(){
     const data = snapshot.val()
     const sprintDue = data.end
     const sprintStatus = data.status
-    
+
     filterTask().then((filtered) => {
       const sorted = sortTask(filtered)
       console.log(sorted)
@@ -241,6 +241,7 @@ function getTagColor(tag) {
   function viewTask(value) {
     window.open('view-sprint-task.html?id=' + value, '_self')
   }
+  
 const triggers = document.querySelectorAll('.droppable');
 const draggables = document.querySelectorAll('.task-card')
 

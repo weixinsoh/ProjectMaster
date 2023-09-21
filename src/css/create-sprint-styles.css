@@ -2,7 +2,7 @@
     display: flex;
     border: 5px solid #000; /* Adjust border width and color as needed */
     border-radius: 30px; /* Adjust border-radius for rounded corners */
-    background-color: white; /* Background color inside the border */
+    background-color: #eeeeec;; /* Background color inside the border */
     position: relative;
     margin-top: 5%;
     margin-left: 20%;

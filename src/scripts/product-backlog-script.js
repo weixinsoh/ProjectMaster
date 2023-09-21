@@ -35,11 +35,20 @@ async function filterTask() {
     const snapshot = await get(reference);
     const data = snapshot.val();
 
+    const sprintSnapshot = await get(ref(db, "sprint/"));
+    const sprintData = sprintSnapshot.val();
+    const occupiedTask = []
+    
+    for (const key in sprintData) {
+      occupiedTask.push(...JSON.parse(sprintData[key].tasks))
+    }
+
     for (const key in data) {
-      if (filterBy === "All" || JSON.parse(data[key].tag).includes(filterBy)){
+      if ((filterBy === "All" || JSON.parse(data[key].tag).includes(filterBy)) && !occupiedTask.includes(data[key].name)){
         retArr.push(data[key]);
       }
     }
+
     return retArr; 
   } catch (error) {
     console.error(error);

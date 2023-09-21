@@ -100,6 +100,16 @@ async function displayTask(){
     const data = snapshot.val()
     const sprintDue = data.end
     const sprintStatus = data.status
+    
+    const sprintHeader = document.createElement("div")
+    sprintHeader.classList.add("sprint-details") 
+    const otherInfo = document.createElement("p")
+    otherInfo.innerHTML = `<h2 style="display: inline-block; margin-left: 70px; margin-top: 30px;">${receivedID}</h2>
+    <span style="display: inline-block; margin-left: 10px;">${sprintStatus}</span>
+    <span style="display: inline-block; margin-left: 10px; font-size: 13px">( ${data.start} - ${data.end} )</span>
+    `
+    sprintHeader.appendChild(otherInfo)
+    document.getElementById("sprint-header").appendChild(sprintHeader);
 
     filterTask().then((filtered) => {
       const sorted = sortTask(filtered)
@@ -241,7 +251,7 @@ function getTagColor(tag) {
   function viewTask(value) {
     window.open('view-sprint-task.html?id=' + value, '_self')
   }
-  
+
 const triggers = document.querySelectorAll('.droppable');
 const draggables = document.querySelectorAll('.task-card')
 

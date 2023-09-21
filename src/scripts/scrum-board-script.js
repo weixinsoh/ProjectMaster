@@ -47,7 +47,8 @@ function displaySprint() {
       const footer = document.createElement("div")
       footer.classList.add("sprint-footer")
       const otherInfo = document.createElement("p")
-      otherInfo.innerHTML = `Status: ${sprint.status}`
+      //otherInfo.innerHTML = `Status: ${sprint.status}`
+      otherInfo.innerHTML = `<b>Status: </b><span style="background-color: ${getStatusColor(sprint.status)}; padding: 1px 3px; border-radius: 5px">${sprint.status}</span>`
       footer.appendChild(otherInfo)
       footer.appendChild(icon)
   
@@ -64,6 +65,17 @@ function displaySprint() {
       sprintCards.appendChild(card)
     })
   })
+}
+
+function getStatusColor(status) {
+  switch (status) {
+    case "Not-started":
+      return "#F8C0C0"
+    case "In-progress":
+      return "#8DCCF2"
+    case "Completed":
+      return "#D4F9C8"
+  }
 }
 
 async function getSprint(){

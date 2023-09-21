@@ -113,7 +113,6 @@ async function displayTask(){
 
     filterTask().then((filtered) => {
       const sorted = sortTask(filtered)
-      console.log(sorted)
       sorted.forEach((t) => {
         switch(t.status){
           case "Not-started":

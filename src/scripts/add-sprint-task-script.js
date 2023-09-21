@@ -31,7 +31,7 @@ async function getOccupiedTask(){
       const data = snapshot.val();
 
       for (const key in data) {
-          retArr = retArr.concat(JSON.parse(data[key].tasks));
+        retArr = retArr.concat(JSON.parse(data[key].tasks));
       }
 
       return retArr; 

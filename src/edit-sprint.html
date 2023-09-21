@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/edit-sprint-styles.css">
+    <title>edit-sprint</title>
+</head>
+
+<body>
+    <div class="container">
+        <form class="form">
+            <div>
+                <!-- Sprint Name -->
+                <p><h2>Sprint Name</h2></p>
+                <p><input type="text" id="sprint-name" placeholder="Enter sprint Name Here..."></p>
+                <br>
+                
+                <!-- Date -->
+                <p><h2>Date</h2></p>
+                <p>
+                    <div class="date">
+                        <label for="start-date">Start:</label>
+                        <input type="date" id="start-date" name="start-date" required>
+                    </div>
+                    
+                    <div class="date">
+                        <label for="end-date">End:</label>
+                        <input type="date" id="end-date" name="end-date" required>
+                    </div>
+                </p>
+                <br>
+
+                <!-- Status -->
+                <p><h2 for="status">Status</h2></p>
+                <p>
+                    <select id="sprint-status">
+                        <option value="Not-started">Not Started</option>
+                        <option value="In-progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </p>
+                <br>
+            </div>
+        </form>
+
+        <div class="buttons">
+            <button id="return-scrum-board-btn">Back</button>
+            <button id="edit-sprint-btn">Done</button>
+        </div>
+    </div>
+
+    <script type="module" src="scripts/edit-sprint-script.js"></script>
+</body>
+</html>
+

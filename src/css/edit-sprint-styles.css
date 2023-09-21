@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    border: 5px solid #000; /* Adjust border width and color as needed */
+    border-radius: 30px; /* Adjust border-radius for rounded corners */
+    background-color: white; /* Background color inside the border */
+    position: relative;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.form {
+    padding: 5%;
+}
+
+.date {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 15px;
+    right: 30px;
+}

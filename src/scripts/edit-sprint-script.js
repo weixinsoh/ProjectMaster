@@ -31,7 +31,7 @@ document.getElementById("return-scrum-board-btn").addEventListener('click', () =
 
 function saveChange(){
 
-  update(ref("sprint/" + receivedID), {
+  update(ref(db, "sprint/" + receivedID), {
     name: document.getElementById("sprint-name").value,
     start: document.getElementById("start-date").value,
     end: document.getElementById("end-date").value,

@@ -101,6 +101,7 @@ async function displayTask(){
     const sprintDue = data.end
     const sprintStatus = data.status
     
+    document.getElementById("sprint-header").innerHTML = "";
     const sprintHeader = document.createElement("div")
     sprintHeader.classList.add("sprint-details") 
     const otherInfo = document.createElement("p")

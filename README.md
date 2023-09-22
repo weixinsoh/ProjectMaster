@@ -109,7 +109,7 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 2. **Input Details:** You have to fill in all of the components for rendering sprint information.The attributes include sprint name, starting and ending date, and sprint status.  
 
-3. **Done Button:** After filling in all of the details, click on the done button and the sprint will be added and displayed as a card in the scrumboard..
+3. **Done Button:** After filling in all of the details, click on the done button and the sprint will be added and displayed as a card in the scrumboard.
 
 ### Editing a Sprint
 
@@ -120,7 +120,15 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 1. 
 
 ### Sprint Backlog
-1. 
+1. The Sprint Backlog is shown in a kanban style layout.
+
+2. Each task in the Sprint Backlog is represented as a card on the board.
+
+3. It comes with a convenient drag-and-drop task state transition feature.
+
+4. Click and hold on a card of your choice and drag it to your desired status column.
+
+6. This allows you to easily manage and update the status of your tasks. (Not Started, In Progress, Completed, Overdue)
 
 ### Assigning Tasks to Sprint
 

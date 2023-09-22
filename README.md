@@ -113,11 +113,15 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 ### Editing a Sprint
 
-1. 
+1. **Edit Button:** Click on the edit button, it will linked to a page where you can edit in the details of the sprint.
+
+2. **Input Details:** You can change the details that is previously input in the sprint.
+
+3. **Done button:** Click on the done button, it will save the new detail of the sprint.
 
 ### Deleting a Sprint
 
-1. 
+1. **Delete Button:** On the scrum board main page, you'll notice a small bin icon in the bottom-right corner of each task. Click on this bin icon to access the delete feature.
 
 ### Sprint Backlog
 1. The Sprint Backlog is shown in a kanban style layout.

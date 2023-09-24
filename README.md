@@ -39,11 +39,11 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Creating a Task
 
-1. **Add Button:** Click on the add button, it will linked to a page where you can fill in the details of task.
+1. **Add Button:** Click on the "+" button, it will linked to a page where you can fill in the details of task.
 
 2. **Input Details:** You have to fill in all of the components for rendering task information.The attributes include task name, story point, assignee, description, type of task, tags, priority, status and stages. 
 
-3. **Done Button:** After filling in all of the details, click on the done button and the task will be added and displayed as a card in the product backlog.
+3. **Done Button:** After filling in all of the details, click on the "Done" button and the task will be added and displayed as a card in the product backlog.
 
 #### Editing a Task
 
@@ -51,7 +51,7 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 2. **Input Details:** You can change the details that is previously input in the task.
 
-3. **Done button:** Click on the done button, it will save the new detail of the task.
+3. **Done button:** Click on the done button, it will save the new details of the task.
 
 #### Deleting a Task
 
@@ -105,19 +105,19 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Creating a Sprint
 
-1. **Add Button:** Click on the add button, it will linked to a page where you can fill in the details of sprint.
+1. **Add Button:** Click on the "+" button, it will link to a page where you can fill in the details of sprint.
 
 2. **Input Details:** You have to fill in all of the components for rendering sprint information.The attributes include sprint name, starting and ending date, and sprint status.  
 
-3. **Done Button:** After filling in all of the details, click on the done button and the sprint will be added and displayed as a card in the scrumboard.
+3. **Done Button:** After filling in all of the details, click on the "Done" button and the sprint will be added and displayed as a card in the scrumboard.
 
 ### Editing a Sprint
 
-1. **Edit Button:** Click on the edit button, it will linked to a page where you can edit in the details of the sprint.
+1. **Edit Button:** Click on the edit button, it will link to a page where you can edit the details of the sprint.
 
 2. **Input Details:** You can change the details that is previously input in the sprint.
 
-3. **Done button:** Click on the done button, it will save the new detail of the sprint.
+3. *Done button:* Click on the done button, it will save the new details of the sprint.
 
 ### Deleting a Sprint
 

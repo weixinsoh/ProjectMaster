@@ -48,7 +48,8 @@ document.getElementById("create-task-btn").addEventListener('click', (e) => {
     priority: priority,
     status: status,
     stages: stages,
-    date: date
+    date: date,
+    logtime: JSON.stringify({})
   })
   .then(
     () => {alert("Task Created!")}

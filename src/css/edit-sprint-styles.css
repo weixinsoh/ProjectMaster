@@ -2,7 +2,7 @@
     display: flex;
     border: 5px solid #000; /* Adjust border width and color as needed */
     border-radius: 30px; /* Adjust border-radius for rounded corners */
-    background-color: #eeeeec;; /* Background color inside the border */
+    background-color: #f9f4f4; /* Background color inside the border */
     position: relative;
     margin-top: 5%;
     margin-left: 20%;
@@ -20,6 +20,16 @@
 
 .buttons {
     position: absolute;
-    bottom: 15px;
-    right: 30px;
+    right: 33px;
+    bottom: 25px;
+}
+
+button {
+    font-size: 14px;
+    background-color: #ba4545;
+    border-color: #BA4545;
+    color: #fff;
+    width: 70px;
+    height: 35px;
+    border-radius: 10px;
 }

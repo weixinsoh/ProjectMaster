@@ -201,38 +201,38 @@ function displayCard(status, taskData, sprintStatus) {
 }
 
 function getTagColor(tag) {
-    switch (tag) {
-      case "Frontend":
-        return "mediumpurple"
-      case "Backend":
-        return "pink"
-      case "API":
-        return "lightblue"
-      case "Testing":
-        return "deepskyblue"
-      case "Framework":
-        return "tan"
-      case "UI":
-        return "antiquewhite"
-      case "UX":
-        return "silver"
-      case "Database":
-        return "aquamarine"
-    }
+  switch (tag) {
+    case "Frontend":
+      return "mediumpurple"
+    case "Backend":
+      return "pink"
+    case "API":
+      return "lightblue"
+    case "Testing":
+      return "rgba(0, 102, 255, 0.67)"
+    case "Framework":
+      return "tan"
+    case "UI":
+      return "rgba(255, 170, 134)"
+    case "UX":
+      return "silver"
+    case "Database":
+      return "aquamarine"
   }
+}
 
-  function getPriorityColor(priority) {
-    switch (priority) {
-      case "Urgent":
-        return "orangered"
-      case "Important":
-        return "lightsalmon"
-      case "Medium":
-        return "lemonchiffon"
-      case "Low":
-        return "lightgreen"
-    }
+function getPriorityColor(priority) {
+  switch (priority) {
+    case "Urgent":
+      return "#F65B51"
+    case "Important":
+      return "lightsalmon"
+    case "Medium":
+      return "#FFFA84"
+    case "Low":
+      return "lightgreen"
   }
+}
 
   async function removeTask(value){
     try{

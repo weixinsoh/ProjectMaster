@@ -56,4 +56,22 @@ document.getElementById("create-task-btn").addEventListener('click', (e) => {
   .catch((error) => {alert(error)})
 })
 
+const priority = document.getElementById("task-priority")
+priority.addEventListener("change", function() {
+  priority.style.backgroundColor = getPriorityColor(priority.value)
+})
+
 document.getElementById("return-product-backlog-btn").addEventListener('click', () => {window.open('product-backlog.html', "_self")})
+
+function getPriorityColor(priority) {
+  switch (priority) {
+    case "Urgent":
+      return "#F65B51"
+    case "Important":
+      return "lightsalmon"
+    case "Medium":
+      return "#FFFA84"
+    case "Low":
+      return "lightgreen"
+  }
+}

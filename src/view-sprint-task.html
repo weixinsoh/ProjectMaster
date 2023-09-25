@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/view-sprint-task-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
     <title>view-task</title>
 </head>
 <body>
@@ -11,45 +12,42 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <p><h2>Task Name</h2></p>
-                <p id="task-name"></p>
-                <p><h2>Story Point</h2></p>
-                <p id="task-story-point"></p>
-                <p><h2>Assignee</h2></p>
-                <p id="task-assignee"></p>
-                <p><h2>Description</h2></p>
-                <p id="task-description"></p>
+                <p class="details-label">Task Name</p>
+                <p class="details-context" id="task-name"></p>
+                <p class="details-label">Story Point</p>
+                <p class="details-context" id="task-story-point"></p>
+                <p class="details-label">Assignee</p>
+                <p class="details-context" id="task-assignee"></p>
+                <p class="details-label">Description</p>
+                <p class="details-context" id="task-description"></p>
             </div>
 
             <div class="col">
-                <p><h2>Type of task</h2></p>
-                <p id="task-tag"></p>
-                <p><h2>Priority</h2></p>
-                <p class="priority" id="task-priority"></p>
-                <p><h2>Status</h2></p>
-                <p id="task-status"></p>
-                <p><h2>Stages</h2></p>
-                <p id="task-stages"></p>
+                <p class="details-label">Type of task</p>
+                <p class="details-context" style="max-width: 250px;" id="task-tag"></p>
+                <p class="details-label">Priority</p>
+                <p class="details-context" id="task-priority"></p>
+                <p class="details-label">Status</p>
+                <p class="details-context" id="task-status"></p>
+                <p class="details-label">Stages</p>
+                <p class="details-context" id="task-stages"></p>
             </div>
 
             <div class="col">
-                <p><h2>Log Time</h2></p>
-                <p id="total-time-logged"></p>
+                <p class="details-label">Log Time <button id="chart-btn"><i class="fa fa-line-chart" style="font-size:18px"></i></button></p>
+                <p class="details-context" id="total-time-logged"></p>
                 <p class="insert-log-time" id="insert-log-time">+ insert log time</p>
             </div>
         </div>
-
-        <canvas id="acc-of-effort-chart"></canvas>
-
         <button class="back" id="return-sprint-backlog-btn">Back</button>
     </div>
 
     <!-- Popup Window -->
-    <div id="insert-log-time-popup" class="insert-log-time-popup">
-        <div class="popup-content">
+    <div id="insert-log-time-popup" class="popup">
+        <div class="log-time-popup-content">
             <form class="form">
                 <div>
-                    <p><h2>Date</h2></p>
+                    <h2>Date</h2>
                     <p>
                         <div class="date">
                             <label for="start-date">Start:</label>
@@ -62,7 +60,7 @@
                         </div>
                     </p>
 
-                    <p><h2>Time</h2></p>
+                    <h2>Time</h2>
                     <p>
                         <div class="time">
                             <label for="start-time">Start:</label>
@@ -78,8 +76,17 @@
             </form>
     
             <div class="popup-buttons">
-                <button id="close-popup-btn">Back</button>
-                <button id="log-time-btn">Done</button>
+                <button class="button" id="close-popup-btn">Back</button>
+                <button class="button" id="log-time-btn">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" id="chart-popup">
+        <div class="chart-popup-content">
+            <canvas id="acc-of-effort-chart"></canvas>
+            <div class="popup-buttons">
+                <button class="button"id="close-chart-btn">Back</button>
             </div>
         </div>
     </div>

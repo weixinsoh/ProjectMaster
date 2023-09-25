@@ -9,29 +9,31 @@
 <body>
     <div class="container">
         <div class="col">
-            <p><h2>Task Name</h2></p>
-            <p id="task-name"></p>
-            <p><h2>Story Point</h2></p>
-            <p id="task-story-point"></p>
-            <p><h2>Assignee</h2></p>
-            <p id="task-assignee"></p>
-            <p><h2>Description</h2></p>
-            <p id="task-description"></p>
+            <p class="details-label">Task Name</p>
+            <p class="details-context" id="task-name"></p>
+            <p class="details-label">Story Point</p>
+            <p class="details-context" id="task-story-point"></p>
+            <p class="details-label">Assignee</p>
+            <p class="details-context" id="task-assignee"></p>
+            <p class="details-label">Description</p>
+            <p class="details-context" id="task-description"></p>
         </div>
 
         <div>
-            <p><h2>Type of task</h2></p>
-            <p id="task-tag"></p>
-            <p><h2>Priority</h2></p>
-            <p class="priority" id="task-priority"></p>
-            <p><h2>Status</h2></p>
-            <p id="task-status"></p>
-            <p><h2>Stages</h2></p>
-            <p id="task-stages"></p>
-            </div>
+            <p class="details-label">Type of task</p>
+            <p class="details-context" style="max-width: 300px;" id="task-tag"></p>
+            <p class="details-label">Priority</p>
+            <p class="details-context" id="task-priority"></p>
+            <p class="details-label">Status</p>
+            <p class="details-context" id="task-status"></p>
+            <p class="details-label">Stages</p>
+            <p class="details-context" id="task-stages"></p>
+        </div>
+        <div>
+            <button class="back" id="return-product-backlog-btn">Back</button>
+        </div>
     </div>
 
-    <button class="back" id="return-product-backlog-btn">Back</button>
     <script type="module" src="scripts/view-task-script.js"></script>
 </body>
 </html>

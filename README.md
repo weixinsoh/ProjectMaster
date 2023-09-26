@@ -149,7 +149,7 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 1. **View sprint task details:** Within the sprint backlog, click on the task card that you want to view. This will open another window that displays the 
 information of the task assigned to the sprint.
 
-2. **Navigate back from view sprint task details:** YOu can navigate back to the sprint backlog by clicking on the "Back" button.
+2. **Navigate back from view sprint task details:** You can navigate back to the sprint backlog by clicking on the "Back" button.
 
 3. **Insert Log Time:** You can record the log time for each task by following the **View sprint task details** step and clicking on "+insert log time" which will display a pop up window that will prompt for the date, start time and end time.
 

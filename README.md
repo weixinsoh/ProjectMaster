@@ -146,7 +146,18 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 ### Viewing Sprint Task Details and Accummulation of Effort Chart 
 
-1. 
+1. **View sprint task details:** Within the sprint backlog, click on the task card that you want to view. This will open another window that displays the 
+information of the task assigned to the sprint.
+
+2. **Navigate back from view sprint task details:** You can navigate back to the sprint backlog by clicking on the "Back" button.
+
+3. **Insert Log Time:** You can record the log time for each task by following the **View sprint task details** step and clicking on "+insert log time" which will display a pop up window that will prompt for the date, start time and end time.
+
+4. **Insert Log Time Action:** When completing **Insert Log Time**, you can click on the "Done" button to record the logtime or "Back" button to close the pop up.
+
+5. **View Accumulation of Effort Chart:** You can view the chart by clicking on the Graph Icon next to the "Log Time" heading which will open a pop up window that displays the accumulation of effort chart based on the recorded log time.
+
+6. **Navigate back from accumulation of effort chart:** You can return to **View sprint task details** by clicking on the "Back" button.
 
 ### Viewing Burndown Chart
 

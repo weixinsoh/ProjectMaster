@@ -30,12 +30,36 @@ document.getElementById("edit-sprint-btn").addEventListener('click', saveChange)
 document.getElementById("return-scrum-board-btn").addEventListener('click', () => {window.open('scrum-board.html', "_self")})
 
 function saveChange(){
+  // reset remaining story points for latest date range
+  let storyPoints = {}
+  const start = document.getElementById("start-date").value
+  const end = document.getElementById("end-date").value
+  const dates = getDatesBetween(new Date(start), new Date(end))
+  for (const date of dates) {
+    storyPoints[date] = -1
+  }
+
   update(ref(db, "sprint/" + receivedID), {
     name: document.getElementById("sprint-name").value,
     start: document.getElementById("start-date").value,
     end: document.getElementById("end-date").value,
     status: document.getElementById("sprint-status").value,
+    story_points: JSON.stringify(storyPoints)
   }).then(
     () => {alert("Updated Sprint!")}
   )
+}
+
+function getDatesBetween(startDate, endDate) {
+  const currentDate = startDate;
+  const dates = [];
+  while (currentDate <= endDate) {
+    const year = currentDate.toLocaleString("default", { year: "numeric" });
+    const month = currentDate.toLocaleString("default", { month: "2-digit" });
+    const day = currentDate.toLocaleString("default", { day: "2-digit" });
+    const formattedDate = year + "-" + month + "-" + day;
+    dates.push(formattedDate);
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+  return dates;
 }

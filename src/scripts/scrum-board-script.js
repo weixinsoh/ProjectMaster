@@ -24,6 +24,8 @@ function displaySprint() {
   sprintCards.innerHTML = ""
   getSprint().then((sprints) => {
     sortSprint(sprints).forEach((sprint) => {
+      initialStoryPointUpdate(sprint)
+
       const card = document.createElement("div")
       card.classList.add("sprint-card") 
       card.onclick = viewSprint.bind(null, sprint.name)
@@ -32,6 +34,7 @@ function displaySprint() {
       icon.classList.add("icon")
       const deleteBtn = document.createElement("button")
       const editBtn = document.createElement("button")
+      const chartBtn = document.createElement("button")
       deleteBtn.onclick = (e) => {
         e.stopPropagation()
         removeSprint(sprint.name)
@@ -40,8 +43,14 @@ function displaySprint() {
         e.stopPropagation()
         editSprint(sprint.name)
       }
+      chartBtn.onclick = (e) => {
+        e.stopPropagation()
+        burndownChart(sprint.name)
+      }
       deleteBtn.innerHTML = '<i class="fas fa-trash dlt-icon"></i>'
       editBtn.innerHTML = '<i class="fas fa-edit edit-icon"></i>'
+      chartBtn.innerHTML = '<i class="fa fa-line-chart"></i>'
+      icon.appendChild(chartBtn)
       icon.appendChild(editBtn)
       icon.appendChild(deleteBtn)
       const footer = document.createElement("div")
@@ -63,6 +72,14 @@ function displaySprint() {
       `
       card.appendChild(footer)
       sprintCards.appendChild(card)
+
+      if (sprint.status === "Not-started" && chartBtn.disabled === false) {
+        chartBtn.disabled = true
+      }
+
+      if ((sprint.status === "In-progress" || sprint.status === "Completed") && editBtn.disabled === false) {
+        editBtn.disabled = true
+      }
     })
   })
 }
@@ -112,6 +129,10 @@ function editSprint(value) {
   window.open('edit-sprint.html?id=' + value, '_self')
 }
 
+function burndownChart(value) {
+  window.open('burndown-chart.html?id=' + value, '_self')
+}
+
 async function statusUpdate(){
   try{
     const sprints = await get(ref(db,"sprint/"))
@@ -134,3 +155,41 @@ async function statusUpdate(){
 }
 
 statusUpdate()
+
+/* Update initial total story points when sprint starts */
+async function initialStoryPointUpdate(sprint){
+  try{
+    const storyPoints = JSON.parse(sprint.story_points)
+    if (sprint.status === "In-progress" && storyPoints[sprint.start] < 0) {
+      const tasks = JSON.parse(sprint.tasks)
+      let totalSP = 0
+      for (const name of tasks) {
+        const task = await getTask(name)
+        if (task.status !== 'Completed') {
+          totalSP += JSON.parse(task.story_point) 
+        }
+      }
+      storyPoints[sprint.start] = totalSP
+  
+      update(ref(db, "sprint/" + sprint.name), {
+        story_points: JSON.stringify(storyPoints)
+      })
+    } else if (sprint.status === "Completed" && storyPoints[sprint.start] < 0) {
+      console.log("t")
+      for (const date in storyPoints) {
+        storyPoints[date] = 0
+      }
+      update(ref(db, "sprint/" + sprint.name), {
+        story_points: JSON.stringify(storyPoints)
+      })
+    }
+  } catch (e){
+    console.log(e)
+  }
+}
+
+async function getTask(id){
+  const snapshot = await get(ref(db, "task/" + id))
+  const data = snapshot.val()
+  return data
+}

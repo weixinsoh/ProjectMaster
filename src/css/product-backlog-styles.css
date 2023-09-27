@@ -41,6 +41,7 @@ select#filter {
 
 .task-cards {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .task-card {

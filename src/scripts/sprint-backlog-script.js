@@ -78,8 +78,16 @@ function sortTask(filtered){
   }
 }
 
+let previousStoryPoints = ""
+window.onload = displayTask
+
 onValue(reference, (snapshot) => {
+  const data = snapshot.val()
+  if (data.sprint[receivedID].story_points === previousStoryPoints) {
     displayTask()
+  } else {
+    previousStoryPoints = data.sprint[receivedID].story_points
+  }
 });
 
 function isOverdue(dueDate) {
@@ -282,9 +290,10 @@ triggers.forEach(trigger => {
     trigger.querySelector('.container').style.border = '1px solid #ccc';
 
     if (draggedCard) {
-        update(ref(db, "task/" + draggedCard.querySelector('#name').innerHTML), {
-            status: trigger.querySelector('.container').id
-        })
+      update(ref(db, "task/" + draggedCard.querySelector('#name').innerHTML), {
+          status: trigger.querySelector('.container').id
+      })
+      remainingStoryPointsUpdate()
     }
   });
 });
@@ -299,3 +308,36 @@ document.addEventListener('dragstart', (e) => {
 document.addEventListener('dragend', () => {
   draggedCard = null;
 });
+
+/* Update remaining story points */
+async function remainingStoryPointsUpdate() {
+  try {
+    const snapshot = await get(ref(db,'sprint/' + receivedID));
+    const sprint = snapshot.val();
+    if (sprint.status === "In-progress") {
+      const tasks = JSON.parse(sprint.tasks)
+      const storyPoints = JSON.parse(sprint.story_points)
+      const date = new Date()
+      const year = date.toLocaleString("default", { year: "numeric" });
+      const month = date.toLocaleString("default", { month: "2-digit" });
+      const day = date.toLocaleString("default", { day: "2-digit" });
+      const formattedDate = year + "-" + month + "-" + day;
+  
+      let totalSP = 0
+      for (const name of tasks) {
+        const task = await getTask(name)
+        if (task.status !== 'Completed') {
+          totalSP += JSON.parse(task.story_point)
+        }
+      }
+      storyPoints[formattedDate] = totalSP
+  
+      update(ref(db, "sprint/" + receivedID), {
+        story_points: JSON.stringify(storyPoints)
+      })
+    }
+  } catch (error) {
+    console.error(error);
+    throw error; 
+  }
+}

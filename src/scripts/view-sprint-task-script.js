@@ -1,7 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, get, child, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-// import { Chart, CategoryScale, LinearScale, LineController, PointElement, LineElement, Title, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js';
-// import { DateTimeAdapter } from 'https://github.com/chartjs/chartjs-adapter-moment';
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -92,10 +90,10 @@ document.getElementById("chart-btn").addEventListener('click', async () => {
   const chart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: Object.keys(lt),   // should be retrieved from database
+        labels: Object.keys(lt),
         datasets: [{
             label: 'Accumulation of Effort',
-            data: Object.values(lt),    // should be retrieved from database
+            data: Object.values(lt),
             borderColor: 'rgb(235, 52, 88)',
             fill: false
         }]

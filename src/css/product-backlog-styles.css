@@ -35,6 +35,10 @@ select#filter {
     border-color: #a83e3e;
 }
 
+.btn.btn-primary.fab:active {
+    background-color: #a83e3e;
+}
+
 .task-cards {
     display: flex;
 }

@@ -100,6 +100,12 @@ async function displayTask(){
     const data = snapshot.val()
     const sprintDue = data.end
     const sprintStatus = data.status
+
+    // Hide add button once sprint started
+    if(sprintStatus !== "Not-started"){
+      const addButton = document.getElementById('add-task-btn');
+      addButton.style.display = 'none';
+    }
     
     // Show sprint details (sprint name, status, date)
     document.getElementById("left-header").innerHTML = "";
@@ -155,13 +161,19 @@ function displayCard(status, taskData, sprintStatus) {
     taskCard.innerHTML = ""
     const card = document.createElement("div")
     card.classList.add("task-card") 
-    card.setAttribute("draggable", "true");
+
+    // Unable to drag when sprint is completed
+    if(sprintStatus != "Completed"){
+      card.setAttribute("draggable", "true");
+    }
+    else card.setAttribute("draggable", "false")
+
     card.onclick = viewTask.bind(null, taskData.name)
 
     const icon = document.createElement("span")
     icon.classList.add("icon")
 
-    // Unable to delete task if the sprint has started
+    // Only show delete button before the sprint start
     const deleteBtn = document.createElement("button")
     if(sprintStatus == "Not-started"){
         deleteBtn.onclick = (e) => {
@@ -169,15 +181,8 @@ function displayCard(status, taskData, sprintStatus) {
             removeTask(taskData.name)
         }
         deleteBtn.innerHTML = '<i class="fas fa-trash dlt-icon"></i>';
+        icon.appendChild(deleteBtn);
     }
-    else {
-        deleteBtn.innerHTML = '<i class="fas fa-trash dlt-icon" style="color: darkgrey;"></i>';
-        deleteBtn.onclick = (e) => {
-            e.stopPropagation()
-            alert("Unable to delete task once sprint has started.")
-        }
-    }
-    icon.appendChild(deleteBtn)
 
     const footer = document.createElement("div")
     footer.classList.add("task-footer")

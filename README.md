@@ -103,8 +103,6 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 2. Sprint will be automatically ended on the ending date.
 
-3. Tasks that have not been marked as "Done" by the end of the sprint will automatically be relocated to the "Overdue" column.
-
 #### Creating a Sprint
 
 1. **Add Button:** Click on the "+" button, it will link to a page where you can fill in the details of sprint.
@@ -134,20 +132,48 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
     - Filtering tasks
     - Assigning new tasks
     - Deleting allocated tasks  
-    It's worth noting that the sorting and filtering features function similarly to those available in the Product Backlog.  
-    Small Reminder: Task addition and deletion is restricted once sprint has started.
 
-3. **Task Status:**  Tasks can have one of four statuses: Not Started, In Progress, Completed, or Overdue. You can easily update the status of a task by using a simple drag-and-drop action.
+    *Small Reminder: Task addition and deletion is restricted once sprint has started.*
+
+3. **Task Status:**  Tasks can have one of four statuses: Not Started, In Progress, Completed, or Overdue. You can easily update the status of a task by using a simple drag-and-drop action. However, tasks in the completed sprint cannot be dragged.
+
+4. **Special Consideration:** Tasks that have not been marked as "Done" by the end of the sprint will automatically be relocated to the "Overdue" column. Overdue tasks will not return to the Product Backlog, hence you will need to re-add them manually.
+
+#### Sorting Tasks in Sprint Backlog
+
+1. **Sorting Orders:**
+   - Most Urgent to Least Urgent
+   - Least Urgent to Most Urgent 
+   - Oldest to Most Recent
+   - Most Recent to Oldest 
+
+2. **Using the Sorting Menu:** On the Sprint Backlog page, you'll find a drop-down menu for sorting tasks. Click on the menu to access sorting options.
+
+3. **Applying Sort Orders:** Select a sorting order from the list to organize your tasks under each status column.
+
+#### Filtering Tasks in Sprint Backlog
+
+1. **Selecting Tags:** Tags such as Frontend, Backend, API, Testing, Framework, UI, UX, and Database are available to categorize your tasks. When visualising task cards on the Sprint Backlog, you can narrow down tasks based on task tags.
+
+2. **Using the Filter Menu:** On the Sprint Backlog page, you'll find a drop-down menu for filtering tasks. Click on the menu to access filter options.
+
+3. **Applying Filters:** Choose one tag from the list to filter tasks based on your criteria. Once selected, only the tasks that match the chosen tags will be displayed under its status column. 
 
 ### Assigning Tasks to Sprint
 
-1. **Add task to sprint:** Locate the "+" button within the Sprint Backlog section and click on it. This action will redirect you to a page where you can assign tasks to the sprint.
+1. **Add task to sprint:** Locate the "+" button within the Sprint Backlog section and click on it. This action will redirect you to a page where you can assign tasks to the sprint. The "+" button is hidden once the sprint starts, indicating that tasks cannot be added during an active sprint.
 
 2. **Select Task:** On the assignment page, you'll find a list of tasks that haven't been assigned to a specific sprint. Check the checkbox associated with the task card to select the tasks for assignment to the current sprint.
 
 3. **Confirm Assignment:** After selecting the desired tasks, click on the "Done" button. This action will successfully assign the selected tasks to the sprint.
 
 4. **Navigate Back:** You can return to the Sprint Backlog page by clicking on the "Back" button. This button will take you back to the previous page. 
+
+#### Deleting Tasks from Sprint
+
+1. **Delete Button:** On each task in the Sprint Backlog, you'll find a small bin icon in the bottom-right corner. Click on this bin icon to access the delete feature. The bin icon is hidden once the sprint starts, indicating that tasks cannot be deleted during an active sprint.
+
+2. **Applying Delete Feature:** After clicking the bin icon, the task will be promptly removed from the Sprint Backlog page, and moved back to the Product Backlog page. Once this action is completed, the task will no longer be visible or accessible within the Sprint Backlog. 
 
 ### Viewing Sprint Task Details and Accummulation of Effort Chart 
 

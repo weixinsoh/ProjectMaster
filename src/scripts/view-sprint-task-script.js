@@ -38,7 +38,7 @@ get(child(reference, `/${receivedID}`)).then((snapshot) =>{
 
 document.getElementById("return-sprint-backlog-btn")
     .addEventListener('click', () => {
-        window.open('sprint-backlog.html?id=' + receivedID, "_self")
+        window.history.back()
 })
 
 // Insert Log Time

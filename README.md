@@ -119,7 +119,7 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 2. **Input Details:** You can change the details that is previously input in the sprint.
 
-3. *Done button:* Click on the done button, it will save the new details of the sprint.
+3. **Done button:** Click on the done button, it will save the new details of the sprint.
 
 ### Deleting a Sprint
 
@@ -130,12 +130,12 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 1. **Sprint Backlog Details:** At the top of the page, you'll find essential details about the Sprint Backlog, including its current status and the specified time range.
 
 2. **Sprint Backlog Features:** 
-    a. Sorting tasks
-    b. Filtering tasks
-    c. Assigning new tasks
-    d. Deleting allocated tasks
+    - Sorting tasks
+    - Filtering tasks
+    - Assigning new tasks
+    - Deleting allocated tasks
     It's worth noting that the sorting and filtering features function similarly to those available in the Product Backlog.
-    Small remainder: Task addition and deletion is restricted once sprint has started.
+    Small Reminder: Task addition and deletion is restricted once sprint has started.
 
 3. **Task Status:**  Tasks can have one of four statuses: Not Started, In Progress, Completed, or Overdue. You can easily update the status of a task by using a simple drag-and-drop action.
 

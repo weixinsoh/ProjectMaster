@@ -133,8 +133,8 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
     - Sorting tasks
     - Filtering tasks
     - Assigning new tasks
-    - Deleting allocated tasks
-    It's worth noting that the sorting and filtering features function similarly to those available in the Product Backlog.
+    - Deleting allocated tasks  
+    It's worth noting that the sorting and filtering features function similarly to those available in the Product Backlog.  
     Small Reminder: Task addition and deletion is restricted once sprint has started.
 
 3. **Task Status:**  Tasks can have one of four statuses: Not Started, In Progress, Completed, or Overdue. You can easily update the status of a task by using a simple drag-and-drop action.

@@ -2,6 +2,16 @@
     height: 70px;
 }
 
+.header-col{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 10px 0;
+    gap: 10px;
+    width: 100%;
+    
+}
+
 .panel {
     margin-top: 20px;
     margin-left: 5%;

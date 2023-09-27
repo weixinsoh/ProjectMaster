@@ -101,16 +101,23 @@ async function displayTask(){
     const sprintDue = data.end
     const sprintStatus = data.status
     
-    document.getElementById("sprint-header").innerHTML = "";
-    const sprintHeader = document.createElement("div")
-    sprintHeader.classList.add("sprint-details") 
-    const otherInfo = document.createElement("p")
-    otherInfo.innerHTML = `<h2 style="display: inline-block; margin-left: 70px; margin-top: 30px;">${receivedID}</h2>
-    <span style="display: inline-block; margin-left: 10px;">${sprintStatus}</span>
-    <span style="display: inline-block; margin-left: 10px; font-size: 13px">( ${data.start} - ${data.end} )</span>
-    `
-    sprintHeader.appendChild(otherInfo)
-    document.getElementById("sprint-header").appendChild(sprintHeader);
+    // Show sprint details (sprint name, status, date)
+    document.getElementById("left-header").innerHTML = "";
+    const leftHeader = document.createElement("div")
+    leftHeader.classList.add("left-details") 
+    const otherInfoLeft = document.createElement("p")
+    otherInfoLeft.innerHTML = `<h2 style="display: inline-block; margin-left: 70px; margin-top: 30px;">${receivedID}</h2>
+    <span style="display: inline-block; margin-left: 10px;">${sprintStatus}</span>`
+    leftHeader.appendChild(otherInfoLeft)
+    document.getElementById("left-header").appendChild(leftHeader);
+
+    document.getElementById("right-header").innerHTML = "";
+    const rightHeader = document.createElement("div")
+    rightHeader.classList.add("right-details") 
+    const otherInfoRight = document.createElement("p")
+    otherInfoRight.innerHTML = `<h2 style="display: inline-block; margin-right: 80px; margin-top: 50px; font-size: 13px">Date: &nbsp;&nbsp;${data.start} - ${data.end}</h2>`
+    rightHeader.appendChild(otherInfoRight)
+    document.getElementById("right-header").appendChild(rightHeader);
 
     filterTask().then((filtered) => {
       const sorted = sortTask(filtered)

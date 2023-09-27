@@ -103,6 +103,8 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 2. Sprint will be automatically ended on the ending date.
 
+3. Tasks that have not been marked as "Done" by the end of the sprint will automatically be relocated to the "Overdue" column.
+
 #### Creating a Sprint
 
 1. **Add Button:** Click on the "+" button, it will link to a page where you can fill in the details of sprint.
@@ -124,15 +126,18 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 1. **Delete Button:** On the scrum board main page, you'll notice a small bin icon in the bottom-right corner of each task. Click on this bin icon to access the delete feature.
 
 ### Sprint Backlog
-1. The Sprint Backlog is shown in a kanban style layout.
 
-2. Each task in the Sprint Backlog is represented as a card on the board.
+1. **Sprint Backlog Details:** At the top of the page, you'll find essential details about the Sprint Backlog, including its current status and the specified time range.
 
-3. It comes with a convenient drag-and-drop task state transition feature.
+2. **Sprint Backlog Features:** 
+    a. Sorting tasks
+    b. Filtering tasks
+    c. Assigning new tasks
+    d. Deleting allocated tasks
+    It's worth noting that the sorting and filtering features function similarly to those available in the Product Backlog.
+    Small remainder: Task addition and deletion is restricted once sprint has started.
 
-4. Click and hold on a card of your choice and drag it to your desired status column.
-
-6. This allows you to easily manage and update the status of your tasks. (Not Started, In Progress, Completed, Overdue)
+3. **Task Status:**  Tasks can have one of four statuses: Not Started, In Progress, Completed, or Overdue. You can easily update the status of a task by using a simple drag-and-drop action.
 
 ### Assigning Tasks to Sprint
 

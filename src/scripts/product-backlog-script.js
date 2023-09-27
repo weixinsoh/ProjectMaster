@@ -103,13 +103,13 @@ function displayTask() {
       const footer = document.createElement("div")
       footer.classList.add("task-footer")
       const otherInfo = document.createElement("p")
-      otherInfo.innerHTML = `<b>Priority: </b><span style="background-color: ${getPriorityColor(task.priority)}; padding: 1px 3px; border-radius: 5px">${task.priority}</span>`
+      otherInfo.innerHTML = `<b>Priority: </b><span class="highlight-text" style="background-color: ${getPriorityColor(task.priority)};">${task.priority}</span>`
       footer.appendChild(otherInfo)
       footer.appendChild(icon)
 
       let tags = ""
       for (const element of JSON.parse(task.tag)){
-        tags += `<span style="background-color: ${getTagColor(element)}; padding: 1px 3px; border-radius: 5px">${element}</span>&nbsp`
+        tags += `<span class="highlight-text" style="background-color: ${getTagColor(element)}; ">${element}</span>&nbsp`
       }
 
       card.innerHTML = `
@@ -136,11 +136,11 @@ function getTagColor(tag) {
     case "API":
       return "lightblue"
     case "Testing":
-      return "deepskyblue"
+      return "rgba(0, 102, 255, 0.67)"
     case "Framework":
       return "tan"
     case "UI":
-      return "antiquewhite"
+      return "rgba(255, 170, 134)"
     case "UX":
       return "silver"
     case "Database":
@@ -151,11 +151,11 @@ function getTagColor(tag) {
 function getPriorityColor(priority) {
   switch (priority) {
     case "Urgent":
-      return "orangered"
+      return "#F65B51"
     case "Important":
       return "lightsalmon"
     case "Medium":
-      return "lemonchiffon"
+      return "#FFFA84"
     case "Low":
       return "lightgreen"
   }

@@ -27,8 +27,8 @@ get(child(reference, `/${receivedID}`)).then((snapshot) =>{
   document.getElementById("task-story-point").innerHTML = data.story_point
   document.getElementById("task-assignee").innerHTML = data.assignee
   document.getElementById("task-description").innerHTML = data.description
-  document.getElementById("task-tag").innerHTML = tags.map((tag) => {return `<span style="background-color: ${getTagColor(tag)}; padding: 1px 3px; border-radius: 5px">${tag}</span>`}).join(" ")
-  document.getElementById("task-priority").innerHTML = `<span style="background-color: ${getPriorityColor(data.priority)}; padding: 1px 3px; border-radius: 5px">${data.priority}</span>`
+  document.getElementById("task-tag").innerHTML = tags.map((tag) => {return `<span class="highlight-text" style="background-color: ${getTagColor(tag)};">${tag}</span>`}).join(" ")
+  document.getElementById("task-priority").innerHTML = `<span class="highlight-text" style="background-color: ${getPriorityColor(data.priority)};">${data.priority}</span>`
   document.getElementById("task-status").innerHTML = data.status
   document.getElementById("task-stages").innerHTML = data.stages
 })
@@ -44,11 +44,11 @@ function getTagColor(tag) {
     case "API":
       return "lightblue"
     case "Testing":
-      return "deepskyblue"
+      return "rgba(0, 102, 255, 0.67)"
     case "Framework":
       return "tan"
     case "UI":
-      return "antiquewhite"
+      return "rgba(255, 170, 134)"
     case "UX":
       return "silver"
     case "Database":
@@ -59,11 +59,11 @@ function getTagColor(tag) {
 function getPriorityColor(priority) {
   switch (priority) {
     case "Urgent":
-      return "orangered"
+      return "#F65B51"
     case "Important":
       return "lightsalmon"
     case "Medium":
-      return "lemonchiffon"
+      return "#FFFA84"
     case "Low":
       return "lightgreen"
   }

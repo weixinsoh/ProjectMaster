@@ -39,11 +39,11 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Creating a Task
 
-1. **Add Button:** Click on the add button, it will linked to a page where you can fill in the details of task.
+1. **Add Button:** Click on the "+" button, it will linked to a page where you can fill in the details of task.
 
 2. **Input Details:** You have to fill in all of the components for rendering task information.The attributes include task name, story point, assignee, description, type of task, tags, priority, status and stages. 
 
-3. **Done Button:** After filling in all of the details, click on the done button and the task will be added and displayed as a card in the product backlog.
+3. **Done Button:** After filling in all of the details, click on the "Done" button and the task will be added and displayed as a card in the product backlog.
 
 #### Editing a Task
 
@@ -51,7 +51,7 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 2. **Input Details:** You can change the details that is previously input in the task.
 
-3. **Done button:** Click on the done button, it will save the new detail of the task.
+3. **Done button:** Click on the done button, it will save the new details of the task.
 
 #### Deleting a Task
 
@@ -103,24 +103,41 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 2. Sprint will be automatically ended on the ending date.
 
+3. Tasks that have not been marked as "Done" by the end of the sprint will automatically be relocated to the "Overdue" column.
+
 #### Creating a Sprint
 
-1. **Add Button:** Click on the add button, it will linked to a page where you can fill in the details of sprint.
+1. **Add Button:** Click on the "+" button, it will link to a page where you can fill in the details of sprint.
 
 2. **Input Details:** You have to fill in all of the components for rendering sprint information.The attributes include sprint name, starting and ending date, and sprint status.  
 
-3. **Done Button:** After filling in all of the details, click on the done button and the sprint will be added and displayed as a card in the scrumboard..
+3. **Done Button:** After filling in all of the details, click on the "Done" button and the sprint will be added and displayed as a card in the scrumboard.
 
 ### Editing a Sprint
 
-1. 
+1. **Edit Button:** Click on the edit button, it will link to a page where you can edit the details of the sprint.
+
+2. **Input Details:** You can change the details that is previously input in the sprint.
+
+3. *Done button:* Click on the done button, it will save the new details of the sprint.
 
 ### Deleting a Sprint
 
-1. 
+1. **Delete Button:** On the scrum board main page, you'll notice a small bin icon in the bottom-right corner of each task. Click on this bin icon to access the delete feature.
 
 ### Sprint Backlog
-1. 
+
+1. **Sprint Backlog Details:** At the top of the page, you'll find essential details about the Sprint Backlog, including its current status and the specified time range.
+
+2. **Sprint Backlog Features:** 
+    a. Sorting tasks
+    b. Filtering tasks
+    c. Assigning new tasks
+    d. Deleting allocated tasks
+    It's worth noting that the sorting and filtering features function similarly to those available in the Product Backlog.
+    Small remainder: Task addition and deletion is restricted once sprint has started.
+
+3. **Task Status:**  Tasks can have one of four statuses: Not Started, In Progress, Completed, or Overdue. You can easily update the status of a task by using a simple drag-and-drop action.
 
 ### Assigning Tasks to Sprint
 
@@ -134,7 +151,18 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 ### Viewing Sprint Task Details and Accummulation of Effort Chart 
 
-1. 
+1. **View sprint task details:** Within the sprint backlog, click on the task card that you want to view. This will open another window that displays the 
+information of the task assigned to the sprint.
+
+2. **Navigate back from view sprint task details:** You can navigate back to the sprint backlog by clicking on the "Back" button.
+
+3. **Insert Log Time:** You can record the log time for each task by following the **View sprint task details** step and clicking on "+insert log time" which will display a pop up window that will prompt for the date, start time and end time.
+
+4. **Insert Log Time Action:** When completing **Insert Log Time**, you can click on the "Done" button to record the logtime or "Back" button to close the pop up.
+
+5. **View Accumulation of Effort Chart:** You can view the chart by clicking on the Graph Icon next to the "Log Time" heading which will open a pop up window that displays the accumulation of effort chart based on the recorded log time.
+
+6. **Navigate back from accumulation of effort chart:** You can return to **View sprint task details** by clicking on the "Back" button.
 
 ### Viewing Burndown Chart
 

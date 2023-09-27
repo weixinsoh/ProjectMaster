@@ -26,6 +26,7 @@ get(child(reference, `/${receivedID}`)).then((snapshot) =>{
     document.getElementById("task-description").value = data.description
     document.querySelectorAll('#task-tag input[type="checkbox"]').forEach(cb => {JSON.parse(data.tag).includes(cb.value) ? cb.checked = true : cb.checked = false})
     document.getElementById("task-priority").value = data.priority
+    document.getElementById("task-priority").style.backgroundColor = getPriorityColor(priority.value)
     document.getElementById("task-status").value = data.status
     document.getElementById("task-stages").value = data.stages
 })
@@ -53,4 +54,22 @@ function saveChange(){
   }).then(
     () => {alert("Updated Task!")}
   )
+}
+
+const priority = document.getElementById("task-priority")
+priority.addEventListener("change", function() {
+  priority.style.backgroundColor = getPriorityColor(priority.value)
+})
+
+function getPriorityColor(priority) {
+  switch (priority) {
+    case "Urgent":
+      return "#F65B51"
+    case "Important":
+      return "lightsalmon"
+    case "Medium":
+      return "#FFFA84"
+    case "Low":
+      return "lightgreen"
+  }
 }

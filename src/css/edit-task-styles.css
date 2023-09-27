@@ -1,21 +1,59 @@
-.form {
+.container {
     display: flex;
-    border: 5px solid #000; /* Adjust border width and color as needed */
+    border: 4px solid #000; /* Adjust border width and color as needed */
     border-radius: 30px; /* Adjust border-radius for rounded corners */
-    background-color: #eeeeec; /* Background color inside the border */
-    padding: 3%;
+    background-color: #f9f4f4; /* Background color inside the border */
     position: relative;
-    margin-top: 5%;
     margin-left: 10%;
+    margin-right: 10%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    padding: 4%;
+}
+
+.col {
     margin-right: 10%;
 }
 
-.col-1 {
-    margin-right: 20%;
+.details-label {
+    color: #000;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.details-context {
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.task-tag {
+    display: inline-block;
+}
+
+.highlight-text {
+    display: inline-block;
+    padding: 0px 5px; 
+    border-radius: 5px;
+    font-size: 17px;
+    margin-bottom: 5px;
 }
 
 .buttons {
     position: absolute;
-    right: 15%;
-    bottom: 5%;
+    right: 33px;
+    bottom: 25px;
+}
+
+button {
+    font-size: 14px;
+    background-color: #ba4545;
+    border-color: #BA4545;
+    color: #fff;
+    width: 70px;
+    height: 35px;
+    border-radius: 10px;
 }

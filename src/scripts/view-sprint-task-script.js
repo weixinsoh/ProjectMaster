@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getDatabase, ref, get, child} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getDatabase, ref, get, child, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 // import { Chart, CategoryScale, LinearScale, LineController, PointElement, LineElement, Title, Tooltip } from 'https://cdn.jsdelivr.net/npm/chart.js';
 // import { DateTimeAdapter } from 'https://github.com/chartjs/chartjs-adapter-moment';
 
@@ -30,8 +30,8 @@ get(child(reference, `/${receivedID}`)).then((snapshot) =>{
   document.getElementById("task-story-point").innerHTML = data.story_point
   document.getElementById("task-assignee").innerHTML = data.assignee
   document.getElementById("task-description").innerHTML = data.description
-  document.getElementById("task-tag").innerHTML = tags.map((tag) => {return `<span style="background-color: ${getTagColor(tag)}; padding: 1px 3px; border-radius: 5px">${tag}</span>`}).join(" ")
-  document.getElementById("task-priority").innerHTML = `<span style="background-color: ${getPriorityColor(data.priority)}; padding: 1px 3px; border-radius: 5px">${data.priority}</span>`
+  document.getElementById("task-tag").innerHTML = tags.map((tag) => {return `<span class="highlight-text" style="background-color: ${getTagColor(tag)};">${tag}</span>`}).join(" ")
+  document.getElementById("task-priority").innerHTML = `<span class="highlight-text" style="background-color: ${getPriorityColor(data.priority)};">${data.priority}</span>`
   document.getElementById("task-status").innerHTML = data.status
   document.getElementById("task-stages").innerHTML = data.stages
 })
@@ -42,43 +42,60 @@ document.getElementById("return-sprint-backlog-btn")
 })
 
 // Insert Log Time
-const popup = document.getElementById("insert-log-time-popup")
+const logTimePopup = document.getElementById("insert-log-time-popup")
 
 document.getElementById("insert-log-time").addEventListener('click', () => {
-    popup.style.display = "block"
+    logTimePopup.style.display = "block"
 })
 
 document.getElementById("close-popup-btn").addEventListener('click', () => {
-    popup.style.display = "none"
+    logTimePopup.style.display = "none"
 })
 
-document.getElementById("log-time-btn").addEventListener('click', () => {
-    const startDate = document.getElementById("start-date").value
-    const endDate = document.getElementById("end-date").value
+document.getElementById("log-time-btn").addEventListener('click', async () => {
+    const date = document.getElementById("date").value
     const startTime = document.getElementById("start-time").value
     const endTime = document.getElementById("end-time").value
 
-    const intervalMillis = new Date(`${endDate}T${endTime}`) - new Date(`${startDate}T${startTime}`)
-    
-    if (intervalMillis < 0) {
-        alert("End time must be later than start time.")
-    }
+    // document.getElementById("total-time-logged").innerHTML = `Total: ${hrs} hrs ${mins} mins`
 
-    const hrs = Math.floor(intervalMillis / 3600000)
-    const mins = Math.floor((intervalMillis % 3600000) / 60000)
-    document.getElementById("total-time-logged").innerHTML = `Total: ${hrs} hrs ${mins} mins`
-    // update logged time in data
+    const [startHours, startMinutes] = startTime.split(':').map(Number);
+    const [endHours, endMinutes] = endTime.split(':').map(Number);
+
+    const totalStartMinutes = startHours * 60 + startMinutes;
+    const totalEndMinutes = endHours * 60 + endMinutes;
+    const timeDifferenceInMinutes = totalEndMinutes - totalStartMinutes;
+
+    const snapshot = await get(ref(db, "task/" + receivedID))
+    const task = snapshot.val()
+    let logtime = JSON.parse(task.logtime)
+    logtime.hasOwnProperty(date) ? logtime[date] += timeDifferenceInMinutes : logtime[date] = timeDifferenceInMinutes
+
+    update(ref(db, "task/" + receivedID), {
+      logtime: JSON.stringify(logtime)
+    }).then(() => {alert("Updated Logtime!")})
 })
 
 // Generate Chart
-const ctx = document.getElementById("acc-of-effort-chart").getContext("2d")
-const chart = new Chart(ctx, {
+const chartPopup = document.getElementById("chart-popup")
+
+document.getElementById("chart-btn").addEventListener('click', async () => {
+  chartPopup.style.display = "block"
+
+  const snapshot = await get(ref(db, "task/" + receivedID))
+  const task = snapshot.val()
+  const lt = JSON.parse(task.logtime)
+  const ctx = document.getElementById("acc-of-effort-chart").getContext("2d")
+  if (Chart.getChart("acc-of-effort-chart")) {
+    Chart.getChart("acc-of-effort-chart").destroy()
+  }
+  const chart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['2023-09-01', '2023-09-02', '2023-09-04'],   // should be retrieved from database
+        labels: Object.keys(lt),   // should be retrieved from database
         datasets: [{
             label: 'Accumulation of Effort',
-            data: [5, 20, 30],    // should be retrieved from database
+            data: Object.values(lt),    // should be retrieved from database
             borderColor: 'rgb(235, 52, 88)',
             fill: false
         }]
@@ -109,6 +126,11 @@ const chart = new Chart(ctx, {
             }
         }
     }
+  })
+})
+
+document.getElementById("close-chart-btn").addEventListener('click', () => {
+  chartPopup.style.display = "none"
 })
 
 function getTagColor(tag) {
@@ -120,11 +142,11 @@ function getTagColor(tag) {
     case "API":
       return "lightblue"
     case "Testing":
-      return "deepskyblue"
+      return "rgba(0, 102, 255, 0.67)"
     case "Framework":
       return "tan"
     case "UI":
-      return "antiquewhite"
+      return "rgba(255, 170, 134)"
     case "UX":
       return "silver"
     case "Database":
@@ -135,12 +157,19 @@ function getTagColor(tag) {
 function getPriorityColor(priority) {
   switch (priority) {
     case "Urgent":
-      return "orangered"
+      return "#F65B51"
     case "Important":
       return "lightsalmon"
     case "Medium":
-      return "lemonchiffon"
+      return "#FFFA84"
     case "Low":
       return "lightgreen"
   }
 }
+
+onValue(ref(db, "task/" + receivedID), (snapshot) => {
+  const data = snapshot.val()
+  const logtime = JSON.parse(data.logtime)
+  const totalLT = Object.values(logtime).reduce((acc,lt) => acc + lt, 0)
+  document.getElementById("total-time-logged").innerHTML = `Total: ${Math.floor(totalLT/60)} hrs ${totalLT % 60} mins`
+})

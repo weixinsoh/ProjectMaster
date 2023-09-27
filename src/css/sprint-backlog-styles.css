@@ -40,6 +40,13 @@ select#filter {
     top: 70px;
     right: 40px;
     cursor: pointer;
+    background-color: #ba4545;
+    border-color: #ba4545;
+}
+
+.fab:hover {
+    background-color: #a83e3e;
+    border-color: #a83e3e;
 }
 
 .wrapper {

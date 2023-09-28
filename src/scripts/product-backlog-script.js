@@ -165,9 +165,21 @@ function viewTask(value) {
   window.open('view-task.html?id=' + value, '_self')
 }
 
-function removeTask(value){
-  remove(ref(db, "task/" + value)).then(alert("Task Deleted!"))
+function removeTask(value) {
+  // Display a confirmation dialog
+  if (confirm("Are you sure you want to delete this task?")) {
+    // If the user confirms, proceed with deletion
+    remove(ref(db, "task/" + value))
+      .then(() => {
+        alert("Task Deleted!");
+      })
+      .catch((error) => {
+        console.error("Error deleting task:", error);
+        alert("An error occurred while deleting the task.");
+      });
+  }
 }
+
 
 function editTask(value) { 
   window.open('edit-task.html?id=' + value, '_self')

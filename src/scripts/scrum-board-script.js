@@ -119,9 +119,6 @@ function viewSprint(value) {
   window.open('sprint-backlog.html?id=' + value, '_self')
 }
 
-// function removeSprint(value){
-//   remove(ref(db, "sprint/" + value)).then(alert("Sprint Deleted!"))
-// }
 function removeSprint(value) {
   // Display a confirmation dialog
   if (confirm("Are you sure you want to delete this sprint?")) {

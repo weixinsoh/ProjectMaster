@@ -158,22 +158,15 @@ statusUpdate()
 async function initialStoryPointUpdate(){
   try{
     const sprints = await get(ref(db, "sprint/"))
-    sprints.forEach(async (s) => {
+    sprints.forEach((s) => {
       const sprint = s.val()
       const storyPoints = JSON.parse(sprint.story_points)
       if (sprint.status === "In-progress" && storyPoints[sprint.start] < 0) {
-        const tasks = JSON.parse(sprint.tasks)
-        let totalSP = 0
-        for (const name of tasks) {
-          const task = await getTask(name)
-          if (task.status !== 'Completed') {
-            totalSP += JSON.parse(task.story_point) 
-          }
-        }
-        storyPoints[sprint.start] = totalSP
-    
-        update(ref(db, "sprint/" + sprint.name), {
-          story_points: JSON.stringify(storyPoints)
+        calcTotalSP(JSON.parse(sprint.tasks)).then(totalSP => {
+          storyPoints[sprint.start] = totalSP
+          update(ref(db, "sprint/" + sprint.name), {
+            story_points: JSON.stringify(storyPoints)
+          })
         })
       } else if (sprint.status === "Completed" && storyPoints[sprint.start] < 0) {
         for (const date in storyPoints) {
@@ -189,11 +182,17 @@ async function initialStoryPointUpdate(){
   }
 }
 
-initialStoryPointUpdate()
-
-
-async function getTask(id){
-  const snapshot = await get(ref(db, "task/" + id))
-  const data = snapshot.val()
-  return data
+async function calcTotalSP(tasks) {
+  let totalSP = 0
+  for (const name of tasks) {
+    const snapshot = await get(ref(db, "task/" + name))
+    const task = snapshot.val()
+    if (task.status !== 'Completed') {
+      totalSP += JSON.parse(task.story_point) 
+    }
+  }
+  console.log(totalSP)
+  return totalSP
 }
+
+initialStoryPointUpdate()

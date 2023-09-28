@@ -70,7 +70,6 @@ async function getDataSets() {
         const month = previousDate.toLocaleString("default", { month: "2-digit" });
         const day = previousDate.toLocaleString("default", { day: "2-digit" });
         const formattedPreviousDate = year + "-" + month + "-" + day;
-        console.log(formattedPreviousDate)
         actualDataSet[key] = actualDataSet[formattedPreviousDate]
       }
     }

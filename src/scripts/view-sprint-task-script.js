@@ -52,26 +52,73 @@ document.getElementById("close-popup-btn").addEventListener('click', () => {
 
 document.getElementById("log-time-btn").addEventListener('click', async () => {
     const date = document.getElementById("date").value
-    const startTime = document.getElementById("start-time").value
-    const endTime = document.getElementById("end-time").value
-
-    // document.getElementById("total-time-logged").innerHTML = `Total: ${hrs} hrs ${mins} mins`
-
-    const [startHours, startMinutes] = startTime.split(':').map(Number);
-    const [endHours, endMinutes] = endTime.split(':').map(Number);
-
-    const totalStartMinutes = startHours * 60 + startMinutes;
-    const totalEndMinutes = endHours * 60 + endMinutes;
-    const timeDifferenceInMinutes = totalEndMinutes - totalStartMinutes;
+    let startTime = document.getElementById("start-time").value
+    let endTime = document.getElementById("end-time").value
 
     const snapshot = await get(ref(db, "task/" + receivedID))
     const task = snapshot.val()
     let logtime = JSON.parse(task.logtime)
-    logtime.hasOwnProperty(date) ? logtime[date] += timeDifferenceInMinutes : logtime[date] = timeDifferenceInMinutes
 
-    update(ref(db, "task/" + receivedID), {
-      logtime: JSON.stringify(logtime)
-    }).then(() => {alert("Updated Logtime!")})
+    if (!date || !startTime || !endTime) {
+      alert("Please fill in both Date and Time fields.")
+    }
+    else if (startTime > endTime) {
+      alert("Invalid Time: start time should be later than end time.")
+    }
+    else {
+      let [inputStartHours, inputStartMinutes] = startTime.split(':')
+      let [inputEndHours, inputEndMinutes] = endTime.split(':')
+      let parsedInputStart = new Date()
+      parsedInputStart.setHours(parseInt(inputStartHours), parseInt(inputStartMinutes), 0, 0);
+      let parsedInputEnd = new Date()
+      parsedInputEnd.setHours(parseInt(inputEndHours), parseInt(inputEndMinutes), 0, 0);
+
+      if (logtime.hasOwnProperty(date)) {
+        let i = 0
+        while (i < logtime[date]["list"].length) {
+          let [start, end] = logtime[date]["list"][i]
+          let [startHrs, startMins] = start.split(':')
+          let [endHrs, endMins] = end.split(':')
+          const parsedStart = new Date()
+          parsedStart.setHours(parseInt(startHrs), parseInt(startMins), 0, 0);
+          const parsedEnd = new Date()
+          parsedEnd.setHours(parseInt(endHrs), parseInt(endMins), 0, 0);
+
+          if ((parsedStart <= parsedInputStart && parsedInputStart < parsedEnd)) {
+            i = 0
+            startTime = end
+            parsedInputStart = parsedEnd
+          }
+          if ((parsedStart < parsedInputEnd && parsedInputEnd <= parsedEnd)) {
+            i = 0
+            endTime = start
+            parsedInputEnd = parsedStart
+          }
+          if (parsedInputStart > parsedInputEnd) {
+            alert("Invalid Time: time range inserted overlapped with time logged.")
+            return
+          }
+          i++
+        }
+      }
+      const [startHours, startMinutes] = startTime.split(':').map(Number);
+      const [endHours, endMinutes] = endTime.split(':').map(Number);
+  
+      const totalStartMinutes = startHours * 60 + startMinutes;
+      const totalEndMinutes = endHours * 60 + endMinutes;
+      const timeDifferenceInMinutes = totalEndMinutes - totalStartMinutes;
+
+      if (logtime.hasOwnProperty(date)) {
+        logtime[date]["total"] += timeDifferenceInMinutes
+        logtime[date]["list"].push([startTime, endTime])
+      } else {
+        logtime[date] = {"total": timeDifferenceInMinutes, "list": [[startTime, endTime]]}
+      }
+  
+      update(ref(db, "task/" + receivedID), {
+        logtime: JSON.stringify(logtime)
+      }).then(() => {alert("Updated Logtime!")})
+    }
 })
 
 // Generate Chart
@@ -93,7 +140,7 @@ document.getElementById("chart-btn").addEventListener('click', async () => {
         labels: Object.keys(lt),
         datasets: [{
             label: 'Accumulation of Effort',
-            data: Object.values(lt),
+            data: Object.values(lt).map(obj=>obj["total"]),
             borderColor: 'rgb(235, 52, 88)',
             fill: false
         }]
@@ -168,6 +215,6 @@ function getPriorityColor(priority) {
 onValue(ref(db, "task/" + receivedID), (snapshot) => {
   const data = snapshot.val()
   const logtime = JSON.parse(data.logtime)
-  const totalLT = Object.values(logtime).reduce((acc,lt) => acc + lt, 0)
+  const totalLT = Object.values(logtime).map(obj=>obj["total"]).reduce((acc,lt) => acc + lt, 0)
   document.getElementById("total-time-logged").innerHTML = `Total: ${Math.floor(totalLT/60)} hrs ${totalLT % 60} mins`
 })

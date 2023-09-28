@@ -18,12 +18,15 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
     - Create and Manage Scrum Board
         - Rules
         - Creating a Sprint
+        - Viewing Burndown Chart of a Sprint
         - Editing a Sprint
         - Deleting a Sprint
         - Sprint Backlog
-        - Assigning Tasks to Sprint
-        - Viewing Sprint Task Details and Accummulation of Effort Chart
-        - Viewing Burndown Chart
+            - Sorting Tasks in Sprint Backlog
+            - Filtering Tasks in Sprint Backlog
+            - Assigning Tasks to Sprint
+            - Deleting Tasks from Sprint
+            - Viewing Sprint Task Details and Accummulation of Effort Chart
 5. [Troubleshooting](#troubleshooting)
    - FAQ
 
@@ -99,7 +102,10 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Rules
 
-1. Once sprint is started, tasks cannot be added or edited.
+1. Once sprint is started:  
+    - The sprint details(such as end date) is uneditable.
+    - Tasks in the sprint cannot be added or edited.
+    - Burndown Chart of the sprint is automatically generated.
 
 2. Sprint will be automatically ended on the ending date.
 
@@ -110,6 +116,17 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 2. **Input Details:** You have to fill in all of the components for rendering sprint information.The attributes include sprint name, starting and ending date, and sprint status.  
 
 3. **Done Button:** After filling in all of the details, click on the "Done" button and the sprint will be added and displayed as a card in the scrumboard.
+
+### Viewing Burndown Chart of a Sprint
+
+1. **View Button:** Click on the chart button, which is the first icon on the right-corner of a task, it will link to a page where show you the burndown chart of the sprint. It is able to click it once the sprint has started.
+
+2. **Chart Details:** The Burndown Chart is used to visualize the remaining work over time, based on the story point. It consist of 2 lines:  
+    - Ideal Velocity  
+    It represents the expected rate of work completion, starting at the total planned work and ending at zero work remaining by end of the sprint.
+    
+    - Actual Velocity  
+    It tracks the team's real-world progress, showing how much work is completed or remaining at the end of each time period.
 
 ### Editing a Sprint
 
@@ -135,9 +152,12 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
     *Small Reminder: Task addition and deletion is restricted once sprint has started.*
 
-3. **Task Status:**  Tasks can have one of four statuses: Not Started, In Progress, Completed, or Overdue. You can easily update the status of a task by using a simple drag-and-drop action. However, tasks in the completed sprint cannot be dragged.
-
-4. **Special Consideration:** Tasks that have not been marked as "Done" by the end of the sprint will automatically be relocated to the "Overdue" column. Overdue tasks will not return to the Product Backlog, hence you will need to re-add them manually.
+3. **Task Status:**  
+    - Tasks can have one of four statuses: Not Started, In Progress, Completed, or Overdue. 
+    - You can easily update the status of a task by using a simple drag-and-drop action. 
+        - You are unable to drop the task to "Overdue" column, ie. cannot manually change task status to "Overdue". 
+        - However, tasks in the completed sprint cannot be dragged.
+    - Tasks that have not been marked as "Done" by the end of the sprint will automatically be relocated to the "Overdue" column. Overdue tasks will not return to the Product Backlog, hence you will need to re-add them manually.
 
 #### Sorting Tasks in Sprint Backlog
 
@@ -188,10 +208,6 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 5. **View Accumulation of Effort Chart:** You can view the chart by clicking on the Graph Icon next to the "Log Time" heading which will open a pop up window that displays the accumulation of effort chart based on the recorded log time.
 
 6. **Navigate back from accumulation of effort chart:** You can return to **View sprint task details** by clicking on the "Back" button.
-
-### Viewing Burndown Chart
-
-1. 
 
 </details>
 

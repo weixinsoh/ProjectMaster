@@ -23,7 +23,6 @@ document.getElementById("create-task-btn").addEventListener('click', (e) => {
   cb.forEach((b) => {
     if (b.checked) tags.push(b.value)
   })
-  console.log(tags)
 
   const name = document.getElementById("task-name").value;
   const story_point = document.getElementById("task-story-point").value;
@@ -35,6 +34,8 @@ document.getElementById("create-task-btn").addEventListener('click', (e) => {
   const status = document.getElementById("task-status").value;
   const stages = document.getElementById("task-stages").value;
   const date = new Date().toString();
+
+  if (!validateInput(name, description, JSON.parse(tag))) return
 
   e.preventDefault();
 
@@ -93,4 +94,26 @@ function getPriorityColor(priority) {
     case "Low":
       return "lightgreen";
   }
+}
+
+function validateInput(name, description, tag) {
+  let retVal = true
+
+  if (name == ""){
+    retVal = false
+    alert("Task name cannot be empty")
+  }
+
+  if (description == ""){
+    retVal = false
+    alert("Task description cannot be empty")
+  }
+
+  if (tag.length == 0){ 
+    retVal = false
+    alert("At least one tag must be chosen")
+
+  }
+
+  return retVal
 }

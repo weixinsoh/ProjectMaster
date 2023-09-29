@@ -22,6 +22,8 @@ document.getElementById("create-sprint-btn").addEventListener('click', (e) => {
   const start = document.getElementById('start-date').value;
   const end = document.getElementById('end-date').value;
 
+  if (!validateInput(name, start, end)) return
+
   // set remaining story points for given date range
   let storyPoints = {}
   const dates = getDatesBetween(new Date(start), new Date(end))
@@ -75,4 +77,30 @@ function getDatesBetween(startDate, endDate) {
     currentDate.setDate(currentDate.getDate() + 1);
   }
   return dates;
+}
+
+function validateInput(name, start, end){
+  let retVal = true
+
+  if(name == ""){
+    retVal = false
+    alert("Sprint name cannot be empty")
+  }
+
+  if(start == ""){
+    retVal = false
+    alert("Start date cannot be empty")
+  }
+
+  if (end == ""){
+    retVal = false
+    alert("End date cannot be empty")
+  }
+
+  if (new Date(start) > new Date(end)){
+    retVal = false
+    alert("Start date must be before end date")
+  }
+
+  return retVal
 }

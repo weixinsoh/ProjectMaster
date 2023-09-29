@@ -31,19 +31,35 @@ document.getElementById("create-sprint-btn").addEventListener('click', (e) => {
   
   e.preventDefault();
 
-  set(ref(db, "sprint/" + name),{
-    name: name,
-    status: status,
-    start: start,
-    end: end,
-    tasks: JSON.stringify([]),
-    story_points: JSON.stringify(storyPoints)
-  })
-  .then(
-    () => {alert("Sprint Created!")}
-  )
-  .catch((error) => {alert(error)})
+  // Check if the task name already exists
+  const taskRef = ref(db, "sprint/" + name);
+  get(taskRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        // Task name already exists, show an error message
+        alert("sprint with the same name already exists!");
+      } else {
+        // Task name is unique, proceed with task creation
+      set(ref(db, "sprint/" + name),{
+        name: name,
+        status: status,
+        start: start,
+        end: end,
+        tasks: JSON.stringify([]),
+        story_points: JSON.stringify(storyPoints)
+      })
+      .then(() => {
+        alert("Sprint Created!");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
 })
+.catch((error) => {
+  alert(error);
+});
+});
 
 document.getElementById("return-scrum-board-btn").addEventListener('click', () => {window.open('scrum-board.html', "_self")})
 

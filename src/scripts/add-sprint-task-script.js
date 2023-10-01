@@ -128,20 +128,20 @@ document.getElementById("add-sprint-task-btn").addEventListener('click', async (
       }
     })
 
-    if (retArr.length = 0) {
+    if (retArr.length === 0) {
       alert("Select at least one task to be assigned to the sprint!")
-    }
-
-    try{
-      const prevTasks = await getPreviousTask();
-      const updatedTasks = await prevTasks.concat(retArr)
-      await update(ref(db, "sprint/" + receivedID), {
-        tasks: JSON.stringify(updatedTasks)
-      });
-      alert("Tasks added!")
-    }
-    catch(e){
-      alert(e.message)
+    } else {
+      try{
+        const prevTasks = await getPreviousTask();
+        const updatedTasks = await prevTasks.concat(retArr)
+        await update(ref(db, "sprint/" + receivedID), {
+          tasks: JSON.stringify(updatedTasks)
+        });
+        alert("Tasks added!")
+      }
+      catch(e){
+        alert(e.message)
+      }
     }
 })
 

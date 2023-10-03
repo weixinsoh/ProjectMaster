@@ -29,31 +29,45 @@ get(child(reference, `/${urlParams.get('id')}`)).then((snapshot) =>{
 document.getElementById("edit-sprint-btn").addEventListener('click', saveChange)
 document.getElementById("return-scrum-board-btn").addEventListener('click', () => {window.open('scrum-board.html', "_self")})
 
-function saveChange(){
-  // reset remaining story points for latest date range
-  let storyPoints = {}
-  const start = document.getElementById("start-date").value
-  const end = document.getElementById("end-date").value
-  const dates = getDatesBetween(new Date(start), new Date(end))
-  for (const date of dates) {
-    storyPoints[date] = -1
-  }
+function saveChange() {
+  const sprintNameInput = document.getElementById("sprint-name");
+  const sprintName = sprintNameInput.value;
   
-  remove(ref(db, "sprint/" + urlParams.get('id')))
+  // Check if the sprint name already exists
+  get(child(reference, `/${sprintName}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        alert("sprint with the same name already exists!");
+      } else {
+        // The sprint name doesn't exist, proceed with the update
+        let storyPoints = {};
+        const start = document.getElementById("start-date").value;
+        const end = document.getElementById("end-date").value;
+        const dates = getDatesBetween(new Date(start), new Date(end));
+        for (const date of dates) {
+          storyPoints[date] = -1;
+        }
 
-  const sprintName = document.getElementById("sprint-name").value
-  urlParams.set('id', sprintName)
+        remove(ref(db, "sprint/" + urlParams.get('id')));
 
-  set(ref(db, "sprint/" + sprintName), {
-    name: sprintName,
-    start: document.getElementById("start-date").value,
-    end: document.getElementById("end-date").value,
-    status: document.getElementById("sprint-status").value,
-    story_points: JSON.stringify(storyPoints)
-  }).then(
-    () => {alert("Updated Sprint!")}
-  )
+        urlParams.set('id', sprintName);
+
+        set(ref(db, "sprint/" + sprintName), {
+          name: sprintName,
+          start: start,
+          end: end,
+          status: document.getElementById("sprint-status").value,
+          story_points: JSON.stringify(storyPoints)
+        }).then(() => {
+          alert("Updated Sprint!");
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("Error checking sprint name:", error);
+    });
 }
+
 
 function getDatesBetween(startDate, endDate) {
   const currentDate = startDate;

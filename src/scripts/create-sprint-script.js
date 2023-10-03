@@ -33,15 +33,15 @@ document.getElementById("create-sprint-btn").addEventListener('click', (e) => {
   
   e.preventDefault();
 
-  // Check if the task name already exists
-  const taskRef = ref(db, "sprint/" + name);
-  get(taskRef)
+  // Check if the sprint name already exists
+  const sprintRef = ref(db, "sprint/" + name);
+  get(sprintRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
-        // Task name already exists, show an error message
+        // Sprint name already exists, show an error message
         alert("sprint with the same name already exists!");
       } else {
-        // Task name is unique, proceed with task creation
+        // Sprint name is unique, proceed with sprint creation
       set(ref(db, "sprint/" + name),{
         name: name,
         status: status,

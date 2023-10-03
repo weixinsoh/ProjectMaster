@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getDatabase, ref, set, get, child, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getDatabase, ref, set, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -16,9 +16,9 @@ const db = getDatabase(app);
 const reference = ref(db, 'sprint/');
 
 const urlParams = new URLSearchParams(window.location.search);
-const receivedID = urlParams.get('id')
+// const receivedID = urlParams.get('id')
 
-get(child(reference, `/${receivedID}`)).then((snapshot) =>{
+get(child(reference, `/${urlParams.get('id')}`)).then((snapshot) =>{
     const data = snapshot.val();
     document.getElementById("sprint-name").value = data.name
     document.getElementById("start-date").value = data.start
@@ -38,9 +38,14 @@ function saveChange(){
   for (const date of dates) {
     storyPoints[date] = -1
   }
+  
+  remove(ref(db, "sprint/" + urlParams.get('id')))
 
-  update(ref(db, "sprint/" + receivedID), {
-    name: document.getElementById("sprint-name").value,
+  const sprintName = document.getElementById("sprint-name").value
+  urlParams.set('id', sprintName)
+
+  set(ref(db, "sprint/" + sprintName), {
+    name: sprintName,
     start: document.getElementById("start-date").value,
     end: document.getElementById("end-date").value,
     status: document.getElementById("sprint-status").value,

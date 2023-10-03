@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getDatabase, ref, set, get, child, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getDatabase, ref, set, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -16,9 +16,9 @@ const db = getDatabase(app);
 const reference = ref(db, 'task/');
 
 const urlParams = new URLSearchParams(window.location.search);
-const receivedID = urlParams.get('id')
+// const receivedID = urlParams.get('id')
 
-get(child(reference, `/${receivedID}`)).then((snapshot) =>{
+get(child(reference, `/${urlParams.get('id')}`)).then((snapshot) =>{
     const data = snapshot.val();
     document.getElementById("task-name").value = data.name
     document.getElementById("task-story-point").value = data.story_point
@@ -42,8 +42,13 @@ function saveChange(){
     if (b.checked) tags.push(b.value)
   })
 
-  update(ref(db, "task/" + receivedID), {
-    name: document.getElementById("task-name").value,
+  remove(ref(db, "task/" + urlParams.get('id')))
+
+  const taskName = document.getElementById("task-name").value
+  urlParams.set('id', taskName)
+
+  set(ref(db, "task/" + taskName), {
+    name: taskName,
     story_point: document.getElementById("task-story-point").value,
     assignee: document.getElementById("task-assignee").value,
     description: document.getElementById("task-description").value,

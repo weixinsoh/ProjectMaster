@@ -17,9 +17,13 @@ const reference = ref(db, 'sprint/');
 
 const urlParams = new URLSearchParams(window.location.search);
 // const receivedID = urlParams.get('id')
+let oldName = ""
+let sprintTasks = []
 
 get(child(reference, `/${urlParams.get('id')}`)).then((snapshot) =>{
     const data = snapshot.val();
+    oldName = data.name
+    sprintTasks = data.tasks
     document.getElementById("sprint-name").value = data.name
     document.getElementById("start-date").value = data.start
     document.getElementById("end-date").value = data.end
@@ -33,13 +37,12 @@ function saveChange() {
   const sprintNameInput = document.getElementById("sprint-name");
   const sprintName = sprintNameInput.value;
   
-  // Check if the sprint name already exists
   get(child(reference, `/${sprintName}`))
     .then((snapshot) => {
-      if (snapshot.exists()) {
+      if (oldName !== sprintName && snapshot.exists()) {
         alert("sprint with the same name already exists!");
       } else {
-        // The sprint name doesn't exist, proceed with the update
+        oldName = sprintName
         let storyPoints = {};
         const start = document.getElementById("start-date").value;
         const end = document.getElementById("end-date").value;
@@ -57,7 +60,8 @@ function saveChange() {
           start: start,
           end: end,
           status: document.getElementById("sprint-status").value,
-          story_points: JSON.stringify(storyPoints)
+          story_points: JSON.stringify(storyPoints),
+          tasks: sprintTasks
         }).then(() => {
           alert("Updated Sprint!");
         });

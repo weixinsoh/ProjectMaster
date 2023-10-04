@@ -128,7 +128,7 @@ document.getElementById("add-sprint-task-btn").addEventListener('click', async (
       }
     })
 
-    if (retArr.length === 0) {
+    if (retArr.length == 0) {
       alert("Select at least one task to be assigned to the sprint!")
     } else {
       try{

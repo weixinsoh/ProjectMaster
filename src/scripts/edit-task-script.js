@@ -42,23 +42,30 @@ function saveChange(){
     if (b.checked) tags.push(b.value)
   })
 
-  remove(ref(db, "task/" + urlParams.get('id')))
+  const taskRef = ref(db, "task/" + name);
+  get(taskRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        // Task name already exists, show an error message
+        alert("Task with the same name already exists!");
+      } else {
+          remove(ref(db, "task/" + urlParams.get('id')))
 
-  const taskName = document.getElementById("task-name").value
-  urlParams.set('id', taskName)
+          const taskName = document.getElementById("task-name").value
+          urlParams.set('id', taskName)
 
-  set(ref(db, "task/" + taskName), {
-    name: taskName,
-    story_point: document.getElementById("task-story-point").value,
-    assignee: document.getElementById("task-assignee").value,
-    description: document.getElementById("task-description").value,
-    tag: JSON.stringify(tags),
-    priority: document.getElementById("task-priority").value,
-    status: document.getElementById("task-status").value,
-    stages: document.getElementById("task-stages").value
-  }).then(
-    () => {alert("Updated Task!")}
-  )
+          set(ref(db, "task/" + taskName), {
+            name: taskName,
+            story_point: document.getElementById("task-story-point").value,
+            assignee: document.getElementById("task-assignee").value,
+            description: document.getElementById("task-description").value,
+            tag: JSON.stringify(tags),
+            priority: document.getElementById("task-priority").value,
+            status: document.getElementById("task-status").value,
+            stages: document.getElementById("task-stages").value
+          }).then(
+            () => {alert("Updated Task!")}
+          )}})
 }
 
 const priority = document.getElementById("task-priority")

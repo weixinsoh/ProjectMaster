@@ -17,13 +17,20 @@ const reference = ref(db, 'task/');
 
 const urlParams = new URLSearchParams(window.location.search);
 // const receivedID = urlParams.get('id')
+let oldName = ""
+let taskDate = ""
+let taskLogTime = ""
 
 get(child(reference, `/${urlParams.get('id')}`)).then((snapshot) =>{
     const data = snapshot.val();
+    oldName = data.name
+    taskDate = data.date
+    taskLogTime = data.logtime
     document.getElementById("task-name").value = data.name
     document.getElementById("task-story-point").value = data.story_point
     document.getElementById("task-assignee").value = data.assignee
     document.getElementById("task-description").value = data.description
+    document.getElementById("task-type").value = data.type
     document.querySelectorAll('#task-tag input[type="checkbox"]').forEach(cb => {JSON.parse(data.tag).includes(cb.value) ? cb.checked = true : cb.checked = false})
     document.getElementById("task-priority").value = data.priority
     document.getElementById("task-priority").style.backgroundColor = getPriorityColor(priority.value)
@@ -35,37 +42,39 @@ document.getElementById("edit-task-btn").addEventListener('click', saveChange)
 document.getElementById("return-product-backlog-btn").addEventListener('click', () => {window.open('product-backlog.html', "_self")})
 
 function saveChange(){
+  const taskName = document.getElementById("task-name").value
 
-  let cb = document.querySelectorAll('#task-tag input[type="checkbox"]');
-  let tags = [];
-  cb.forEach((b) => {
-    if (b.checked) tags.push(b.value)
-  })
-
-  const taskRef = ref(db, "task/" + name);
-  get(taskRef)
+  get(child(reference, `/${taskName}`))
     .then((snapshot) => {
-      if (snapshot.exists()) {
+      if (oldName !== taskName && snapshot.exists()) {
         // Task name already exists, show an error message
         alert("Task with the same name already exists!");
       } else {
-          remove(ref(db, "task/" + urlParams.get('id')))
+        let cb = document.querySelectorAll('#task-tag input[type="checkbox"]');
+        let tags = [];
+        cb.forEach((b) => {
+          if (b.checked) tags.push(b.value)
+        })
+        remove(ref(db, "task/" + urlParams.get('id')))
 
-          const taskName = document.getElementById("task-name").value
-          urlParams.set('id', taskName)
+        urlParams.set('id', taskName)
 
-          set(ref(db, "task/" + taskName), {
-            name: taskName,
-            story_point: document.getElementById("task-story-point").value,
-            assignee: document.getElementById("task-assignee").value,
-            description: document.getElementById("task-description").value,
-            tag: JSON.stringify(tags),
-            priority: document.getElementById("task-priority").value,
-            status: document.getElementById("task-status").value,
-            stages: document.getElementById("task-stages").value
-          }).then(
-            () => {alert("Updated Task!")}
-          )}})
+        set(ref(db, "task/" + taskName), {
+          name: taskName,
+          story_point: document.getElementById("task-story-point").value,
+          assignee: document.getElementById("task-assignee").value,
+          description: document.getElementById("task-description").value,
+          type: document.getElementById("task-type").value,
+          tag: JSON.stringify(tags),
+          priority: document.getElementById("task-priority").value,
+          status: document.getElementById("task-status").value,
+          stages: document.getElementById("task-stages").value,
+          date: taskDate,
+          logtime: taskLogTime,
+        }).then(
+          () => {alert("Updated Task!")}
+        )
+      }})
 }
 
 const priority = document.getElementById("task-priority")

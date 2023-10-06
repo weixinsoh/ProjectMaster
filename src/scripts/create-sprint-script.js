@@ -79,28 +79,38 @@ function getDatesBetween(startDate, endDate) {
   return dates;
 }
 
-function validateInput(name, start, end){
-  let retVal = true
+function validateInput(name, start, end) {
+  let retVal = true;
 
-  if(name == ""){
-    retVal = false
-    alert("Sprint name cannot be empty")
+  if (name == "") {
+    retVal = false;
+    alert("Sprint name cannot be empty");
   }
 
-  if(start == ""){
-    retVal = false
-    alert("Start date cannot be empty")
+  if (start == "") {
+    retVal = false;
+    alert("Start date cannot be empty");
+  } else {
+    const currentDate = new Date();
+    const startDate = new Date(start);
+
+    // Check if the start date is today or in the past (with time set to 00:00:00)
+    if (startDate.setHours(0, 0, 0, 0) <= currentDate.setHours(0, 0, 0, 0)) {
+      retVal = false;
+      alert("Start date must be in the future");
+    }
   }
 
-  if (end == ""){
-    retVal = false
-    alert("End date cannot be empty")
+  if (end == "") {
+    retVal = false;
+    alert("End date cannot be empty");
   }
 
-  if (new Date(start) > new Date(end)){
-    retVal = false
-    alert("Start date must be before end date")
+  if (new Date(start) > new Date(end)) {
+    retVal = false;
+    alert("Start date must be before end date");
   }
 
-  return retVal
+  return retVal;
 }
+

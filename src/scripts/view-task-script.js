@@ -22,11 +22,12 @@ console.log(receivedID)
 get(child(reference, `/${receivedID}`)).then((snapshot) =>{
   const data = snapshot.val();
   const tags = JSON.parse(data.tag)
-  console.log(tags)
+  console.log(data)
   document.getElementById("task-name").innerHTML = data.name
   document.getElementById("task-story-point").innerHTML = data.story_point
   document.getElementById("task-assignee").innerHTML = data.assignee
   document.getElementById("task-description").innerHTML = data.description
+  document.getElementById("task-type").innerHTML = data.type
   document.getElementById("task-tag").innerHTML = tags.map((tag) => {return `<span class="highlight-text" style="background-color: ${getTagColor(tag)};">${tag}</span>`}).join(" ")
   document.getElementById("task-priority").innerHTML = `<span class="highlight-text" style="background-color: ${getPriorityColor(data.priority)};">${data.priority}</span>`
   document.getElementById("task-status").innerHTML = data.status

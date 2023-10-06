@@ -56,23 +56,29 @@ async function getDataSets() {
     const actualDataSet = Object.fromEntries(Object.entries(storyPoints).filter(([key]) => {
       const currentDate = new Date()
       const keyDate = new Date(key)
-      return keyDate.getFullYear() <= currentDate.getFullYear()
-            || keyDate.getMonth() <= currentDate.getMonth() 
+      return keyDate.getFullYear() < currentDate.getFullYear()
+            || keyDate.getMonth() < currentDate.getMonth() 
             || (keyDate.getFullYear() === currentDate.getFullYear() 
                 && keyDate.getMonth() === currentDate.getMonth() 
-                && currentDate.getkeyDate.getDate() <= currentDate.getDate())
+                && keyDate.getDate() <= currentDate.getDate())
     }));
 
     for (const key in actualDataSet) {
       if (actualDataSet[key] < 0) {
-        const previousDate = new Date(key).getDate() - 1
+        const previousDate = new Date(new Date(key))
+        previousDate.setDate(new Date(key).getDate() - 1)
         const year = previousDate.toLocaleString("default", { year: "numeric" });
         const month = previousDate.toLocaleString("default", { month: "2-digit" });
         const day = previousDate.toLocaleString("default", { day: "2-digit" });
         const formattedPreviousDate = year + "-" + month + "-" + day;
+        console.log(formattedPreviousDate)
         actualDataSet[key] = actualDataSet[formattedPreviousDate]
+        storyPoints[key] = storyPoints[formattedPreviousDate]
       }
     }
+    update(ref(db, "sprint/" + receivedID), {
+      story_points: JSON.stringify(storyPoints)
+    })
     return [labels, idealDataSet, actualDataSet]
 
   } catch (error) {

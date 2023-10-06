@@ -140,7 +140,7 @@ document.getElementById("chart-btn").addEventListener('click', async () => {
         labels: Object.keys(lt),
         datasets: [{
             label: 'Accumulation of Effort',
-            data: Object.values(lt).map(obj=>obj["total"]),
+            data: cumulativeEffort(Object.values(lt).map(obj=>obj["total"])),
             borderColor: 'rgb(235, 52, 88)',
             fill: false
         }]
@@ -210,6 +210,11 @@ function getPriorityColor(priority) {
     case "Low":
       return "lightgreen"
   }
+}
+
+function cumulativeEffort(arr){
+  let total = 0;
+  return arr.map((value) => (total += value));
 }
 
 onValue(ref(db, "task/" + receivedID), (snapshot) => {

@@ -1,59 +1,75 @@
-
-.fab {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+.column{
     position: fixed;
-    top: 17%;
-    left: 10%;
+    top: 35%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
-    background-color: #BA4545;
-    border-color: #BA4545;
+    left:50%;
+}
+  
+.rectangle {
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left:50%;
 }
 
-.fab:hover {
+.rect-container {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Rounded corners */
+    padding: 6px;
+    padding-left: 20px;
+    margin: 10px;
+    border: 3px solid #000000;
+    border-radius: 5px;
+  }
+
+.icon {
+    margin-right: 10px; 
+}
+
+.details-context {
+    border: none;
+    flex-grow: 1; 
+}
+
+.btn.btn-primary:hover {
     background-color: #a83e3e;
     border-color: #a83e3e;
 }
 
-.btn.btn-primary.fab:active {
-    background-color: #a83e3e;
+.btn.btn-primary:active {
+    background-color: #bdbdbd;
 }
 
-.addUser {
-    height: 120px;
+.btn.btn-primary{
+    width: 130px;
+    background-color: rgb(43, 42, 42);
+    border-color: rgb(43, 42, 42);
+    position: fixed;
+    top: 65%;
+    transform: translate(-50%, -50%);
+    left: 50%;
 }
+  
+input:focus {
+    outline: none;
+    border: none;
+  }
 
-.wrapper {
-    /* display: flex; */
-    /* padding-top: 10px; */
-    background-color: rgb(211, 211, 211);
-    margin-left: 0px;
-    /* max-width: 95%; */
-    /* margin: 10px auto; */
-}
+.password-toggle {
+      position: relative;
+    }
 
-.columns{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    margin: 10px 0;
-    width: 100%;
-}
+    .password-toggle input[type="password"] {
+      padding-right: 30px;
+    }
 
-.column{
-    flex: 1;
-    width: 30%;
-    min-width: 100px;
-    margin: 2px;
-    padding: 10px;
-    background-color: rgb(211, 211, 211);
-    transition: 0.3%;
-    position: relative;
-}
-
-.column h5 {
-    text-align: left;
-    margin: 15px;
-}
+    .password-toggle .toggle-icon {
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }

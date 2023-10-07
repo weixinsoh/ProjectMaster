@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, update, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getPriorityColor, getTagColor } from "./util.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -82,40 +83,6 @@ function displayTask() {
       }
   })
 })}
-
-function getTagColor(tag) {
-  switch (tag) {
-    case "Frontend":
-      return "mediumpurple"
-    case "Backend":
-      return "pink"
-    case "API":
-      return "lightblue"
-    case "Testing":
-      return "rgba(0, 102, 255, 0.67)"
-    case "Framework":
-      return "tan"
-    case "UI":
-      return "rgba(255, 170, 134)"
-    case "UX":
-      return "silver"
-    case "Database":
-      return "aquamarine"
-  }
-}
-
-function getPriorityColor(priority) {
-  switch (priority) {
-    case "Urgent":
-      return "#F65B51"
-    case "Important":
-      return "lightsalmon"
-    case "Medium":
-      return "#FFFA84"
-    case "Low":
-      return "lightgreen"
-  }
-}
 
 // Event Listener
 document.getElementById("add-sprint-task-btn").addEventListener('click', async (e) => {

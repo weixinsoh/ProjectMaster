@@ -18,11 +18,13 @@ const db = getDatabase(app);
 // Event Listener
 document.getElementById("create-sprint-btn").addEventListener('click', (e) => {
   const name = document.getElementById("sprint-name").value
-  const status = document.getElementById("sprint-status").value
   const start = document.getElementById('start-date').value;
   const end = document.getElementById('end-date').value;
 
   if (!validateInput(name, start, end)) return
+
+  // Set the status to "not-started"
+  const status = "Not-started";
 
   // set remaining story points for given date range
   let storyPoints = {}

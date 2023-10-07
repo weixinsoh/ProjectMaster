@@ -14,29 +14,37 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+  
+// Event Listener
+document.getElementById("create-user-account-btn").addEventListener('click', (e) => {
+    
+    e.preventDefault();
 
-const usersRef = ref(db, "users");
-
-document.getElementById("create-user-account-btn").addEventListener('click', () => {
     const userName = document.getElementById("user-name").value;
     const userEmail = document.getElementById("user-email").value;
     const userPassword = document.getElementById("user-password").value;
-  
-    // Create an object to represent the user data
-    const userData = {
-      name: userName,
-      email: userEmail,
-      password: userPassword
-    };
-  
-    // Push user data to the database (this generates a unique key for each user)
-    const newUserRef = push(usersRef);
-    set(newUserRef, userData)
-      .then(() => {
-        alert("User account created successfully!");
-      })
-      .catch((error) => {
-        alert("Error creating user account: " + error.message);
-      });
-  });
-  
+
+    const usersRef = ref(db, "users/" + userName);
+    get(usersRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                // Username already exists, show an error message
+                alert("Username already exists!");
+            } else {
+                set(ref(db, "users/" + userName), {
+                    name: userName,
+                    email: userEmail,
+                    password: userPassword    
+                })
+                .then(() => {
+                    alert("User account created!");
+                })
+                .catch((error) => {
+                    alert(error);
+                });
+            }
+        })
+        .catch((error) => {
+            alert(error);
+        });
+});

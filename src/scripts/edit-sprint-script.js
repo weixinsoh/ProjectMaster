@@ -57,11 +57,14 @@ function saveChange() {
 
         urlParams.set('id', sprintName);
 
+        // Set the status to "not-started"
+        const status = "Not-started";
+
         set(ref(db, "sprint/" + sprintName), {
           name: sprintName,
           start: start,
           end: end,
-          status: document.getElementById("sprint-status").value,
+          status: status,
           story_points: JSON.stringify(storyPoints),
           tasks: sprintTasks
         }).then(() => {

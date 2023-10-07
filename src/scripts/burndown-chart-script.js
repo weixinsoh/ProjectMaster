@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, get, child, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { displayNavItem } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -18,6 +19,7 @@ const sprintReference = ref(db, 'sprint/')
 
 onValue(sprintReference, (snapshot) => {
   displayChart()
+  displayNavItem()
 });
 
 const urlParams = new URLSearchParams(window.location.search);

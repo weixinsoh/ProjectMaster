@@ -1,0 +1,59 @@
+
+.fab {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: fixed;
+    top: 17%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    background-color: #BA4545;
+    border-color: #BA4545;
+}
+
+.fab:hover {
+    background-color: #a83e3e;
+    border-color: #a83e3e;
+}
+
+.btn.btn-primary.fab:active {
+    background-color: #a83e3e;
+}
+
+.addUser {
+    height: 120px;
+}
+
+.wrapper {
+    /* display: flex; */
+    /* padding-top: 10px; */
+    background-color: rgb(211, 211, 211);
+    margin-left: 0px;
+    /* max-width: 95%; */
+    /* margin: 10px auto; */
+}
+
+.columns{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.column{
+    flex: 1;
+    width: 30%;
+    min-width: 100px;
+    margin: 2px;
+    padding: 10px;
+    background-color: rgb(211, 211, 211);
+    transition: 0.3%;
+    position: relative;
+}
+
+.column h5 {
+    text-align: left;
+    margin: 15px;
+}

@@ -22,6 +22,7 @@
     float: left;
     width: 30%;
     margin-left: 30px;
+    margin-top: 0px;
 }
 
 .insert-log-time {
@@ -31,20 +32,22 @@
 
 .details-label {
     color: #000;
-    font-size: 28px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 600;
+    margin-bottom: 0px;
 }
 
 .details-context {
-    font-size: 18px;
+    font-size: 26px;
+    margin-top: 12px;
 }
 
 .highlight-text {
     display: inline-block;
     padding: 1px 10px; 
     border-radius: 5px;
-    font-size: 17px;
+    font-size: 26px;
     margin-bottom: 5px;
 }
 

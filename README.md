@@ -211,6 +211,17 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 </details>
 
+<details>
+<summary><b>Create and Manage Project Team Members</b></summary>
+
+#### Create User Account
+
+1. **Input Details:** You need to fill in all the user information. The attributes include username, email, and password.
+
+2. **Done Button:** After filling in all the details, click the "Done" button. Your data will be securely stored in the database, and you can use it for future logins.
+
+</details>
+
 ## Troubleshooting
 
 ### FAQ

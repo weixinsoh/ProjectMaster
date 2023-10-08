@@ -1,0 +1,14 @@
+.fas {
+    font-size: 70px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    cursor: pointer;
+    color: #BA4545;
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.16);
+}
+
+.fas:hover {
+    font-size: 71px;
+}

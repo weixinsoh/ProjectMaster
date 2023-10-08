@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, set, get, child, push } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -14,6 +15,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const auth = getAuth(app);
   
 // Event Listener
 document.getElementById("create-user-account-btn").addEventListener('click', (e) => {
@@ -24,27 +26,32 @@ document.getElementById("create-user-account-btn").addEventListener('click', (e)
     const userEmail = document.getElementById("user-email").value;
     const userPassword = document.getElementById("user-password").value;
 
+    if (userName === ""){
+        alert("Username cannot be blank!")
+        return
+    }
+
     const usersRef = ref(db, "users/" + userName);
     get(usersRef)
         .then((snapshot) => {
             if (snapshot.exists()) {
-                // Username already exists, show an error message
                 alert("Username already exists!");
             } else {
-                set(ref(db, "users/" + userName), {
-                    name: userName,
-                    email: userEmail,
-                    password: userPassword    
-                })
-                .then(() => {
-                    alert("User account created!");
+                createUserWithEmailAndPassword(auth, userEmail, userPassword)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    set(ref(db, "users/" + userName), {
+                        username: userName,
+                        email: userEmail,
+                    }).then(() => {
+                        alert("User account created!")
+                    })
                 })
                 .catch((error) => {
-                    alert(error);
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage)
                 });
             }
         })
-        .catch((error) => {
-            alert(error);
-        });
 });

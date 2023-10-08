@@ -35,6 +35,10 @@ document.getElementById("login-btn").addEventListener('click', (e) => {
   get(ref(db, "users/" + username))
   .then((snapshot) => {
     const data = snapshot.val()
+    if (!data) {
+      alert("User not found");
+      return;
+    }
 
     signInWithEmailAndPassword(auth, data.email, password)
     .then((userCredential) => {

@@ -54,4 +54,7 @@ document.getElementById("create-user-account-btn").addEventListener('click', (e)
                 });
             }
         })
+        .catch((error) => {
+            alert(error)
+        })
 });

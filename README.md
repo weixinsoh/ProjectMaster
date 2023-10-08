@@ -222,9 +222,9 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Login Page
 
-1. *Input Details:* You need to fill in the existing username and password to log in.
+1. **Input Details:** You need to fill in the existing username and password to log in.
 
-2. *Login Button:* After entering all the details, click the "Log in" button to be directed to the product backlog window.
+2. **Login Button:** After entering all the details, click the "Log in" button to be directed to the product backlog window.
 
 </details>
 

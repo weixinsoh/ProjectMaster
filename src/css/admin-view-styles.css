@@ -35,7 +35,7 @@ ul li:hover ul.dropdown{
     border-radius: 50%;
     position: fixed;
     top: 17%;
-    left: 10%;
+    left: 12%;
     transform: translate(-50%, -50%);
     cursor: pointer;
     background-color: #BA4545;
@@ -116,6 +116,7 @@ ul li:hover ul.dropdown{
     min-width: 100px;
     margin: 2px;
     padding: 10px;
+
     transition: 0.3%;
     position: relative;
 }

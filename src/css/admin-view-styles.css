@@ -12,3 +12,33 @@
 .fas:hover {
     font-size: 71px;
 }
+
+ul{
+    list-style: none;
+}
+
+ul li a{
+    display: block;
+    padding:8px;
+    text-decoration: none;
+    font-size: 18px;
+    color:white;
+}
+
+ul li ul.dropdown li{
+    display: block;
+}
+
+ul li ul.dropdown{
+    position: absolute;
+    display: none;
+}
+
+ul li:hover ul.dropdown{
+    display: block;
+    background: #000;;
+}
+
+.profile-icon{
+    margin-left: 15px;
+}

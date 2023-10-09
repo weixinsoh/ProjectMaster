@@ -1,5 +1,4 @@
 // example 
-
 document.getElementById("Username").innerHTML = "";
 document.getElementById("Email").innerHTML = "";
 document.getElementById("Password").innerHTML = "";
@@ -35,7 +34,6 @@ pwd.innerHTML = `<span class="user-details"">${passwordExample}</span>`
 password.appendChild(pwd);
 password.appendChild(icon);
 
-
 document.getElementById("Username").appendChild(user);
 document.getElementById("Email").appendChild(email);
 document.getElementById("Password").appendChild(password);
@@ -45,18 +43,31 @@ async function removeTask(value){
     
 }
 
+//  Add a confirmation dialog to ensure users want to log out before proceeding
+function confirmLogout() {
+  const confirmDialog = confirm("Are you sure you want to log out?");
+  if (confirmDialog) {
+    // If the user confirms, proceed with the logout
+    window.location.href = "login-page.html"; // Redirect to the login page
+  }
+}
 
-// just for testing
+document.getElementById("logout-link").addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent the default link behavior
+  confirmLogout(); // Show the confirmation dialog
+});
+
+
+// ------------------------------------------------------------------------------------
+// just for testing -- same as above code -- can delete
 const user2 = document.createElement("div")
 user2.classList.add("user-col") 
 const usernameExample2 = "teammember2"
 user2.innerHTML = `<p class="user-details">${usernameExample}</p>`
-
 const email2 = document.createElement("div")
 email2.classList.add("email-col") 
 const emailExample2 = "temmember002@gmail.com"
 email2.innerHTML = `<p class="user-details">${emailExample}</p>`
-
 const icon2 = document.createElement("span")
 icon2.classList.add("icon")
 icon2.style = "display: inline-block";
@@ -66,19 +77,14 @@ deleteBtn2.onclick = (e) => {
     removeTask(data.name)} // data = ?
 deleteBtn2.innerHTML = '<i class="fas fa-trash dlt-icon"></i>';
 icon2.appendChild(deleteBtn2);
-
 const password2 = document.createElement("div");
 password2.classList.add("password-col");
 const pwd2 = document.createElement("p");
 pwd2.style = "width: 80%; display: inline-block";
 const passwordExample2 = "password2"
-pwd2.innerHTML = `<span class="user-details"">${passwordExample2}</span>`
-;
-
+pwd2.innerHTML = `<span class="user-details"">${passwordExample2}</span>`;
 password.appendChild(pwd2);
 password.appendChild(icon2);
-
-
 document.getElementById("Username").appendChild(user2);
 document.getElementById("Email").appendChild(email2);
 document.getElementById("Password").appendChild(password2);

@@ -1,5 +1,4 @@
-export { displayNavItem, getPriorityColor, getTagColor, logout, getCurrentlySignInUser }
-import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+export { displayNavItem, getPriorityColor, getTagColor }
 
 
 async function displayNavItem() {
@@ -29,28 +28,6 @@ async function displayNavItem() {
       console.error(error);
       throw error; 
     }
-  }
-
-  function logout(auth) {
-    signOut(auth).then(() => {
-      getCurrentlySigninUser(auth)
-    }).catch((error) => {
-      alert(error)
-    });
-  }
-
-  function getCurrentlySignInUser(auth) {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        const uid = user.uid;
-        window.open("product-backlog.html", '_self')
-      } else {
-        // User is signed out
-        window.open("login-page.html", '_self')
-      }
-    });
   }
 
   function getTagColor(tag) {

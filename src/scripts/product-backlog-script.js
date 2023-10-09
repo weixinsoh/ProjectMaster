@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, set, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 import { displayNavItem, getPriorityColor, getTagColor, logout } from "./util.js"
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -16,8 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const reference = ref(db, 'task/');
-const auth = getAuth();
-
 
 onValue(reference, (snapshot) => {
   // document.getElementById("tasks").innerHTML = ""

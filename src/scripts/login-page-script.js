@@ -26,9 +26,19 @@ document.getElementById("login-btn").addEventListener('click', (e) => {
 
   e.preventDefault();
 
+  // Don't proceed with authentication if inputs are empty
+  if (username.trim() === '' || password.trim() === '') {
+    alert("Username and password cannot be empty!");
+    return; 
+  }
+
   get(ref(db, "users/" + username))
   .then((snapshot) => {
     const data = snapshot.val()
+    if (!data) {
+      alert("User not found");
+      return;
+    }
 
     signInWithEmailAndPassword(auth, data.email, password)
     .then((userCredential) => {

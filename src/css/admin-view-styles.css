@@ -1,14 +1,161 @@
-.fas {
-    font-size: 70px;
-    border-radius: 50%;
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    cursor: pointer;
-    color: #BA4545;
-    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.16);
+ul{
+    list-style: none;
 }
 
-.fas:hover {
-    font-size: 71px;
+ul li a{
+    display: block;
+    padding:8px;
+    text-decoration: none;
+    font-size: 18px;
+    color:white;
 }
+
+ul li ul.dropdown li{
+    display: block;
+}
+
+ul li ul.dropdown{
+    position: absolute;
+    display: none;
+}
+
+ul li:hover ul.dropdown{
+    display: block;
+    background: #000;;
+}
+
+.profile-icon{
+    margin-left: 15px;
+}
+
+
+.fab {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: fixed;
+    top: 17%;
+    left: 12%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    background-color: #BA4545;
+    border-color: #BA4545;
+}
+
+.fab:hover {
+    background-color: #a83e3e;
+    border-color: #a83e3e;
+}
+
+.btn.btn-primary.fab:active {
+    background-color: #a83e3e;
+}
+
+.addUser {
+    height: 120px;
+}
+
+/* .wrapper {
+    background-color: rgb(211, 211, 211);
+    margin-left: 0px;
+        
+} */
+
+.header {
+    display: flex;
+    padding: 5px;
+    max-width: 95%;
+    height: 60px;
+    background-color: rgb(211, 211, 211);
+    border: 3px solid #000000;
+}
+
+.header-cols{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    /* margin: 10px 0; */
+    height: 40px;
+    width: 100%;
+    /* border: 3px solid #000000; */
+}
+
+.header-col{
+    flex: 1;
+    width: 30%;
+    min-width: 100px;
+    margin: 2px;
+    padding: 10px;
+    height: 30px;
+    background-color: rgb(211, 211, 211);
+    transition: 0.3%;
+    position: relative;
+}
+
+
+.wrapper {
+    display: flex;
+    padding: 5px;
+    max-width: 95%;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 3px solid #000000;
+    border-left: 3px solid #000000;
+    border-right: 3px solid #000000;
+}
+
+.columns{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.column{
+    flex: 1;
+    width: 30%;
+    min-width: 100px;
+    margin: 2px;
+    padding: 10px;
+
+    transition: 0.3%;
+    position: relative;
+}
+
+.column h5 {
+    text-align: left;
+    margin: 1px;
+}
+
+
+/* CSS for Average Time Spent */
+.blank-space {
+    height: 50px; /* Adjust the height to create the desired blank space */
+}
+
+.date {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 60%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left; /* Left-align content */
+    padding: 4px;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: center; /* Center-align header */
+}
+
+h2 {
+    text-align: center;
+}
+
+
+

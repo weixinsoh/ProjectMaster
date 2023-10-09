@@ -211,6 +211,29 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 </details>
 
+<details>
+<summary><b>Create and Manage Project Team Members</b></summary>
+
+#### Create User Account
+
+1. **Input Details:** You need to fill in all the user information. The attributes include username, email, and password.
+
+2. **Done Button:** After filling in all the details, click the "Done" button. Your data will be securely stored in the database, and you can use it for future logins.
+
+#### Login Page
+
+1. **Input Details:** You need to fill in the existing username and password to log in.
+
+2. **Login Button:** After entering all the details, click the "Log in" button to be directed to the product backlog window.
+
+#### Logout Page 
+
+1. **Access Logout Button:** Hover over the profile icon in the navbar for a dropdown list to be displayed and towards the bottom of the list will consist of a "Log Out" button.
+
+2. **Logout Button:** When clicked, redirect user back to the login page awaiting for login again.
+
+</details>
+
 ## Troubleshooting
 
 ### FAQ

@@ -1,5 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+import { getCurrentlySignInUser } from "./util.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -14,6 +16,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const auth = getAuth(app);
 
 // Event Listener
 document.getElementById("login-btn").addEventListener('click', (e) => {
@@ -36,11 +39,21 @@ document.getElementById("login-btn").addEventListener('click', (e) => {
       alert("User not found");
       return;
     }
-    if (data.password === password) {
-      window.open('product-backlog.html', '_self')
-    } else {
-      alert("Incorrect username/password!")
-    }
+
+    signInWithEmailAndPassword(auth, data.email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      const date = new Date()
+      update(ref(db, "users/" + username), {
+        last_login: date
+      }).then(() => {
+        alert("User logged in!")
+        getCurrentlySignInUser(auth)
+      })
+    })
+    .catch(() => {
+      alert("Invalid username/password!")
+    }) 
   })
 .catch((error) => {
   alert(error);

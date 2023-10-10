@@ -43,6 +43,7 @@ document.getElementById("create-user-account-btn").addEventListener('click', (e)
                     set(ref(db, "users/" + userName), {
                         username: userName,
                         email: userEmail,
+                        password: userPassword,
                     }).then(() => {
                         alert("User account created!")
                     })

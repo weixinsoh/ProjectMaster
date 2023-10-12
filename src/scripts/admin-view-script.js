@@ -87,6 +87,8 @@ function fetchAndDisplayUserData() {
         document.getElementById("Username").innerHTML = "";
         document.getElementById("Email").innerHTML = "";
         document.getElementById("Password").innerHTML = "";
+        document.getElementById("member-column").innerHTML = "";
+        document.getElementById('time-column').innerHTML = "";
         checkLoginStatus()
 
         try {
@@ -94,6 +96,7 @@ function fetchAndDisplayUserData() {
 
             for (const key in data) {
                 displayUserData(data[key].username, data[key].email, data[key].password);
+                aveTimeSpent(data[key].username)
             }
         } 
             catch (error) {
@@ -105,3 +108,96 @@ function fetchAndDisplayUserData() {
 }
 // Call the function to fetch and display user data
 fetchAndDisplayUserData();
+
+async function aveTimeSpent(user) {
+    const start = document.getElementById("start-date").value
+    const end = document.getElementById("end-date").value
+
+    const snapshot = await get(ref(db, "task/"))
+    const tasks = snapshot.val()
+    let total = 0
+    for (const task in tasks) {
+      if (tasks[task].assignee === user) {
+        const lt = JSON.parse(tasks[task].logtime)
+        for (const date in lt) {
+            // data calculation
+        }
+      }
+    }
+    const ave = total / (start - end)
+    const memberCol = document.getElementById("member-column")
+    const timeCol = document.getElementById("time-column")
+    const memberContent = document.createElement("tr")
+    const timeContent = document.createElement("tr")
+    memberContent.classList.add("ave-column")
+    timeContent.classList.add("ave-column")
+    memberContent.innerHTML = user
+    timeContent.innerHTML = ave
+    memberCol.appendChild(memberContent)
+    timeCol.appendChild(timeContent)
+}
+
+// chartBtn.onclick = (e) => {
+//   e.stopPropagation()
+//   contributionLog(username)
+// }
+
+// contribution log
+async function contributionLog(user) {
+    const start = JSON.parse(document.getElementById("start-date"))
+    const end = JSON.parse(document.getElementById("end-date"))
+
+    const snapshot = await get(ref(db, "task/"))
+    const tasks = snapshot.val()
+    let retObj = {}
+    for (const task in tasks) {
+      if (tasks[task].assignee === user) {
+        const lt = JSON.parse(tasks[task].logtime)
+        for (const key in lt) {
+            // data calculation
+        }
+      }
+    }
+    const ctx = document.getElementById("contribution-log-chart").getContext("2d")
+    if (Chart.getChart("contribution-log-chart")) {
+      Chart.getChart("contribution-log-chart").destroy()
+    }
+    const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: Object.keys(retObj),
+          datasets: [{
+              label: 'Contribution Log',
+              data: Object.values(retObj),
+              borderColor: 'rgb(235, 52, 88)',
+              fill: false
+          }]
+      },
+      options: {
+          scales: {
+              x: {
+                  type: 'time',
+                  time: {
+                      unit: 'day',
+                      displayFormats: {
+                          day: 'DD'
+                      }
+                  },
+                  position: 'bottom',
+                  title: {
+                      display: true,
+                      text: 'Date'
+                  }
+              },
+              y: {
+                  beginAtZero: true,
+                  position: 'left',
+                  title: {
+                      display: true,
+                      text: 'Hours'
+                  }
+              }
+          }
+      }
+    })
+  }

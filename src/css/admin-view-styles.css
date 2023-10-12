@@ -139,13 +139,14 @@ ul li:hover ul.dropdown{
 
 table {
     border-collapse: collapse;
-    width: 60%;
+    width: 50%;
 }
 
 th, td {
     border: 1px solid #dddddd;
     text-align: left; /* Left-align content */
     padding: 4px;
+    width: 200px;
 }
 
 th {
@@ -157,5 +158,13 @@ h2 {
     text-align: center;
 }
 
+.ave-row {
+    background-color: #fff;
+}
+
+.ave-column {
+    text-align: left;
+    font-weight: 400;
+}
 
 

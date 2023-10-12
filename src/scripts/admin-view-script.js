@@ -70,17 +70,22 @@ function fetchAndDisplayUserData() {
         document.getElementById("Username").innerHTML = "";
         document.getElementById("Email").innerHTML = "";
         document.getElementById("Password").innerHTML = "";
+        console.log(snapshot.val())
 
         // Loop through each user and display their data
-        snapshot.forEach((userSnapshot) => {
-            const userData = userSnapshot.val();
-            if (userData) {
-                const { userName, userEmail, userPassword } = userData;
-                displayUserData(userName, userEmail, userPassword);
-            }
-        });
-    });
-}
 
+        try {
+            const data = snapshot.val();
+
+            for (const key in data) {
+                displayUserData(data[key].username, data[key].email, data[key].password);
+            }
+        } 
+        catch (error) {
+            console.error(error);
+            throw error; 
+        }
+    })
+}
 // Call the function to fetch and display user data
 fetchAndDisplayUserData();

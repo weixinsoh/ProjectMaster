@@ -1,5 +1,4 @@
-export { displayNavItem, getPriorityColor, getTagColor, logout, getCurrentlySignInUser }
-import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+export { displayNavItem, getPriorityColor, getTagColor }
 
 
 async function displayNavItem() {

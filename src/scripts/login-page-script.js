@@ -37,6 +37,8 @@ document.getElementById("login-btn").addEventListener('click', (e) => {
       return;
     }
     if (data.password === password) {
+      //store username across application
+      localStorage.setItem('username', username)
       window.open('product-backlog.html', '_self')
     } else {
       alert("Incorrect username/password!")

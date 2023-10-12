@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getDatabase, ref, get, child, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getDatabase, ref, get, child, onValue, update, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -58,6 +58,17 @@ function displayUserData(userName, userEmail, userPassword) {
 
 // Function to remove a user
 async function removeUser(userName) {
+if (confirm("Are you sure you want to remove this user?")) {
+    // If the user confirms, proceed with deletion
+    remove(ref(db, "users/" + userName))
+        .then(() => {
+        alert("User Removed!");
+        })
+        .catch((error) => {
+        console.error("Error removing member:", error);
+        alert("An error occurred while removing the member.");
+        });
+    }
 }
 
 // Function to fetch and display user data

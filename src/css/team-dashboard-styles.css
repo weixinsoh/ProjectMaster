@@ -27,3 +27,74 @@ ul li:hover ul.dropdown{
 .profile-icon{
     margin-left: 15px;
 }
+
+.middle-container{
+    margin-left: 32%;
+    margin-top: 150px;
+}
+
+.header {
+    display: flex;
+    /* padding: 5px; */
+    width: 50%;
+    height: 60px;
+    background-color: rgb(211, 211, 211);
+    border: 3px solid #000000;
+
+}
+
+.header-cols{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    /* margin: 10px 0; */
+    height: 40px;
+    width: 80%;
+    /* border: 3px solid #000000; */
+}
+
+.header-col{
+    flex: 1;
+    width: 30%;
+    min-width: 100px;
+    margin: 2px;
+    padding: 10px;
+    height: 30px;
+    background-color: rgb(211, 211, 211);
+    transition: 0.3%;
+    position: relative;
+}
+
+
+.wrapper {
+    display: flex;
+    padding: 5px;
+    max-width: 50%;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 3px solid #000000;
+    border-left: 3px solid #000000;
+    border-right: 3px solid #000000;
+}
+
+.columns{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.column{
+    flex: 1;
+    width: 30%;
+    min-width: 100px;
+    margin: 2px;
+    padding: 10px;
+
+    transition: 0.3%;
+    position: relative;
+}
+
+.column h5 {
+    text-align: left;
+    margin: 1px;
+}

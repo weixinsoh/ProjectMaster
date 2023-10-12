@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, set, get, child, push, orderByChild, query, equalTo } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { checkLoginStatus } from "./util.js";
 
 const firebaseConfig = {
 apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -14,6 +15,8 @@ appId: "1:413420787548:web:be8873c231ec4468845399"
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+checkLoginStatus()
+
 // Event Listener
 document.getElementById("create-user-account-btn").addEventListener('click', (e) => {
   
@@ -44,7 +47,8 @@ document.getElementById("create-user-account-btn").addEventListener('click', (e)
               set(ref(db, "users/" + userName), {
                 username: userName,
                 email: userEmail,
-                password: userPassword
+                password: userPassword,
+                role: "member",
               })
               .then(() => {
                 alert("User account created!")

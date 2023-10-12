@@ -1,56 +1,54 @@
-export { displayNavItem, getPriorityColor, getTagColor }
+export { displayNavItem, getPriorityColor, getTagColor, confirmLogout, checkLoginStatus }
+import { ref, get, child} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
-
-async function displayNavItem() {
+async function displayNavItem(db) {
     try {
-      // const snapshot = await get(child(ref(db, 'user/'), `/${receivedID}`));
-      // const user = snapshot.val();
-  
-      const privilege = document.getElementById("privilege")
-      privilege.innerHTML = ""
+      checkLoginStatus()
+      const username = localStorage.getItem('username')
+      const snapshot = await get(child(ref(db, 'users/'), `/${username}`));
+      const user = snapshot.val();
+
+      const access = document.getElementById("access")
+      access.innerHTML = ""
       const hyperLink = document.createElement("a")
       hyperLink.classList.add("nav-link")
       let hyperLinkURL = "", hyperLinkText = ""
-      /*
-      if (user.role === "admin") {
+
+      if (user.role === "administrator") {
         hyperLinkURL = "admin-view.html"
         hyperLinkText = "Admin View"
       } else {
         hyperLinkURL = "team-dashboard.html"
         hyperLinkText = "Team Dashboard"
       }
-      */
+
       hyperLink.setAttribute("href", hyperLinkURL)
       hyperLink.innerHTML = hyperLinkText
-      privilege.appendChild(hyperLink)
+      access.appendChild(hyperLink)
   
     } catch (error) {
       console.error(error);
       throw error; 
     }
-  }
+}
 
-  function logout(auth) {
-    signOut(auth).then(() => {
-      getCurrentlySigninUser(auth)
-    }).catch((error) => {
-      alert(error)
-    });
+function checkLoginStatus() {
+  console.log("h")
+  if (!localStorage.getItem('username')) {
+    alert("Login to access the tools!")
+    window.open('login-page.html', '_self')
   }
+}
 
-  function getCurrentlySignInUser(auth) {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        const uid = user.uid;
-        window.open("product-backlog.html", '_self')
-      } else {
-        // User is signed out
-        window.open("login-page.html", '_self')
-      }
-    });
+  //  Add a confirmation dialog to ensure users want to log out before proceeding
+function confirmLogout() {
+  const confirmDialog = confirm("Are you sure you want to log out?");
+  if (confirmDialog) {
+    // If the user confirms, proceed with the logout
+    localStorage.removeItem('username');
+    window.location.href = "login-page.html"; // Redirect to the login page
   }
+}
 
   function getTagColor(tag) {
     switch (tag) {

@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, get, child} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { checkLoginStatus, getPriorityColor, getTagColor } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -17,12 +18,13 @@ const reference = ref(db, 'task/');
 
 const urlParams = new URLSearchParams(window.location.search);
 const receivedID = urlParams.get('id')
-console.log(receivedID)
+
+checkLoginStatus()
 
 get(child(reference, `/${receivedID}`)).then((snapshot) =>{
-  const data = snapshot.val();
-  const tags = JSON.parse(data.tag)
+  const data = snapshot.val(); 
   console.log(data)
+  const tags = JSON.parse(data.tag)
   document.getElementById("task-name").innerHTML = data.name
   document.getElementById("task-story-point").innerHTML = data.story_point
   document.getElementById("task-assignee").innerHTML = data.assignee
@@ -35,37 +37,3 @@ get(child(reference, `/${receivedID}`)).then((snapshot) =>{
 })
 
 document.getElementById("return-product-backlog-btn").addEventListener('click', () => {window.open('product-backlog.html', "_self")})
-
-function getTagColor(tag) {
-  switch (tag) {
-    case "Frontend":
-      return "mediumpurple"
-    case "Backend":
-      return "pink"
-    case "API":
-      return "lightblue"
-    case "Testing":
-      return "rgba(0, 102, 255, 0.67)"
-    case "Framework":
-      return "tan"
-    case "UI":
-      return "rgba(255, 170, 134)"
-    case "UX":
-      return "silver"
-    case "Database":
-      return "aquamarine"
-  }
-}
-
-function getPriorityColor(priority) {
-  switch (priority) {
-    case "Urgent":
-      return "#F65B51"
-    case "Important":
-      return "lightsalmon"
-    case "Medium":
-      return "#FFFA84"
-    case "Low":
-      return "lightgreen"
-  }
-}

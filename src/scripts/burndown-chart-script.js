@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, get, child, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { displayNavItem } from "./util.js";
+import { displayNavItem, confirmLogout } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -17,13 +17,18 @@ const db = getDatabase(app);
 const taskReference = ref(db, 'task/');
 const sprintReference = ref(db, 'sprint/')
 
-onValue(sprintReference, (snapshot) => {
-  displayChart()
-  displayNavItem()
-});
-
 const urlParams = new URLSearchParams(window.location.search);
 const receivedID = urlParams.get('id')
+
+onValue(sprintReference, (snapshot) => {
+  displayChart()
+  displayNavItem(db)
+});
+
+document.getElementById("logout-link").addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent the default link behavior
+  confirmLogout(); // Show the confirmation dialog
+});
 
 async function getDataSets() {
   try {

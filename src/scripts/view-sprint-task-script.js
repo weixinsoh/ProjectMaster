@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, get, child, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { checkLoginStatus, getPriorityColor, getTagColor } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -17,7 +18,8 @@ const reference = ref(db, 'task/');
 
 const urlParams = new URLSearchParams(window.location.search);
 const receivedID = urlParams.get('id')
-console.log(receivedID)
+
+checkLoginStatus()
 
 // Display Task Details
 get(child(reference, `/${receivedID}`)).then((snapshot) =>{
@@ -178,40 +180,6 @@ document.getElementById("chart-btn").addEventListener('click', async () => {
 document.getElementById("close-chart-btn").addEventListener('click', () => {
   chartPopup.style.display = "none"
 })
-
-function getTagColor(tag) {
-  switch (tag) {
-    case "Frontend":
-      return "mediumpurple"
-    case "Backend":
-      return "pink"
-    case "API":
-      return "lightblue"
-    case "Testing":
-      return "rgba(0, 102, 255, 0.67)"
-    case "Framework":
-      return "tan"
-    case "UI":
-      return "rgba(255, 170, 134)"
-    case "UX":
-      return "silver"
-    case "Database":
-      return "aquamarine"
-  }
-}
-
-function getPriorityColor(priority) {
-  switch (priority) {
-    case "Urgent":
-      return "#F65B51"
-    case "Important":
-      return "lightsalmon"
-    case "Medium":
-      return "#FFFA84"
-    case "Low":
-      return "lightgreen"
-  }
-}
 
 function cumulativeEffort(arr){
   let total = 0;

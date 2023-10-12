@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, get, child, onValue, update, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { confirmLogout, checkLoginStatus } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -13,6 +14,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+
+document.getElementById("logout-link").addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default link behavior
+    confirmLogout(); // Show the confirmation dialog
+  });
 
 // Function to display user data
 function displayUserData(userName, userEmail, userPassword) {
@@ -81,6 +87,7 @@ function fetchAndDisplayUserData() {
         document.getElementById("Username").innerHTML = "";
         document.getElementById("Email").innerHTML = "";
         document.getElementById("Password").innerHTML = "";
+        checkLoginStatus()
 
         try {
             const data = snapshot.val();

@@ -216,7 +216,7 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Admin View
 
-1. **Team Members:** Admin can view team members' usernames, emails and passwords in a table. Admin also has the previllage to add/create new members into the application. 
+1. **Team Members:** Admin can view team members' usernames, emails and passwords in a table. Admin also has the previllage to add/create new members and delete existing members into the application. 
 
 2. **Average Time Spent:** 
 

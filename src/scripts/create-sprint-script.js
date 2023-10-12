@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, set, get, child, push} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { checkLoginStatus } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -14,6 +15,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+checkLoginStatus()
 
 // Event Listener
 document.getElementById("create-sprint-btn").addEventListener('click', (e) => {

@@ -7,6 +7,7 @@
     border-radius: 30px;
     background-color: #f9f4f4;
     padding: 3%;
+    padding-left: 4%;
     position: relative;
     margin-top: 2%;
     margin-left: 15%;
@@ -32,22 +33,23 @@
 
 .details-label {
     color: #000;
-    font-size: 40px;
+    font-size: 32px;
     font-style: normal;
     font-weight: 600;
     margin-bottom: 0px;
 }
 
 .details-context {
-    font-size: 26px;
+    font-size: 22px;
     margin-top: 12px;
+    padding-bottom: 20px; 
 }
 
 .highlight-text {
     display: inline-block;
     padding: 1px 10px; 
     border-radius: 5px;
-    font-size: 26px;
+    font-size: 18px;
     margin-bottom: 5px;
 }
 

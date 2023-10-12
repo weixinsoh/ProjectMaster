@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, set, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { displayNavItem, getPriorityColor, getTagColor } from "./util.js"
+import { displayNavItem, getPriorityColor, getTagColor, confirmLogout } from "./util.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -24,7 +24,7 @@ onValue(reference, (snapshot) => {
   //   document.getElementById("tasks").innerHTML += `<div>${data[key].name}</div>`
   // }
   displayTask()
-  displayNavItem()
+  displayNavItem(db)
 });
 
 document.getElementById("filter-task").addEventListener('change', displayTask)
@@ -151,15 +151,6 @@ function removeTask(value) {
 
 function editTask(value) { 
   window.open('edit-task.html?id=' + value, '_self')
-}
-
-//  Add a confirmation dialog to ensure users want to log out before proceeding
-function confirmLogout() {
-  const confirmDialog = confirm("Are you sure you want to log out?");
-  if (confirmDialog) {
-    // If the user confirms, proceed with the logout
-    window.location.href = "login-page.html"; // Redirect to the login page
-  }
 }
 
 document.getElementById("logout-link").addEventListener("click", function (event) {

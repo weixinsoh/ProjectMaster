@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, update, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { displayNavItem, getPriorityColor, getTagColor } from "./util.js"
+import { displayNavItem, getPriorityColor, getTagColor, confirmLogout } from "./util.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -83,10 +83,10 @@ let previousStoryPoints = ""
 window.onload = displayTask
 
 onValue(reference, (snapshot) => {
+  displayNavItem(db)
   const data = snapshot.val()
   if (data.sprint[receivedID].story_points === previousStoryPoints) {
     displayTask()
-    displayNavItem()
   } else {
     previousStoryPoints = data.sprint[receivedID].story_points
   }
@@ -307,15 +307,6 @@ async function remainingStoryPointsUpdate() {
   } catch (error) {
     console.error(error);
     throw error; 
-  }
-}
-
-//  Add a confirmation dialog to ensure users want to log out before proceeding
-function confirmLogout() {
-  const confirmDialog = confirm("Are you sure you want to log out?");
-  if (confirmDialog) {
-    // If the user confirms, proceed with the logout
-    window.location.href = "login-page.html"; // Redirect to the login page
   }
 }
 

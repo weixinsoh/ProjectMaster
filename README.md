@@ -214,6 +214,14 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 <details>
 <summary><b>Create and Manage Project Team Members</b></summary>
 
+#### Admin View
+
+1. **Team Members:** Admin can view team members' usernames, emails and passwords in a table. Admin also has the previllage to add/create new members into the application. 
+
+2. **Average Time Spent:** 
+
+2. **Contribution Log:** 
+
 #### Create User Account
 
 1. **Input Details:** You need to fill in all the user information. The attributes include username, email, and password.

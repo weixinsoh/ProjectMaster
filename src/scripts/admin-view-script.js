@@ -70,9 +70,6 @@ function fetchAndDisplayUserData() {
         document.getElementById("Username").innerHTML = "";
         document.getElementById("Email").innerHTML = "";
         document.getElementById("Password").innerHTML = "";
-        console.log(snapshot.val())
-
-        // Loop through each user and display their data
 
         try {
             const data = snapshot.val();
@@ -81,8 +78,9 @@ function fetchAndDisplayUserData() {
                 displayUserData(data[key].username, data[key].email, data[key].password);
             }
         } 
-        catch (error) {
-            console.error(error);
+            catch (error) {
+                console.error(error);
+                
             throw error; 
         }
     })

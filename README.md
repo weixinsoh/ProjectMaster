@@ -27,7 +27,15 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
             - Assigning Tasks to Sprint
             - Deleting Tasks from Sprint
             - Viewing Sprint Task Details and Accummulation of Effort Chart
-5. [Troubleshooting](#troubleshooting)
+    - Create and Manage Project Team Members
+        - Admin View
+        - Create User Accounts
+        - Remove Team Members
+        - Team Dashboard
+        - Reset Password
+        - Login
+        - Logout
+3. [Troubleshooting](#troubleshooting)
    - FAQ
 
 ## Getting Started
@@ -216,29 +224,41 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Admin View
 
-1. **Team Members:** Admin can view team members' usernames, emails and passwords in a table. Admin also has the previllage to add/create new members and delete existing members into the application. 
+1. **Team Members:** Admin can view team members' usernames, emails and passwords in a table. Admin also has the privilege to add/create new members and delete existing members into the application. 
 
 2. **Average Time Spent:** Admin can view the average time spent by each team member per day within a specific time range.
 
 2. **Contribution Log:** There is a live chart for each team member to show their contribution towards the project within a specific time range.
 
-#### Create User Account
+#### Create User Accounts
 
-1. **Input Details:** You need to fill in all the user information. The attributes include username, email, and password.
+1. **Create button:** Admin have the privilege to create user account in the Create User Account window. There is a plus user icon in the Admin View page. By clicking it, you will be redirected to the create user account window. 
 
-2. **Done Button:** After filling in all the details, click the "Done" button. Your data will be securely stored in the database, and you can use it for future logins.
+2. **Input Details:** In the Create User Account window, you need to fill in all the user information. The attributes include username, email, and password.
 
-#### Delete Team Members
+3. **Done Button:** After filling in all the details, click the "Done" button. Your data will be securely stored in the database, and you can use it for future logins.
 
-1. **'Bin' Button:** When clicked, the user account will be removed from the project.
+#### Remove Team Members
 
-#### Login Page
+1. **'Bin' Button:** In the Admin View Window, all user accounts are displayed in a table, each associated with a bin button. By clicking the bin button, admin can remove the user account from the project.
+
+#### Team Dashboard
+
+1. Team members can navigate to the Team Dashboard which can be found in the navigation bar. 
+
+2. In the Team Dashboard, all the team members are displayed in a table with their username and email. 
+
+#### Reset Password
+
+1. 
+
+#### Login
 
 1. **Input Details:** You need to fill in the existing username and password to log in.
 
 2. **Login Button:** After entering all the details, click the "Log in" button to be directed to the product backlog window.
 
-#### Logout Page 
+#### Logout 
 
 1. **Access Logout Button:** Hover over the profile icon in the navbar for a dropdown list to be displayed and towards the bottom of the list will consist of a "Log Out" button.
 

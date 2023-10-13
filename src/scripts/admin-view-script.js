@@ -87,8 +87,8 @@ function fetchAndDisplayUserData() {
         document.getElementById("Username").innerHTML = "";
         document.getElementById("Email").innerHTML = "";
         document.getElementById("Password").innerHTML = "";
-        document.getElementById("member-column").innerHTML = "";
-        document.getElementById('time-column').innerHTML = "";
+        document.getElementById("ave-username").innerHTML = "";
+        document.getElementById('ave-time-spent').innerHTML = "";
         checkLoginStatus()
 
         try {
@@ -96,7 +96,7 @@ function fetchAndDisplayUserData() {
 
             for (const key in data) {
                 displayUserData(data[key].username, data[key].email, data[key].password);
-                aveTimeSpent(data[key].username)
+                displayAveTimeSpentForAUser(data[key].username)
             }
         } 
             catch (error) {
@@ -109,9 +109,48 @@ function fetchAndDisplayUserData() {
 // Call the function to fetch and display user data
 fetchAndDisplayUserData();
 
-async function aveTimeSpent(user) {
-    const start = document.getElementById("start-date").value
-    const end = document.getElementById("end-date").value
+document.getElementById("start-date").addEventListener('change', () => {
+    const start = new Date(document.getElementById("start-date").value)
+    const end = new Date(document.getElementById("end-date").value)
+    if (start <= end) {
+        displayAveTimeSpent()
+    } else {
+        alert("Start date cannot be later than end date!")
+    }
+})
+
+
+document.getElementById("end-date").addEventListener('change', () => {
+    const start = new Date(document.getElementById("start-date").value)
+    const end = new Date(document.getElementById("end-date").value)
+    if (start <= end) {
+        displayAveTimeSpent()
+    } else {
+        alert("Start date cannot be later than end date!")
+    }
+})
+
+async function displayAveTimeSpent() {
+    try {
+        const snapshot = await get(ref(db, '/users'));
+        const data = snapshot.val()
+
+        for (const key in data) {
+            displayAveTimeSpentForAUser(data[key].username)
+        }
+    } 
+        catch (error) {
+            console.error(error);
+            
+        throw error; 
+    }
+}
+
+async function displayAveTimeSpentForAUser(user) {
+    document.getElementById("ave-username").innerHTML = "";
+    document.getElementById('ave-time-spent').innerHTML = "";
+    const start = new Date(document.getElementById("start-date").value)
+    const end = new Date(document.getElementById("end-date").value)
 
     const snapshot = await get(ref(db, "task/"))
     const tasks = snapshot.val()
@@ -125,27 +164,47 @@ async function aveTimeSpent(user) {
       }
     }
     const ave = total / (start - end)
-    const memberCol = document.getElementById("member-column")
-    const timeCol = document.getElementById("time-column")
-    const memberContent = document.createElement("tr")
-    const timeContent = document.createElement("tr")
-    memberContent.classList.add("ave-column")
-    timeContent.classList.add("ave-column")
-    memberContent.innerHTML = user
-    timeContent.innerHTML = ave
-    memberCol.appendChild(memberContent)
-    timeCol.appendChild(timeContent)
+    const username = document.createElement("div");
+    username.classList.add("user-col");
+    username.innerHTML = `<p class="user-details">${user}</p>`;
+
+    const icon = document.createElement("span");
+    icon.classList.add("icon");
+    icon.style = "display: inline-block";
+    
+    const chartBtn = document.createElement("button");
+    chartBtn.onclick = (e) => {
+        e.stopPropagation();
+        contributionLog(user);
+    };
+    chartBtn.innerHTML = '<i class="fa fa-line-chart"></i>';
+    icon.appendChild(chartBtn);
+
+    const timeElement = document.createElement("div");
+    timeElement.classList.add("time-col");
+    
+    const time = document.createElement("p");
+    time.style = "width: 80%; display: inline-block";
+    time.innerHTML = `<span class="user-details">${ave}</span>`;
+    
+    timeElement.appendChild(time);
+    timeElement.appendChild(icon);
+
+    document.getElementById("ave-username").appendChild(username);
+    document.getElementById("ave-time-spent").appendChild(time);
+    document.getElementById("ave-time-spent").appendChild(icon);
 }
 
-// chartBtn.onclick = (e) => {
-//   e.stopPropagation()
-//   contributionLog(username)
-// }
-
 // contribution log
+const chartPopup = document.getElementById("chart-popup")
+document.getElementById("close-chart-btn").addEventListener('click', () => {
+    chartPopup.style.display = "none"
+  })
+
 async function contributionLog(user) {
-    const start = JSON.parse(document.getElementById("start-date"))
-    const end = JSON.parse(document.getElementById("end-date"))
+    chartPopup.style.display = "block"
+    const start = new Date(document.getElementById("start-date").value)
+    const end = new Date(document.getElementById("end-date").value)
 
     const snapshot = await get(ref(db, "task/"))
     const tasks = snapshot.val()

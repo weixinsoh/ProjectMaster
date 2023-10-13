@@ -214,11 +214,23 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 <details>
 <summary><b>Create and Manage Project Team Members</b></summary>
 
+#### Admin View
+
+1. **Team Members:** Admin can view team members' usernames, emails and passwords in a table. Admin also has the previllage to add/create new members and delete existing members into the application. 
+
+2. **Average Time Spent:** Admin can view the average time spent by each team member per day within a specific time range.
+
+2. **Contribution Log:** There is a live chart for each team member to show their contribution towards the project within a specific time range.
+
 #### Create User Account
 
 1. **Input Details:** You need to fill in all the user information. The attributes include username, email, and password.
 
 2. **Done Button:** After filling in all the details, click the "Done" button. Your data will be securely stored in the database, and you can use it for future logins.
+
+#### Delete Team Members
+
+1. **'Bin' Button:** When clicked, the user account will be removed from the project.
 
 #### Login Page
 

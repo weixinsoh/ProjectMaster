@@ -1,0 +1,101 @@
+ul{
+    list-style: none;
+}
+
+ul li a{
+    display: block;
+    padding:8px;
+    text-decoration: none;
+    font-size: 18px;
+    color:white;
+}
+
+ul li ul.dropdown li{
+    display: block;
+}
+
+ul li ul.dropdown{
+    position: absolute;
+    display: none;
+}
+
+ul li:hover ul.dropdown{
+    display: block;
+    background: #000;;
+}
+
+.profile-icon{
+    margin-left: 15px;
+}
+
+
+
+/* 
+.columns{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.column{
+    flex: 1;
+    width: 30%;
+    min-width: 100px;
+    margin: 2px;
+    padding: 10px;
+
+    transition: 0.3%;
+    position: relative;
+}
+
+.column h5 {
+    text-align: left;
+    margin: 1px;
+} */
+
+.header-col {
+    display: inline-block;
+    /* margin-right: 20px; */
+}
+
+#colour-image {
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    justify-content: space-around; /* Horizontally space content evenly */
+    flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+    margin: 40px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+#default-image {
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    justify-content: space-around; /* Horizontally space content evenly */
+    flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+    margin: 40px;
+}
+
+.column img {
+    margin: 0 10px; /* Add margin for spacing between images */
+}
+
+.image-checkbox label {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.image-checkbox input[type="checkbox"] {
+    margin-right: 10px; /* Adjust the spacing between checkbox and text */
+}
+
+.image-checkbox {
+    border: 2px solid rgba(0, 0, 0, 0.3); /* Transparent black border */
+    padding: 10px;
+    height: 260px;
+    border-radius: 10px; /* Rounded corners */
+}
+
+

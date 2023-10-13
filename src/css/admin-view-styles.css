@@ -28,15 +28,12 @@ ul li:hover ul.dropdown{
     margin-left: 15px;
 }
 
-
 .fab {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    position: fixed;
-    top: 17%;
-    left: 12%;
-    transform: translate(-50%, -50%);
+    position: absolute;
+    display: flex;
     cursor: pointer;
     background-color: #BA4545;
     border-color: #BA4545;
@@ -53,13 +50,9 @@ ul li:hover ul.dropdown{
 
 .addUser {
     height: 120px;
+    padding-top: 30px;
+    padding-left: 20px;
 }
-
-/* .wrapper {
-    background-color: rgb(211, 211, 211);
-    margin-left: 0px;
-        
-} */
 
 .header {
     display: flex;
@@ -74,10 +67,8 @@ ul li:hover ul.dropdown{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    /* margin: 10px 0; */
     height: 40px;
     width: 100%;
-    /* border: 3px solid #000000; */
 }
 
 .header-col{

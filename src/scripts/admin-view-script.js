@@ -109,24 +109,33 @@ function fetchAndDisplayUserData() {
 // Call the function to fetch and display user data
 fetchAndDisplayUserData();
 
+let prevStartDate = document.getElementById("start-date").value
 document.getElementById("start-date").addEventListener('change', () => {
     const start = new Date(document.getElementById("start-date").value)
     const end = new Date(document.getElementById("end-date").value)
-    if (start <= end) {
-        displayAveTimeSpent()
-    } else {
+    start.setHours(0, 0, 0, 0)
+    if (document.getElementById("end-date").value !== "" && start > end) {
+        document.getElementById("start-date").value = prevStartDate
         alert("Start date cannot be later than end date!")
+    } 
+    else if (start > new Date()){
+        document.getElementById("start-date").value = prevStartDate
+        alert("Start date cannot be future date!")
+    }
+    else {
+        displayAveTimeSpent()
     }
 })
 
-
+let prevEndDate = document.getElementById("end-date").value
 document.getElementById("end-date").addEventListener('change', () => {
     const start = new Date(document.getElementById("start-date").value)
     const end = new Date(document.getElementById("end-date").value)
-    if (start <= end) {
-        displayAveTimeSpent()
-    } else {
+    if (document.getElementById("start-date").value !== "" && start > end) {
+        document.getElementById("end-date").value = prevEndDate
         alert("Start date cannot be later than end date!")
+    } else {
+        displayAveTimeSpent()
     }
 })
 

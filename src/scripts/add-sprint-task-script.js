@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, update, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { checkLoginStatus, getPriorityColor, getTagColor, checkLoginStatus } from "./util.js"
+import { getPriorityColor, getTagColor, checkLoginStatus, toggleTheme } from "./util.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -16,6 +16,13 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const taskReference = ref(db, 'task/');
 const sprintReference = ref(db, 'sprint/')
+
+onValue(ref(db, 'users/' + localStorage.getItem('username')), (snapshot) => {
+  const data = snapshot.val();
+  if (data['theme']) {
+    toggleTheme(data['theme'])
+  }
+});
 
 onValue(sprintReference, (snapshot) => {
   displayTask()

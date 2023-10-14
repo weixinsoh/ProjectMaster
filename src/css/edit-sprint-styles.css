@@ -1,16 +1,17 @@
 .container {
     display: flex;
-    border: 5px solid #000; /* Adjust border width and color as needed */
+    border: var(--card-border);
     border-radius: 30px; /* Adjust border-radius for rounded corners */
-    background-color: #f9f4f4; /* Background color inside the border */
+    background-color: var(--container-bg-color); /* Background color inside the border */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     position: relative;
-    margin-top: 5%;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-top: 8%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 .form {
-    padding: 5%;
+    padding: 8%;
 }
 
 .date {
@@ -26,8 +27,8 @@
 
 button {
     font-size: 14px;
-    background-color: #ba4545;
-    border-color: #BA4545;
+    background-color: var(--button-bg-color);
+    border-color: var(--button-bg-color);
     color: #fff;
     width: 70px;
     height: 35px;

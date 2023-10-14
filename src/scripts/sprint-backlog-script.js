@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, update, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { displayNavItem, getPriorityColor, getTagColor, confirmLogout } from "./util.js"
+import { displayNavItem, getPriorityColor, getTagColor, confirmLogout, checkLoginStatus, toggleTheme } from "./util.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -19,6 +19,7 @@ const reference = ref(db)
 
 const urlParams = new URLSearchParams(window.location.search);
 const receivedID = urlParams.get('id')
+checkLoginStatus()
 
 // Event Listener
 document.getElementById("filter-task").addEventListener('change', displayTask)
@@ -89,6 +90,11 @@ onValue(reference, (snapshot) => {
     displayTask()
   } else {
     previousStoryPoints = data.sprint[receivedID].story_points
+  }
+
+  const theme = data.users[localStorage.getItem('username')]['theme']
+  if (theme) {
+    toggleTheme(theme)
   }
 });
 

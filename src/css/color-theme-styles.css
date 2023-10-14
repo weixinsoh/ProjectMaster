@@ -10,7 +10,7 @@
 
 .theme-male {
     --project-name-color: linear-gradient(45deg, #1e454c, rgb(56, 96, 103), #406b72);
-    --primary-bg-color: #5dc9dd;
+    --primary-bg-color: #aed2d6;
     --button-bg-color: #182544;
     --button-hover-color: #4a6a94;
     --container-bg-color: #abe4ee;
@@ -20,7 +20,7 @@
 
 .theme-female {
     --project-name-color: linear-gradient(45deg, #523208, #6e352a, #874d41);
-    --primary-bg-color: rgb(226, 128, 173);
+    --primary-bg-color: rgb(226, 192, 208);
     --button-bg-color: #752742;
     --button-hover-color: #5f2128;
     --container-bg-color: rgb(224, 178, 200);

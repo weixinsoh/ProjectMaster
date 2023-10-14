@@ -15,6 +15,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+toggleTheme()
 
 onValue(ref(db, 'users/' + localStorage.getItem('previous-login')), (snapshot) => {
   const data = snapshot.val();

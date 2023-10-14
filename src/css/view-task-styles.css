@@ -1,15 +1,19 @@
+body {
+    background-color: var(--primary-bg-color);
+}
+
 .container {
     display: flex;
-    border: 5px solid #000;
+    border: var(--card-border);
     border-radius: 30px;
-    background-color: #f9f4f4;
+    background-color: var(--container-bg-color);
     padding: 3%;
     padding-left: 4%;
     position: relative;
     margin-top: 4%;
     margin-left: 17%;
     margin-right: 17%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 .col {
@@ -41,8 +45,8 @@
 .back {
     position: absolute;
     font-size: 14px;
-    background-color: #ba4545;
-    border-color: #BA4545;
+    background-color: var(--button-bg-color);
+    border-color: var(--button-bg-color);
     color: #fff;
     width: 70px;
     height: 35px;

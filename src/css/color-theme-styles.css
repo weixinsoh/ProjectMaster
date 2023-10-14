@@ -1,0 +1,29 @@
+:root {
+    --project-name-color: linear-gradient(45deg, #373737, #434343, #515050);
+    --primary-bg-color: #fff;
+    --button-bg-color: #ba4545;
+    --button-hover-color: #a83e3e;
+    --container-bg-color: #f9f4f4;
+    --card-border: 2px solid #000;
+    --table-header-color: #000;
+}
+
+.theme-male {
+    --project-name-color: linear-gradient(45deg, #1e454c, rgb(56, 96, 103), #406b72);
+    --primary-bg-color: #c4d6d9;
+    --button-bg-color: #714432;
+    --button-hover-color: #5c3121;
+    --container-bg-color: #e6eced;
+    --card-border: 0px;
+    --table-header-color: #203c43;
+}
+
+.theme-female {
+    --project-name-color: linear-gradient(45deg, #523208, #6e352a, #874d41);
+    --primary-bg-color: rgba(187, 103, 101, 0.50);
+    --button-bg-color: #722f37;
+    --button-hover-color: #5f2128;
+    --container-bg-color: rgb(255, 239, 238);
+    --card-border: 0px;
+    --table-header-color: #2f0b0e;
+}

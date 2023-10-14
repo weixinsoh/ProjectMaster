@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, set, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { displayNavItem, getPriorityColor, getTagColor, confirmLogout } from "./util.js"
+import { displayNavItem, getPriorityColor, getTagColor, confirmLogout, toggleTheme } from "./util.js"
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -18,13 +18,15 @@ const reference = ref(db, 'task/');
 
 
 onValue(reference, (snapshot) => {
-  // document.getElementById("tasks").innerHTML = ""
-  // const data = snapshot.val();
-  // for (const key in data){
-  //   document.getElementById("tasks").innerHTML += `<div>${data[key].name}</div>`
-  // }
   displayTask()
   displayNavItem(db)
+});
+
+onValue(ref(db, 'users/' + localStorage.getItem('username')), (snapshot) => {
+  const data = snapshot.val();
+  if (data['theme']) {
+    toggleTheme(data['theme'])
+  }
 });
 
 document.getElementById("filter-task").addEventListener('change', displayTask)

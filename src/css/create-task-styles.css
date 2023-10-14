@@ -1,12 +1,16 @@
+body {
+    background-color: var(--primary-bg-color);
+}
+
 .container {
     display: flex;
-    border: 4px solid #000; /* Adjust border width and color as needed */
+    border: var(--card-border);
     border-radius: 30px; /* Adjust border-radius for rounded corners */
-    background-color: #f9f4f4; /* Background color inside the border */
+    background-color: var(--container-bg-color);
     position: relative;
     margin-left: 10%;
     margin-right: 10%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 form {
@@ -50,8 +54,8 @@ form {
 
 button {
     font-size: 14px;
-    background-color: #ba4545;
-    border-color: #BA4545;
+    background-color: var(--button-bg-color);
+    border-color: var(--button-bg-color);
     color: #fff;
     width: 70px;
     height: 35px;

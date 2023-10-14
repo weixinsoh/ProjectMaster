@@ -1,4 +1,4 @@
-export { displayNavItem, getPriorityColor, getTagColor, confirmLogout, checkLoginStatus }
+export { displayNavItem, getPriorityColor, getTagColor, confirmLogout, checkLoginStatus, toggleTheme }
 import { ref, get, child} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 
 async function displayNavItem(db) {
@@ -33,7 +33,6 @@ async function displayNavItem(db) {
 }
 
 function checkLoginStatus() {
-  console.log("h")
   if (!localStorage.getItem('username')) {
     alert("Login to access the tools!")
     window.open('login-page.html', '_self')
@@ -48,6 +47,13 @@ function confirmLogout() {
     localStorage.removeItem('username');
     window.location.href = "login-page.html"; // Redirect to the login page
   }
+}
+
+function toggleTheme(theme) {
+  const body = document.body;
+  body.classList = ""
+  body.classList.add(theme)
+  console.log(body.classList)
 }
 
   function getTagColor(tag) {

@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getDatabase, ref, set, get, child, push, orderByChild, query, equalTo } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { checkLoginStatus } from "./util.js";
+import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { checkLoginStatus, toggleTheme } from "./util.js";
 
 const firebaseConfig = {
 apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -17,6 +17,13 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const reference = ref(db, 'users/');
 checkLoginStatus()
+
+onValue(ref(db, 'users/' + localStorage.getItem('username')), (snapshot) => {
+    const data = snapshot.val();
+    if (data['theme']) {
+      toggleTheme(data['theme'])
+    }
+});
 
 // Event listener for the "Back" button
 document.getElementById('return-window-btn').addEventListener('click', () => {

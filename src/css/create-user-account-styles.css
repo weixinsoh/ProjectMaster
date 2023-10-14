@@ -1,10 +1,11 @@
 .container{
     display: flex;
-    border: 5px solid #000; /* Adjust border width and color as needed */
+    border: var(--card-border); /* Adjust border width and color as needed */
     border-radius: 30px; /* Adjust border-radius for rounded corners */
     background-color: var(--container-bg-color); /* Background color inside the border */
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
     position: relative;
-    margin-top: 5%;
+    margin-top: 8%;
     margin-left: 25%;
     margin-right: 25%;
 }

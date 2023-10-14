@@ -44,7 +44,9 @@ function confirmLogout() {
   const confirmDialog = confirm("Are you sure you want to log out?");
   if (confirmDialog) {
     // If the user confirms, proceed with the logout
+    const user = localStorage.getItem('username')
     localStorage.removeItem('username');
+    localStorage.setItem('previous-login', user)
     window.location.href = "login-page.html"; // Redirect to the login page
   }
 }
@@ -53,7 +55,6 @@ function toggleTheme(theme) {
   const body = document.body;
   body.classList = ""
   body.classList.add(theme)
-  console.log(body.classList)
 }
 
   function getTagColor(tag) {

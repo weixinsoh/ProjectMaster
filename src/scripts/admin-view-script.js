@@ -45,13 +45,15 @@ function displayUserData(userName, userEmail, userPassword) {
     icon.classList.add("icon");
     icon.style = "display: inline-block";
     
-    const deleteBtn = document.createElement("button");
-    deleteBtn.onclick = (e) => {
-        e.stopPropagation();
-        removeUser(userName);
-    };
-    deleteBtn.innerHTML = '<i class="fas fa-trash dlt-icon"></i>';
-    icon.appendChild(deleteBtn);
+    if (userName !== "admin") {
+        const deleteBtn = document.createElement("button");
+        deleteBtn.onclick = (e) => {
+            e.stopPropagation();
+            removeUser(userName);
+        };
+        deleteBtn.innerHTML = '<i class="fas fa-trash dlt-icon"></i>';
+        icon.appendChild(deleteBtn);
+    }
 
     // Create password element
     const passwordElement = document.createElement("div");

@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getDatabase, ref, set, get, update, onValue } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 import { toggleTheme } from "./util.js";
 
 const firebaseConfig = {
@@ -16,6 +16,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 toggleTheme()
+
+onValue(ref(db, 'users/' + localStorage.getItem('previous-login')), (snapshot) => {
+  const data = snapshot.val();
+  if (data && data['theme']) {
+    toggleTheme(data['theme'])
+  }
+});
 
 // Event Listener
 document.getElementById("login-btn").addEventListener('click', (e) => {

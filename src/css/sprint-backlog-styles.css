@@ -1,3 +1,7 @@
+body {
+    background-color: var(--primary-bg-color);
+}
+
 .sprint-header {
     height: 70px;
 }
@@ -40,17 +44,17 @@ select#filter {
     top: 70px;
     right: 40px;
     cursor: pointer;
-    background-color: #ba4545;
-    border-color: #ba4545;
+    background-color: var(--button-bg-color);
+    border-color: var(--button-bg-color);
 }
 
 .fab:hover {
-    background-color: #a83e3e;
-    border-color: #a83e3e;
+    background-color: var(--button-hover-color);
+    border-color: var(--button-hover-color);
 }
 
 .btn.btn-primary.fab:active {
-    background-color: #a83e3e;
+    background-color: var(--button-hover-color);
 }
 
 .wrapper {
@@ -75,7 +79,8 @@ select#filter {
     min-width: 300px;
     margin: 2px;
     padding: 10px;
-    background-color: rgb(211, 211, 211);
+    background-color: var(--container-bg-color);
+    box-shadow: 3px 10px 10px rgba(0, 0, 0, 0.2);
     transition: 0.3%;
     position: relative;
 }
@@ -101,14 +106,15 @@ select#filter {
 .task-card {
     display: inline-block;
     width: 282px;
-    border: 2px solid #000000;
+    border: var(--card-border-color);
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
     margin: 15px;
     margin-top: 20px;
     margin-left: 10px;
     background-color: white;
+    color: #000;
 }
 
 .task-header {

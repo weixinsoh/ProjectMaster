@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, set, get, child, onValue, remove} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 import { checkLoginStatus } from "./util.js";
+import { toggleTheme } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -17,6 +18,12 @@ const db = getDatabase(app);
 const reference = ref(db, 'task/');
 checkLoginStatus()
 
+onValue(ref(db, 'users/' + localStorage.getItem('username')), (snapshot) => {
+  const data = snapshot.val();
+  if (data['theme']) {
+    toggleTheme(data['theme'])
+  }
+});
 const urlParams = new URLSearchParams(window.location.search);
 // const receivedID = urlParams.get('id')
 let oldName = ""

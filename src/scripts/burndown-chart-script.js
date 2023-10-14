@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, get, child, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { displayNavItem, confirmLogout } from "./util.js";
+import { displayNavItem, confirmLogout, toggleTheme, checkLoginStatus } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -19,6 +19,14 @@ const sprintReference = ref(db, 'sprint/')
 
 const urlParams = new URLSearchParams(window.location.search);
 const receivedID = urlParams.get('id')
+checkLoginStatus()
+
+onValue(ref(db, 'users/' + localStorage.getItem('username')), (snapshot) => {
+  const data = snapshot.val();
+  if (data['theme']) {
+    toggleTheme(data['theme'])
+  }
+});
 
 onValue(sprintReference, (snapshot) => {
   displayChart()

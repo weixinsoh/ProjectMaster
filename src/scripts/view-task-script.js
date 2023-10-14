@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getDatabase, ref, get, child} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { checkLoginStatus, getPriorityColor, getTagColor } from "./util.js";
+import { getDatabase, ref, get, child, onValue} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { checkLoginStatus, getPriorityColor, getTagColor, toggleTheme } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -18,12 +18,17 @@ const reference = ref(db, 'task/');
 
 const urlParams = new URLSearchParams(window.location.search);
 const receivedID = urlParams.get('id')
-
 checkLoginStatus()
+
+onValue(ref(db, 'users/' + localStorage.getItem('username')), (snapshot) => {
+  const data = snapshot.val();
+  if (data['theme']) {
+    toggleTheme(data['theme'])
+  }
+});
 
 get(child(reference, `/${receivedID}`)).then((snapshot) =>{
   const data = snapshot.val(); 
-  console.log(data)
   const tags = JSON.parse(data.tag)
   document.getElementById("task-name").innerHTML = data.name
   document.getElementById("task-story-point").innerHTML = data.story_point

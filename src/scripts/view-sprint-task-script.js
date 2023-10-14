@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, get, child, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 import { checkLoginStatus, getPriorityColor, getTagColor } from "./util.js";
+import { toggleTheme } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -192,3 +193,10 @@ onValue(ref(db, "task/" + receivedID), (snapshot) => {
   const totalLT = Object.values(logtime).map(obj=>obj["total"]).reduce((acc,lt) => acc + lt, 0)
   document.getElementById("total-time-logged").innerHTML = `Total: ${Math.floor(totalLT/60)} hrs ${totalLT % 60} mins`
 })
+
+onValue(ref(db, 'users/' + localStorage.getItem('username')), (snapshot) => {
+  const data = snapshot.val();
+  if (data['theme']) {
+    toggleTheme(data['theme'])
+  }
+});

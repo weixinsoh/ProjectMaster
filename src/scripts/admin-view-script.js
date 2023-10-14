@@ -108,7 +108,7 @@ function fetchAndDisplayUserData() {
 
             for (const key in data) {
                 displayUserData(data[key].username, data[key].email, data[key].password);
-                // displayAveTimeSpentForAUser(data[key].username)
+                displayAveTimeSpentForAUser(data[key].username)
             }
         } 
             catch (error) {
@@ -182,15 +182,19 @@ async function displayAveTimeSpentForAUser(user) {
     const snapshot = await get(ref(db, "task/"))
     const tasks = snapshot.val()
     let total = 0
+    let user_total = 0
     for (const task in tasks) {
-      if (tasks[task].assignee === user) {
-        const lt = JSON.parse(tasks[task].logtime)
-        for (const date in lt) {
-            // data calculation
+      const lt = JSON.parse(tasks[task].logtime) 
+      for (const date in lt) {
+        if (new Date(date) >= start && new Date(date) <= end){
+            if (tasks[task].assignee === user){
+                user_total += lt[date].total
+            }
+            total += lt[date].total
         }
-      }
+      } 
     }
-    const ave = total / (start - end)
+    const ave = user_total / total
     const username = document.createElement("div");
     username.classList.add("user-col");
     username.innerHTML = `<p class="user-details">${user}</p>`;

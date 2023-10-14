@@ -250,7 +250,13 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 #### Reset Password
 
-1. 
+1. **Access Password Button:** Hover your mouse cursor over the profile icon in the navigation bar, typically located at the top of the screen. In the dropdown menu that appears, select the "Password" option. This will redirect you to the Reset Password window.
+
+2. **Input Details:** You need to fill in your current password and a new password to reset your password.
+
+3. **Done Button:** Once you've verified the correctness of the new password, click the "Done" button. This action will initiate the password reset process, and you can use it for future logins.
+
+4. **Navigate Back:** You can return to the previous page by clicking on the "Back" button. 
 
 #### Login
 

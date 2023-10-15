@@ -56,6 +56,7 @@ document.getElementById("create-user-account-btn").addEventListener('click', (e)
                 email: userEmail,
                 password: userPassword,
                 role: "member",
+                theme: "default"
               })
               .then(() => {
                 alert("User account created!")

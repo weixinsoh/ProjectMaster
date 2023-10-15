@@ -10,20 +10,20 @@
 
 .theme-male {
     --project-name-color: linear-gradient(45deg, #1e454c, rgb(56, 96, 103), #406b72);
-    --primary-bg-color: #c4d6d9;
-    --button-bg-color: #714432;
-    --button-hover-color: #5c3121;
-    --container-bg-color: #e6eced;
+    --primary-bg-color: #cedfdf;
+    --button-bg-color: #182544;
+    --button-hover-color: #4a6a94;
+    --container-bg-color: #e6eef2;
     --card-border: 0px;
-    --table-header-color: #203c43;
+    --table-header-color: #2e5984;
 }
 
 .theme-female {
     --project-name-color: linear-gradient(45deg, #523208, #6e352a, #874d41);
-    --primary-bg-color: rgba(187, 103, 101, 0.50);
-    --button-bg-color: #722f37;
-    --button-hover-color: #5f2128;
-    --container-bg-color: rgb(255, 239, 238);
+    --primary-bg-color: #F3d6d8;
+    --button-bg-color: #313035;
+    --button-hover-color: #f8d5f2;
+    --container-bg-color: #fdf4f4;
     --card-border: 0px;
-    --table-header-color: #2f0b0e;
+    --table-header-color: #313035;
 }

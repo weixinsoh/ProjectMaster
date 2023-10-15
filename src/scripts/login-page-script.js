@@ -24,11 +24,9 @@ onValue(ref(db, 'users/' + localStorage.getItem('previous-login')), (snapshot) =
   }
 });
 
-// Event Listener
 document.getElementById("login-btn").addEventListener('click', (e) => {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-
 
   e.preventDefault();
 
@@ -38,22 +36,22 @@ document.getElementById("login-btn").addEventListener('click', (e) => {
     return; 
   }
 
-  get(ref(db, "users/" + username))
-  .then((snapshot) => {
-    const data = snapshot.val()
-    if (!data) {
-      alert("User not found");
-      return;
-    }
-    if (data.password === password) {
-      //store username across application
-      localStorage.setItem('username', username)
-      window.open('product-backlog.html', '_self')
-    } else {
-      alert("Incorrect username/password!")
-    }
-  })
-.catch((error) => {
-  alert(error);
-});
+  const userRef = ref(db, "users/" + username);
+
+  get(userRef)
+    .then((snapshot) => {
+      const data = snapshot.val();
+      if (!data) {
+        alert("User not found");
+      } else if (data.password === password) {
+        // Store username across the application
+        localStorage.setItem('username', username);
+        window.open('product-backlog.html', '_self');
+      } else {
+        alert("Incorrect username/password!");
+      }
+    })
+    .catch((error) => {
+      alert("Error fetching user data: " + error.message);
+    });
 });

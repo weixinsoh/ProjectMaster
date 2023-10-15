@@ -20,10 +20,22 @@ checkLoginStatus()
 
 onValue(ref(db, 'users/' + localStorage.getItem('username')), (snapshot) => {
   const data = snapshot.val();
+
   if (data['theme']) {
     toggleTheme(data['theme'])
   }
 });
+
+onValue (ref(db, 'users/'), (snapshot) =>{
+  const data = snapshot.val();
+  const members = Object.keys(data);
+  members.forEach((member) => {
+    const opt = document.createElement("option");
+    opt.text = member
+    opt.value = member
+    document.getElementById('task-assignee').appendChild(opt)
+  })
+})
 
 // Event Listener
 document.getElementById("create-task-btn").addEventListener('click', (e) => {

@@ -19,23 +19,5 @@ const username = localStorage.getItem('username')
 
 get(ref(db, "users/" + username)).then((snapshot) => {
     const data = snapshot.val()
-    console.log(data)
-    document.querySelectorAll('input[name="theme"]').forEach(radio => {
-        console.log(radio.value)
-        if (radio.value == data.theme){
-            radio.checked = true
-        }
-    })
+    toggleTheme(data.theme)
 })
-
-document.querySelectorAll('input[name="theme"]').forEach(radio => radio.addEventListener('change', () => {
-    if (radio.checked) {
-        console.log(radio.value)
-        toggleTheme(radio.value)
-        update(ref(db, "users/" + username), {
-            theme: radio.value
-        })
-    }
-}))
-
-

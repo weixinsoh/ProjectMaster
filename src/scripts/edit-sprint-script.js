@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getDatabase, ref, set, get, child, onValue, remove, onValue} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getDatabase, ref, set, get, child, remove, onValue} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
 import { checkLoginStatus, toggleTheme } from "./util.js";
 
 const firebaseConfig = {

@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 toggleTheme()
-
+console.log(localStorage.getItem('previous-login'))
 onValue(ref(db, 'users/' + localStorage.getItem('previous-login')), (snapshot) => {
   const data = snapshot.val();
   if (data && data['theme']) {

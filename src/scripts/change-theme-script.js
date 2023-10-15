@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
 import { getDatabase, ref, get, onValue, update} from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
-import { toggleTheme } from "./util.js";
+import { toggleTheme, confirmLogout, displayNavItem } from "./util.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACyBE4-v3Z5qL37njca-CaPUPXMHfzZbY",
@@ -16,6 +16,8 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 const username = localStorage.getItem('username')
+
+displayNavItem(db)
 
 get(ref(db, "users/" + username)).then((snapshot) => {
     const data = snapshot.val()
@@ -38,4 +40,8 @@ document.querySelectorAll('input[name="theme"]').forEach(radio => radio.addEvent
     }
 }))
 
+document.getElementById("logout-link").addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default link behavior
+    confirmLogout(); // Show the confirmation dialog
+});
 

@@ -108,7 +108,7 @@ function fetchAndDisplayUserData() {
 
             for (const key in data) {
                 displayUserData(data[key].username, data[key].email, data[key].password);
-                displayAveTimeSpentForAUser(data[key].username)
+                // displayAveTimeSpentForAUser(data[key].username)
             }
         } 
             catch (error) {

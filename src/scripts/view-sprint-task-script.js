@@ -144,7 +144,7 @@ document.getElementById("chart-btn").addEventListener('click', async () => {
         labels: Object.keys(lt),
         datasets: [{
             label: 'Accumulation of Effort',
-            data: cumulativeEffort(Object.values(lt).map(obj=>obj["total"])),
+            data: cumulativeEffort(Object.values(lt).map(obj=>obj["total"]).map(total => total/60)),
             borderColor: 'rgb(235, 52, 88)',
             fill: false
         }]

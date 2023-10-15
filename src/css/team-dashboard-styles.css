@@ -99,7 +99,6 @@ ul li:hover ul.dropdown{
     min-width: 100px;
     margin: 2px;
     padding: 10px;
-
     transition: 0.3%;
     position: relative;
 }

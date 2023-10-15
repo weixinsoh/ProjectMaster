@@ -181,7 +181,7 @@ async function displayAveTimeSpentForAUser(user) {
 
     const snapshot = await get(ref(db, "task/"))
     const tasks = snapshot.val()
-    let total = 0
+    // let total = 0
     let user_total = 0
     for (const task in tasks) {
       const lt = JSON.parse(tasks[task].logtime) 
@@ -190,11 +190,11 @@ async function displayAveTimeSpentForAUser(user) {
             if (tasks[task].assignee === user){
                 user_total += lt[date].total
             }
-            total += lt[date].total
+            // total += lt[date].total
         }
       } 
     }
-    const ave = user_total / total
+    const ave = (user_total) / ((end - start)/(1000*60))
     const username = document.createElement("div");
     username.classList.add("user-col");
     username.innerHTML = `<p class="user-details">${user}</p>`;
@@ -234,19 +234,32 @@ document.getElementById("close-chart-btn").addEventListener('click', () => {
 
 async function contributionLog(user) {
     chartPopup.style.display = "block"
-    const start = new Date(document.getElementById("start-date").value)
-    const end = new Date(document.getElementById("end-date").value)
+    const str_start = document.getElementById("start-date").value
+    const str_end = document.getElementById("end-date").value
+    const start = new Date(str_start)
+    const end = new Date(str_end)
 
     const snapshot = await get(ref(db, "task/"))
     const tasks = snapshot.val()
     let retObj = {}
+    let current = new Date(str_start)
+    while (current <= end) {
+        const year = current.getFullYear();
+        const month = String(current.getMonth() + 1).padStart(2, '0');
+        const day = String(current.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        retObj[formattedDate] = 0;
+        current.setDate(current.getDate() + 1);
+    }
     for (const task in tasks) {
-      if (tasks[task].assignee === user) {
-        const lt = JSON.parse(tasks[task].logtime)
-        for (const key in lt) {
-            // data calculation
+      const lt = JSON.parse(tasks[task].logtime)
+      for (const date in lt) {
+        if (new Date(date) >= start && new Date(date) <= end){
+            if (tasks[task].assignee === user){
+                retObj[date] = lt[date].total
+            }
         }
-      }
+      } 
     }
     const ctx = document.getElementById("contribution-log-chart").getContext("2d")
     if (Chart.getChart("contribution-log-chart")) {

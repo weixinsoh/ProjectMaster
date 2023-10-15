@@ -194,7 +194,7 @@ async function displayAveTimeSpentForAUser(user) {
         }
       } 
     }
-    const ave = (user_total) / (((end-start)/(1000*60) + 1440))
+    const ave = (((user_total) / (((end-start)/(1000*60) + 1440)))*24)
     const username = document.createElement("div");
     username.classList.add("user-col");
     username.innerHTML = `<p class="user-details">${user}</p>`;

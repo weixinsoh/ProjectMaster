@@ -1,3 +1,7 @@
+body {
+    background-color: var(--primary-bg-color);
+}
+
 .container{
     display: flex;
     border: var(--card-border); /* Adjust border width and color as needed */

@@ -228,7 +228,7 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 
 2. **Average Time Spent:** Admin can view the average time spent by each team member per day within a specific time range.
 
-2. **Contribution Log:** There is a live chart for each team member to show their contribution towards the project within a specific time range.
+2. **Contribution Log:** There is a live chart that can be displayed for each team member to show their contribution towards the project within a specific time range.
 
 #### Create User Accounts
 

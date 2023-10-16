@@ -194,7 +194,7 @@ async function displayAveTimeSpentForAUser(user) {
         }
       } 
     }
-    const ave = (user_total) / ((end - start)/(1000*60))
+    const ave = (((user_total) / (((end-start)/(1000*60) + 1440)))*24)
     const username = document.createElement("div");
     username.classList.add("user-col");
     username.innerHTML = `<p class="user-details">${user}</p>`;
@@ -256,7 +256,7 @@ async function contributionLog(user) {
       for (const date in lt) {
         if (new Date(date) >= start && new Date(date) <= end){
             if (tasks[task].assignee === user){
-                retObj[date] = lt[date].total
+                retObj[date] = lt[date].total / 60
             }
         }
       } 

@@ -179,7 +179,7 @@ function displayCard(status, taskData, sprintStatus) {
     card.classList.add("task-card") 
 
     // Unable to drag when sprint is completed
-    if(sprintStatus != "Completed"){
+    if(sprintStatus != "Completed" && sprintStatus != "Not-started"){
       card.setAttribute("draggable", "true");
     }
     else card.setAttribute("draggable", "false")

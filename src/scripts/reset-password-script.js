@@ -44,6 +44,16 @@ function resetPassword() {
         return;
     }
 
+    if (newPassword === "") {
+        alert("Please enter a new password.")
+        return
+    }
+
+    if (confirmPassword === "") {
+        alert("Please confirm your new password.")
+        return
+    }
+
     // Fetch the user's current data from Firebase
     const userRef = ref(db, 'users/' + username);
     get(userRef)
@@ -54,6 +64,10 @@ function resetPassword() {
 
                 if (currentPasswordInput.value === storedPassword) {
                     if (newPassword === confirmPassword) {
+                        if (newPassword === currentPasswordInput.value) {
+                            alert("New password should differ from current password.")
+                            return
+                        }
                         // Passwords match and the new password and confirmation match
                         // Update only the "password" field in Firebase, preserving other user data
                         userData.password = newPassword; // Update the password in the user data

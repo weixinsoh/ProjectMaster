@@ -24,6 +24,18 @@ onValue(ref(db, 'users/' + localStorage.getItem('username')), (snapshot) => {
     toggleTheme(data['theme'])
   }
 });
+
+onValue (ref(db, 'users/'), (snapshot) =>{
+  const data = snapshot.val();
+  const members = Object.keys(data);
+  members.forEach((member) => {
+    const opt = document.createElement("option");
+    opt.text = member
+    opt.value = member
+    document.getElementById('task-assignee').appendChild(opt)
+  })
+})
+
 const urlParams = new URLSearchParams(window.location.search);
 // const receivedID = urlParams.get('id')
 let oldName = ""
@@ -52,6 +64,13 @@ document.getElementById("return-product-backlog-btn").addEventListener('click', 
 
 function saveChange(){
   const taskName = document.getElementById("task-name").value
+  const description = document.getElementById("task-description").value
+  let cb = document.querySelectorAll('#task-tag input[type="checkbox"]');
+  let tags = [];
+  cb.forEach((b) => {
+    if (b.checked) tags.push(b.value)
+  })  
+  if (!validateInput(taskName, description, tags)) return
 
   get(child(reference, `/${taskName}`))
     .then((snapshot) => {
@@ -59,11 +78,6 @@ function saveChange(){
         // Task name already exists, show an error message
         alert("Task with the same name already exists!");
       } else {
-        let cb = document.querySelectorAll('#task-tag input[type="checkbox"]');
-        let tags = [];
-        cb.forEach((b) => {
-          if (b.checked) tags.push(b.value)
-        })
         remove(ref(db, "task/" + urlParams.get('id')))
 
         urlParams.set('id', taskName)
@@ -102,4 +116,29 @@ function getPriorityColor(priority) {
     case "Low":
       return "lightgreen"
   }
+}
+
+function validateInput(name, description, tag) {
+  let retVal = true
+
+  if (name == ""){
+    retVal = false
+    alert("Task name cannot be empty")
+    return
+  }
+
+  if (description == ""){
+    retVal = false
+    alert("Task description cannot be empty")
+    return
+  }
+
+  if (tag.length == 0){ 
+    retVal = false
+    alert("At least one tag must be chosen")
+    return
+
+  }
+
+  return retVal
 }

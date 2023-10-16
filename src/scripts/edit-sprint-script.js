@@ -44,11 +44,17 @@ document.getElementById("return-scrum-board-btn").addEventListener('click', () =
 function saveChange() {
   const sprintNameInput = document.getElementById("sprint-name");
   const sprintName = sprintNameInput.value;
+
+  if (!sprintName) {
+    alert("Sprint name cannot be empty")
+    return
+  }
   
   get(child(reference, `/${sprintName}`))
     .then((snapshot) => {
+
       if (oldName !== sprintName && snapshot.exists()) {
-        alert("sprint with the same name already exists!");
+        alert("Sprint with the same name already exists");
       } else {
         oldName = sprintName
         let storyPoints = {};

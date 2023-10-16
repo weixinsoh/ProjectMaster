@@ -123,16 +123,19 @@ function validateInput(name, description, tag) {
   if (name == ""){
     retVal = false
     alert("Task name cannot be empty")
+    return
   }
 
   if (description == ""){
     retVal = false
     alert("Task description cannot be empty")
+    return
   }
 
   if (tag.length == 0){ 
     retVal = false
     alert("At least one tag must be chosen")
+    return
 
   }
 

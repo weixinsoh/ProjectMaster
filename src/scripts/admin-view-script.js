@@ -216,7 +216,9 @@ async function displayAveTimeSpentForAUser(user) {
     
     const time = document.createElement("p");
     time.style = "width: 80%; display: inline-block";
-    time.innerHTML = `<span class="user-details">${ave}</span>`;
+    const hrs = Math.floor(ave);
+    const mins = Math.round((ave - hrs) * 60);
+    time.innerHTML = `<span class="user-details">${hrs}hrs ${mins}mins</span>`;
     
     timeElement.appendChild(time);
     timeElement.appendChild(icon);

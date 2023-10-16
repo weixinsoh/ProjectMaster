@@ -35,6 +35,8 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
         - Reset Password
         - Login
         - Logout
+    - Additional Features
+        - Color Theme Selection
 3. [Troubleshooting](#troubleshooting)
    - FAQ
 
@@ -269,6 +271,12 @@ For Agile teams who seek seamless collaboration with projects, the ProjectMaster
 1. **Access Logout Button:** Hover over the profile icon in the navbar for a dropdown list to be displayed and towards the bottom of the list will consist of a "Log Out" button.
 
 2. **Logout Button:** When clicked, redirect user back to the login page awaiting for login again.
+
+### Color Theme Selection
+
+1. **Access Theme Button:** Hover over the profile icon in the navbar for a dropdown list to be displayed and towards the top of the list is the "Theme" button.
+
+2. **Theme Button:** When clicked, redirect user to the theme selection window, where multiple color themes can be chosen according to the users' liking.
 
 </details>
 

@@ -6,8 +6,8 @@ body {
     display: flex;
     /* border: 3px solid #000; */
     border-radius: 30px; 
-    /* background-color: var(--container-bg-color); */
-    background-color: #ecf1f2;
+    background-color: var(--container-bg-color);
+    /* background-color: #ecf1f2; */
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
     position: relative;
     margin-top: 8%;
